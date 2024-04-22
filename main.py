@@ -3,10 +3,7 @@ import pyodbc as odbccon
 
 app = Flask(__name__)
 
-conn = odbccon.connect( "Driver={ODBC Driver 13 for SQL Server};"
-                        "Server=ICT_LAPTOP02S;"
-                        "Database=eDevInventoy;"
-                        "Trusted_Connection=yes;")
+
 @app.route('/')
 def main_page_form():
 #    cursor = conn.cursor()
