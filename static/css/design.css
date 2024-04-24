@@ -1,4 +1,27 @@
 #icon_details{
     height: 30px;
-
+}
+#user{
+height: 120px;
+}
+#processor{
+height: 120px;
+}
+#Mobo{
+height: 120px;
+}
+#PS{
+height: 130px;
+}
+#ram{
+height: 120px;
+}
+#storage{
+height: 120px;
+}
+#OS{
+height: 140px;
+}
+#status{
+height: 120px;
 }
