@@ -8,18 +8,29 @@
 </head>
 {% include 'Header.html' %}
 <body>
-<div class ="row container">
-    <div id="div_user" class="col-md-3 mx-auto"> <a href=""> <img src="static/icons/user.png" id="user"> </a> </div>
-    <div class="col-md-3 mx-auto"> <a href=""> <img src="static/icons/processor.png" id="processor"> </a></div>
-    <div class="col-md-3 mx-auto"> <a href=""> <img src="static/icons/motherboard.png" id="Mobo"> </a></div>
-    <div class="col-md-3 mx-auto"> <a href=""> <img src="static/icons/power-supply.png" id="PS"> </a></div>
+<br>
+<div class ="row justify-content-center">
+   <div class="col-md-1 mx-5">  <button id="user_button" class="btn btn-light" type="button"> <a href="#">  <img src="static/icons/user_2.png" id="user"></a></button>User</div>
+    <div class="col-md-1 mx-5"> <button id="processor_button" class="btn btn-light" type="button"><a href="#"> <img src="static/icons/processor.png" id="processor"></a></button>Processor</div>
+    <div class="col-md-1 mx-5"> <button id="motherboard_button" class="btn btn-light" type="button"><a href="#"> <img src="static/icons/motherboard.png" id="Mobo"></a></button>Motherboard</div>
+    <div class="col-md-1 mx-5"> <button id="power_suppy_button" class="btn btn-light" type="button"><a href="#"> <img src="static/icons/power-supply.png" id="PS"></a></button>PowerSupply</div>
 </div>
-<div class ="row container">
-    <div id="" class="col-md-3 mx-auto"> <a href=""> <img src="static/icons/ram.png" id="ram"> </a> </div>
-    <div class="col-md-3 mx-auto"> <a href=""> <img src="static/icons/storage.png" id="storage"> </a></div>
-    <div class="col-md-3 mx-auto"> <a href=""> <img src="static/icons/operating system.png" id="OS"> </a></div>
-    <div class="col-md-3 mx-auto"> <a href=""> <img src="static/icons/device status.png" id="status"> </a></div>
+<br>
+<br>
+<div class ="row justify-content-center">
+    <div class="col-md-1 mx-5"> <button id="ram_button" class="btn btn-light" type="button"> <a href="#"> <img src="static/icons/ram.png" id="ram"></a></button>RAM</div>
+    <div class="col-md-1 mx-5"> <button id="storage_button" class="btn btn-light" type="button"> <a href="#"> <img src="static/icons/storage.png" id="storage"></a></button>Storage</div>
+    <div class="col-md-1 mx-5"> <button id="os_button" class="btn btn-light" type="button"> <a href="#"> <img src="static/icons/operating_system.png" id="OS"></a></button>OperatingSystem</div>
+    <div class="col-md-1 mx-5"> <button id="status_button" class="btn btn-light" type="button"> <a href="#"> <img src="static/icons/device_status.png" id="status"></a></button>DeviceStatus</div>
 </div>
+<br>
+<br>
+<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+  <button id="save_button" class="btn btn-primary me-md-1" type="button">Save</button>
+  <button id="clear_button" class="btn btn-outline-danger" type="button">Clear</button>
+</div>
+
+
 </body>
 {% include 'Footer.html' %}
 </html>

@@ -1,27 +1,90 @@
 #icon_details{
     height: 30px;
 }
+
 #user{
 height: 120px;
+padding: 20px;
+/* border: 3px solid black; */
 }
 #processor{
 height: 120px;
+padding: 15px;
+
 }
+
 #Mobo{
 height: 120px;
+padding: 15px;
+
 }
+
 #PS{
-height: 130px;
+height: 120px;
+padding: 15px;
+
 }
+
 #ram{
 height: 120px;
+padding: 15px;
+
 }
+
 #storage{
 height: 120px;
+padding: 30px;
+
 }
+
 #OS{
-height: 140px;
+height: 120px;
+padding: 20px;
+
 }
+
 #status{
 height: 120px;
+padding: 25px;
+
 }
+
+#save_button{
+    height: 40px;
+    width: 90px;
+}
+#clear_button{
+    height: 40px;
+    width: 90px;
+}
+
+#user_button{
+    border: 3px solid black;
+}
+#processor_button{
+    border: 3px solid black;
+}
+#motherboard_button{
+    border: 3px solid black;
+}
+#power_suppy_button{
+    border: 3px solid black;
+}
+#ram_button{
+    border: 3px solid black;
+}
+
+#storage_button{
+    border: 3px solid black;
+}
+
+#os_button{
+    border: 3px solid black;
+}
+
+#status_button{
+    border: 3px solid black;
+}
+
+
+
