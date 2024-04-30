@@ -15,6 +15,13 @@
 <div class="form-floating">
     <form class="" action="/" method="POST">
         <div class="row">
+
+            <input class="form-control me-2" type="search" placeholder="  Search" aria-label="Search" id="search_bar">
+            <div class="col-md-2"  id="filter_button">
+
+                <a href=""><img src="static/icons/filter.png" id="filter"> </a>
+            </div>
+            <!--
             <div class="col-md-2" id="combo_box">
                 <select class="form-select form-select mb-3" name="department" id="select_department">
                     <option value=" ">DEPARTMENT</option>
@@ -34,12 +41,16 @@
                     <option value="QC">QC</option>
                     <option value="RAD">RAD</option>
                     <option value="VALIDATION">VALIDATION</option>
-                    <!-- Add more options here if needed -->
+
                 </select>
             </div>
-            <div class="col-md-2"  id="filter_button">
-                <button type="submit" class="btn btn-primary">Filter</button>
+
+
+            <div class="col-md-2"  id=" ">
+
+                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
+            -->
         </div>
     </form>
 
@@ -74,7 +85,11 @@
         <td class="fw-normal"> {{computer.3}}</td>
         <td class="fw-normal"> {{computer.4}}</td>
         <td>
-            <a href="/details{{computer.0}}" data-target="#view{{computer.0}}" >
+            <a href="/details?id{{ computer.0 }}&processor={{ computer.5 }}&motherboard={{ computer.6 }}
+                    &power_supply={{ computer.7 }}&ram={{ computer.8 }}&storage={{ computer.9 }}
+                    &os={{ computer.10 }}&eset={{ computer.11 }}&msoffice={{ computer.12 }}
+                    &asset_tag={{ computer.13 }}&computer_tag={{ computer.14 }}&network_tag={{ computer.15 }}
+                    &ups={{ computer.16 }}&serial_number= {{ computer.17 }}&user={{ computer.2 }}&computer_name={{ computer.3 }}">
                 <img src="static/icons/icon_details.png" class="img-fluid" id="icon_details">
             </a>
         </td>
