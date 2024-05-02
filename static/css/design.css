@@ -2,6 +2,10 @@
     height: 30px;
 }
 
+#edit_button{
+    height: 30px;
+}
+
 #user{
 height: 120px;
 padding: 20px;
@@ -50,12 +54,12 @@ padding: 25px;
 }
 
 #save_button{
-    height: 40px;
-    width: 90px;
+    height: 45px;
+    width: 95px;
 }
 #clear_button{
-    height: 40px;
-    width: 90px;
+    height: 45px;
+    width: 95px;
 }
 
 #user_button{
@@ -85,6 +89,115 @@ padding: 25px;
 #status_button{
     border: 3px solid black;
 }
+
+#combo_box{
+    width: 10%;
+    margin-top: 10px;
+    margin-left: 20px;
+    padding: 0px;
+}
+
+#search_bar{
+    height: 40px;
+    width: 250px;
+    margin-top: 10px;
+    margin-left: 40px;
+    margin-bottom: 20px;
+    padding: 0px;
+}
+
+
+
+#filter_button{
+    width: 20px;
+    margin-top: 10px;
+     padding-left: 0px;
+
+}
+
+.btn-primary-outline {
+
+    border-color: #1D1D98; /* Border color */
+}
+
+.btn-primary-outline:hover{
+     background-color: #1D1D98; /* Hover color */
+    border-color: #1D1D98; /* Hover border color */
+    color: white;
+}
+
+#menu_bar{
+    background-color: #474747;
+    height: 75px;
+}
+
+#logo{
+    height: 75px;
+    width: 80px;
+}
+
+#filter{
+    height: 35px;
+    width: 30x;
+    margin-left: 0px;
+}
+
+#home{
+    height: 30px;
+    width: 30px;
+    margin: 5px;
+
+}
+
+#add_inventory{
+    height: 30px;
+    width: 30px;
+  margin: 5px;
+
+}
+
+#logs{
+    height: 30px;
+    width: 30px;
+  margin: 5px;
+}
+
+#table_color{
+    background-color: #ececec;
+}
+
+#body_color{
+    background-color: #DBDBE2;
+}
+#navigation{
+    padding: 0;
+}
+
+#detail_row{
+    margin-top: 55;
+}
+
+#btn_back{
+    height: 45px;
+    width: 95px;
+}
+
+#column{
+    background-color: #DBDBE2;
+    margin-left: 150px;
+    margin-right: 150px;
+    padding-top: 50px;
+    padding-bottom: 20px;
+
+}
+
+#details_color{
+    background-color: white;
+}
+
+
+
+
 
 
 

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Title</title>
+
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/design.css">
+
+</head>
+{% include 'Header.html' %}
+<body id="details_color">
+
+
+             <form action="{{ url_for('details') }}" method="POST">
+
+
+                 <div class="row d-flex justify-content-center"  id="column">
+                    <br>
+            <div class="col-md-3 " >
+                <div class="row">
+
+                    <div class=" mb-3">
+                        <label> Computer Name</label>
+                        <input type="text" class="form-control" value="{{ computer_name }}" readonly>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label> Processor</label>
+                        <input type="text" class="form-control" value="{{ processor }}" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Motherboard</label>
+                        <input type="text" class="form-control" value="{{ motherboard }}" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label> Power Supply</label>
+                        <input type="text" class="form-control" value="{{ power_supply }}" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label> RAM</label>
+                        <input type="text" class="form-control" value="{{ ram }}" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label> Storage </label>
+                        <input type="text" class="form-control" value="{{ storage }}" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label> Operating System</label>
+                        <input type="text" class="form-control" value="{{ os }}" readonly>
+                    </div>
+
+                </div>
+
+            </div>
+
+                <div class="col-md-3">
+                <div class="row">
+                    <div class="mb-3">
+                         <div class="mb-3">
+                        <label> ESET</label>
+                        <input type="text" class="form-control" value="{{ eset }}" readonly>
+                        </div>
+
+                    <div class="mb-3">
+                        <label> Microsoft Office</label>
+                        <input type="text" class="form-control" value="{{ msoffice }}" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label> Asset Tag</label>
+                        <input type="text" class="form-control" value="{{ asset_tag }}" readonly>
+                    </div>
+
+                        <div class="mb-3">
+                        <label> Computer Tag</label>
+                        <input type="text" class="form-control" value="{{ computer_tag }}" readonly>
+                    </div>
+
+                         <div class="mb-3">
+                        <label> Network Tag</label>
+                        <input type="text" class="form-control" value="{{ network_tag }}" readonly>
+                    </div>
+
+                        <div class="mb-3">
+                        <label> UPS </label>
+                        <input type="text" class="form-control" value="{{ ups }}" readonly>
+                    </div>
+
+                        <div class="mb-3">
+                        <label> Serial Number </label>
+                        <input type="text" class="form-control" value="{{ serial_number }}" readonly>
+                    </div>
+
+                </div>
+                        <a href="/">
+
+                            <button type="button" class="btn btn-primary-outline float-end fw-semibold" id="btn_back"> Back</button>
+                        </a>
+            </div>
+
+
+        </div>
+
+                 </div>
+
+            </form>
+
+
+
+
+
+
+    </div>
+</body>
+{% include 'Footer.html' %}
+</html>
