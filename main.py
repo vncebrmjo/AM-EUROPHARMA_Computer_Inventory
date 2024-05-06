@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for, redirect
 import pyodbc as odbcconn
 
 app = Flask(__name__)
@@ -14,10 +14,17 @@ connect = odbcconn.connect("Driver={ODBC Driver 13 for SQL Server};"
 def main_page():
     cursor = connect.cursor()
     department = request.form.get('department')
+    mobo = request.form.get('mobo')
+
+    ram = request.form.get('ram', ' ')
+
 
     if request.method == 'POST':
-        cursor.execute("SELECT * FROM Computers WHERE Department = ?",
-                       (department,))
+        cursor.execute("SELECT * FROM Computers WHERE Department = ? AND MotherBoard LIKE  ? AND RAM LIKE  ?" ,
+                       (department,  '%' + mobo + '%',  '%' + ram + '%'))
+        #cursor.execute("SELECT * FROM Computers WHERE MotherBoard LIKE  ? ",
+         #              ())
+
 
     else:
         cursor.execute("SELECT * FROM Computers")
@@ -25,7 +32,10 @@ def main_page():
     data = cursor.fetchall()
     cursor.close()
 
-    return render_template('main_page.html', department=department, data=data)
+    return render_template('main_page.html', department=department, data=data, mobo=mobo, ram=ram)
+
+
+
 
 @app.route('/details', methods=['GET', 'POST'])
 def details():

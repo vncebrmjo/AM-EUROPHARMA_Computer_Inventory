@@ -90,12 +90,27 @@ padding: 25px;
     border: 3px solid black;
 }
 
-#combo_box{
-    width: 10%;
+#dept_combo_box{
+    width: 40%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
 }
+
+#mobo_combo_box{
+    width: 40%;
+    margin-top: 10px;
+    margin-left: 20px;
+    padding: 0px;
+}
+
+#ps_combo_box{
+    width: 40%;
+    margin-top: 10px;
+    margin-left: 20px;
+    padding: 0px;
+}
+
 
 #search_bar{
     height: 40px;
@@ -111,7 +126,8 @@ padding: 25px;
 #filter_button{
     width: 20px;
     margin-top: 10px;
-     padding-left: 0px;
+    padding-left: 0px;
+
 
 }
 
@@ -126,6 +142,22 @@ padding: 25px;
     color: white;
 }
 
+.btn-primary-solid {
+
+     background-color: #1D1D98; /* Replace "your-color" with your desired color */
+    border-color:#1D1D98;
+    color: white;
+}
+
+.btn-primary-solid:hover{
+     background-color: #1D1D98; /* Replace "your-color" with your desired color */
+    border-color:#1D1D98;
+    color: white;
+}
+
+
+
+
 #menu_bar{
     background-color: #474747;
     height: 75px;
@@ -137,8 +169,8 @@ padding: 25px;
 }
 
 #filter{
-    height: 35px;
-    width: 30x;
+    height: 45px;
+    width: 40px;
     margin-left: 0px;
 }
 
@@ -194,6 +226,11 @@ padding: 25px;
 #details_color{
     background-color: white;
 }
+
+
+
+
+
 
 
 
