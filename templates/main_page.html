@@ -75,18 +75,7 @@
                 </select>
             </div>
 
-           <label class="fw-semibold">RAM</label>
-          <div class="col-md-3" id="ram_combo_box">
-                <select class="form-select mb-3 " name="ram" id="ram">
-                    <option value=" "> </option>
-                    <option value="DDR"> ddr3</option>
-                    <option value="DDR">dd4 </option>
 
-
-
-
-                </select>
-            </div>
 
 
       </div>
@@ -152,7 +141,7 @@
         </tr>
     </thead>
     <tbody>
-    {% for computer in data %}
+    {% for computer in get_page  %}
     <tr >
         <td >
             <a href="" >
@@ -177,6 +166,44 @@
     </tbody>
 </table>
 
+
+
+<nav aria-label="Page navigation example">
+
+    </nav>
+
+
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end" id="pagination">
+        {% if get_page %}
+            {% if page > 1 %}
+                <li class="page-item"><a class="page-link" href="{{ url_for('main_page', page=page-1, department=department) }}">Previous</a></li>
+            {% else %}
+                <li class="page-item disabled"><span class="page-link">Previous</span></li>
+            {% endif %}
+            {% for num in range(1, total_pages + 1) %}
+                {% if num == page %}
+                    <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="{{ url_for('main_page', page=num, department=department) }}">{{ num }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if len(get_page) == per_page %}
+                <li class="page-item"><a class="page-link" href="{{ url_for('main_page', page=page+1, department=department) }}">Next</a></li>
+            {% else %}
+                <li class="page-item disabled"><span class="page-link">Next</span></li>
+            {% endif %}
+        {% endif %}
+    </ul>
+
+    <ul class="pagination justify-content-end">
+        {% if get_page %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('main_page', page=1, department=department) }}">First</a></li>
+            <li class="page-item"><a class="page-link" href="{{ url_for('main_page', page=total_pages, department=department) }}">Last</a></li>
+        {% endif %}
+    </ul>
+</nav>
 
 
 
