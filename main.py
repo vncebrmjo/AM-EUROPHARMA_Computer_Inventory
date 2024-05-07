@@ -1,41 +1,59 @@
 from flask import Flask, render_template, request, url_for, redirect
 import pyodbc as odbcconn
+from math import ceil
 
 app = Flask(__name__)
 
-Total_Pages = 5
+
 
 connect = odbcconn.connect("Driver={ODBC Driver 13 for SQL Server};"
                         "Server=ICT_LAPTOP02S;"
                         "Database=eDevInventoy;"
                         "Trusted_Connection=yes;")
+cursor = connect.cursor()
 
 @app.route('/', methods=['POST', 'GET'])
 def main_page():
-    cursor = connect.cursor()
+    page = int(request.args.get('page', 1))
+    per_page = 10  # Number of rows per page
+
     department = request.form.get('department')
-    mobo = request.form.get('mobo')
 
-    ram = request.form.get('ram', ' ')
+    get_page = get_data(page, per_page, department)
 
+    cursor.execute("SELECT COUNT(*) FROM Computers")
+    total_rows = cursor.fetchone()[0]
 
-    if request.method == 'POST':
-        cursor.execute("SELECT * FROM Computers WHERE Department = ? AND MotherBoard LIKE  ? AND RAM LIKE  ?" ,
-                       (department,  '%' + mobo + '%',  '%' + ram + '%'))
-        #cursor.execute("SELECT * FROM Computers WHERE MotherBoard LIKE  ? ",
-         #              ())
+    # Calculate total number of pages
+    total_pages = ceil(total_rows / per_page)
 
 
-    else:
-        cursor.execute("SELECT * FROM Computers")
+    return render_template('main_page.html', get_page=get_page, page=page,
+                           len=len, per_page=per_page, total_pages=total_pages, department=department )
+'''
+def get_data(page, per_page, department=None):
+    offset = (page - 1) * per_page
+    query = "SELECT * FROM Computers ORDER BY ID OFFSET ? ROWS FETCH NEXT ? ROWS ONLY"
+    cursor.execute(query, offset, per_page)
+    get_page = cursor.fetchall()
+    return get_page
+'''
 
-    data = cursor.fetchall()
-    cursor.close()
+def get_data(page, per_page, department=None):
+    offset = (page - 1) * per_page
+    query = "SELECT * FROM Computers"
+    params = []
 
-    return render_template('main_page.html', department=department, data=data, mobo=mobo, ram=ram)
+    if department:
+        query += " WHERE department = ?"
+        params.append(department)
 
+    query += " ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY"
+    params.extend([offset, per_page])
 
-
+    cursor.execute(query, params)
+    get_page = cursor.fetchall()
+    return get_page
 
 @app.route('/details', methods=['GET', 'POST'])
 def details():
@@ -68,8 +86,33 @@ def details():
 
 @app.route('/Add_Inventory')
 def Add_Inventory():
+    if request.method == "POST":
+        user = request.form['user']
+        department = request.form.get('department')
+        computer_name = request.form['computer_name']
+        ip = request.form['ip']
+        asset_tag = request.form['asset_tag']
+        serial_number = request.form['serial_number']
 
+        processor = request.form.get('processor_1 ' + ' ' + 'processor_2' + ' ' + ' processor_3' )
+        mobo = request.form.get('mobo_1' + ' ' + 'mobo_2')
+        ps = request.form.get('ps_1' + ' ' + 'ps_2')
     return render_template('Add_Inventory.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+    # department = request.form.get('department')
+    # mobo = request.form.get('mobo')
+    # ram = request.form.get('ram', ' ')
+
+    # if request.method == 'POST':
+    #    cursor.execute("SELECT * FROM Computers WHERE Department = ? " ,
+    #                   (department))
+    # cursor.execute("SELECT * FROM Computers WHERE MotherBoard LIKE  ? ",
+    #              ())
+
+    # else:
+    #    cursor.execute("SELECT * FROM Computers")
+
+    # data = cursor.fetchall()
