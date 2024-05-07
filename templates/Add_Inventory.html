@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Add_Inventory</title>
@@ -9,7 +9,7 @@
 </head>
 {% include 'Header.html' %}
 <body>
-<br>
+    <form method="POST" action ="{{ url_for('Add_Inventory') }}">
 <div class ="row justify-content-center">
    <div class="col-md-1 mx-5">  <button id="user_button" class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#modal_user"><a href="#"><img src="static/icons/user_2.png" id="user"></a></button>User</div>
      <div class="modal" id="modal_user">
@@ -42,31 +42,31 @@
                     <option value="VALIDATION">VALIDATION</option>
                 </select>
             </div>
-      </div>
          <div class="col-md-3" id="user_text">
           <label class="fw-semibold">USER NAME</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" name="user">
              </div>
                  <div class="col-md-3" id="computer_name">
           <label class="fw-semibold"> COMPUTER NAME</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control"  name="computer_name">
              </div>
         <div class="col-md-3" id="ip">
           <label class="fw-semibold">IP ADDRESS</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control"  name="ip">
              </div>
         <div class="col-md-3" id="asset_tag">
           <label class="fw-semibold">ASSET TAG</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control"  name="asset_tag">
              </div>
         <div class="col-md-3" id="serial_number">
           <label class="fw-semibold">SERIAL NUMBER</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" name="serial_number">
              </div>
-
+          </div>
+<br>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Confirm</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>
@@ -83,7 +83,7 @@
       <div class="modal-body">
         <div class="col-md-3" id="process_combo_box">
           <label class="fw-semibold">BRAND NAME</label>
-                <select class="form-select mb-3" name="processor" id="select_processor">
+                <select class="form-select mb-3" name="processor_1" id="select_processor">
                     <option value=" "> </option>
                     <option value="Intel">Intel</option>
                     <option value="AMD Ryzen">AMD</option>
@@ -91,7 +91,7 @@
             </div>
                   <div class="col-md-3" id="core_combo_box">
           <label class="fw-semibold">CORE</label>
-                <select class="form-select mb-3" name="processor" id="core_processor">
+                <select class="form-select mb-3" name="processor_2" id="core_processor">
                     <option value=" "> </option>
                     <option value="Pentium">Pentium</option>
                     <option value="3">3</option>
@@ -99,14 +99,14 @@
                     <option value="7">7</option>
                 </select>
             </div>
-      </div>
         <div class="col-md-3" id="cpu_details">
           <label class="fw-semibold">DETAILS</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" name="processor_3">
              </div>
+          </div>
         <br>
       <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary">Confirm </button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
@@ -124,17 +124,17 @@
       <div class="modal-body">
           <div class="col-md-3" id="brand">
           <label class="fw-semibold">BRAND NAME</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" name="mobo_1">
              </div>
 
           <div class="col-md-3" id="motherboard_details">
           <label class="fw-semibold">DETAILS</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" name="mobo_2">
              </div>
         <br>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary">Confirm</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
@@ -152,17 +152,17 @@
       <div class="modal-body">
         <div class="col-md-3" id="ps_brand">
           <label class="fw-semibold">BRAND NAME</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" name="ps_1">
              </div>
 
           <div class="col-md-3" id="watts">
           <label class="fw-semibold">WATTS</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" name="ps_2">
              </div>
         <br>
       </div>
       <div class="modal-footer">
-       <button type="button" class="btn btn-primary">Save changes</button>
+       <button type="button" class="btn btn-primary">Confirm</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
@@ -185,11 +185,11 @@
       <div class="modal-body">
           <div class="col-md-3" id="ram_brand">
           <label class="fw-semibold">BRAND NAME</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control ram_1">
              </div>
         <div class="col-md-3" id="ram_combo_box">
           <label class="fw-semibold">DDR</label>
-                <select class="form-select mb-3" name="DDR" id="select_ddr">
+                <select class="form-select mb-3" name="ram_2" id="select_ddr">
                     <option value=" "> </option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -197,11 +197,10 @@
                     <option value="5">5</option>
                 </select>
             </div>
-      </div>
 
         <div class="col-md-3" id="gb_combo_box">
           <label class="fw-semibold">GIGABYTES</label>
-                <select class="form-select mb-3" name="DDR" id="select_gb">
+                <select class="form-select mb-3" name="ram_3" id="select_gb">
                     <option value=" "> </option>
                     <option value="2">2</option>
                     <option value="4">4</option>
@@ -214,9 +213,10 @@
                     <option value="256">256</option>
                 </select>
             </div>
+          </div>
 <br>
       <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary">Confirm</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
@@ -233,27 +233,27 @@
       <div class="modal-body">
           <div class="col-md-3" id="storage_brand">
           <label class="fw-semibold">BRAND NAME</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" name="storage_1">
              </div>
 
         <div class="col-md-3" id="storage_combo_box">
           <label class="fw-semibold">TYPE</label>
-                <select class="form-select mb-3" name="DDR" id="select_storage">
+                <select class="form-select mb-3" name="storage_2" id="select_storage">
                     <option value=" "> </option>
                     <option value="HDD">HDD</option>
                     <option value="SSD">SSD</option>
                     <option value="M.2">M.2</option>
                 </select>
             </div>
-      </div>
 
         <div class="col-md-3" id="size">
           <label class="fw-semibold">SIZE</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" name="storage_3">
              </div>
+          </div>
 <br>
       <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary">Confirm</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
@@ -270,17 +270,18 @@
       <div class="modal-body">
         <div class="col-md-3" id="OS_combo_box">
           <label class="fw-semibold">TYPE</label>
-                <select class="form-select mb-3" name="Operating System" id="select_OS">
+                <select class="form-select mb-3" name="os_1" id="select_OS">
                     <option value=" "> </option>
-                    <option value="Windows 7 pro">Windows 7 pro</option>
-                    <option value="Windows 8 pro">Windows 8 pro</option>
-                    <option value="Windows 10 pro">Windows 10 pro</option>
-                    <option value="Windows 11 pro">Windows 11 pro</option>
+                    <option value="macOS">macOS</option>
+                    <option value="Windows 7 Pro">Windows 7 Pro</option>
+                    <option value="Windows 8 Pro">Windows 8 Pro</option>
+                    <option value="Windows 10 Pro">Windows 10 Pro</option>
+                    <option value="Windows 11 Pro">Windows 11 Pro</option>
                 </select>
             </div>
       </div>
       <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary">Confirm</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
@@ -295,29 +296,36 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+          <div class="col-md-3" id="MS_combo_box">
+          <label class="fw-semibold">TYPE</label>
+                <select class="form-select mb-3" name="os_1" id="select_MS">
+                    <option value=" "> </option>
+                    <option value="Standard">Standard</option>
+                    <option value="Professional">Professional</option>
+                </select>
+            </div>
+
+         <div class="col-md-3" id="comtag">
+          <label class="fw-semibold">COMPUTER TAG</label>
+              <input type="text" class="form-control" name="ps_2">
+             </div>
+
+        <div class="col-md-3" id="nettag">
+          <label class="fw-semibold">NETWORK TAG</label>
+              <input type="text" class="form-control" name="ps_2">
+             </div>
           <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="ESET">
+  <input class="form-check-input" type="checkbox" value="TRUE" id="ESET">
   <label class= "form-check-label" for="ESET">ESET</label>
 </div>
           <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="MS_OFFICE">
-  <label class= "form-check-label" for="MS_OFFICE">MS OFFICE</label>
-</div>
-          <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="COMPUTER_TAG">
-  <label class= "form-check-label" for="COMPUTER_TAG">COMPUTER TAG</label>
-</div>
-          <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="NETWORK_TAG">
-  <label class= "form-check-label" for="NETWORK_TAG">NETWORK TAG</label>
-</div>
-          <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="UPS">
+  <input class="form-check-input" type="checkbox" value="TRUE" id="UPS">
   <label class= "form-check-label" for="UPS">UPS</label>
 </div>
       </div>
+
       <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary">Confirm</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
@@ -330,9 +338,35 @@
   <button id="save_button" class="btn btn-primary me-md-1 fw-semibold" type="button">Save</button>
   <button id="clear_button" class="btn btn-outline-danger fw-semibold" type="button">Clear</button>
 </div>
+</div>
+</div>
+
+<!--
+<br>
+<div class ="row justify-content-center">
+   <div class="col-md-1 mx-5">  <button id="user_button" class="btn btn-light" type="button"> <a href="#">  <img src="static/icons/user_2.png" id="user"></a></button>User</div>
+    <div class="col-md-1 mx-5"> <button id="processor_button" class="btn btn-light" type="button"><a href="#"> <img src="static/icons/processor.png" id="processor"></a></button>Processor</div>
+    <div class="col-md-1 mx-5"> <button id="motherboard_button" class="btn btn-light" type="button"><a href="#"> <img src="static/icons/motherboard.png" id="Mobo"></a></button>Motherboard</div>
+    <div class="col-md-1 mx-5"> <button id="power_suppy_button" class="btn btn-light" type="button"><a href="#"> <img src="static/icons/power-supply.png" id="PS"></a></button>PowerSupply</div>
+</div>
+<br>
+<br>
+<div class ="row justify-content-center">
+    <div class="col-md-1 mx-5"> <button id="ram_button" class="btn btn-light" type="button"> <a href="#"> <img src="static/icons/ram.png" id="ram"></a></button>RAM</div>
+    <div class="col-md-1 mx-5"> <button id="storage_button" class="btn btn-light" type="button"> <a href="#"> <img src="static/icons/storage.png" id="storage"></a></button>Storage</div>
+    <div class="col-md-1 mx-5"> <button id="os_button" class="btn btn-light" type="button"> <a href="#"> <img src="static/icons/operating_system.png" id="OS"></a></button>OperatingSystem</div>
+    <div class="col-md-1 mx-5"> <button id="status_button" class="btn btn-light" type="button"> <a href="#"> <img src="static/icons/device_status.png" id="status"></a></button>DeviceStatus</div>
+</div>
+<br>
+<br>
+<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+  <button id="save_button" class="btn btn-primary me-md-1 fw-semibold" type="button">Save</button>
+  <button id="clear_button" class="btn btn-outline-danger fw-semibold" type="button">Clear</button>
+</div>
 
 
+-->
+        </form>
 </body>
-
 {% include 'Footer.html' %}
 </html>

@@ -121,21 +121,21 @@ padding: 25px;
 #motherboard_details{
     width: 40%;
     margin-top: 10px;
-    margin-left: 37px;
+    margin-left: 20px;
     padding: 0px;
 }
 
 #brand{
     width: 40%;
     margin-top: 10px;
-    margin-left: 37px;
+    margin-left: 20px;
     padding: 0px;
 }
 
 #ps_brand{
     width: 40%;
     margin-top: 10px;
-    margin-left: 37px;
+    margin-left: 20px;
     padding: 0px;
 }
 
@@ -149,84 +149,104 @@ padding: 25px;
 #storage_brand{
     width: 40%;
     margin-top: 10px;
-    margin-left: 37px;
+    margin-left: 20px;
     padding: 0px;
 }
 
 #gb_combo_box{
     width: 40%;
     margin-top: 10px;
-    margin-left: 37px;
+    margin-left: 20px;
     padding: 0px;
 }
 
 #storage_combo_box{
     width: 40%;
     margin-top: 10px;
-    margin-left: 37px;
+    margin-left: 20px;
     padding: 0px;
 }
 
 #OS_combo_box{
     width: 40%;
     margin-top: 10px;
-    margin-left: 37px;
+    margin-left: 20px;
     padding: 0px;
 }
 
 #size{
     width: 40%;
     margin-top: 10px;
-    margin-left: 54px;
+    margin-left: 20px;
     padding: 0px;
 }
 
 #watts{
     width: 40%;
     margin-top: 10px;
-    margin-left: 37px;
+    margin-left: 20px;
     padding: 0px;
 }
 
 #user_text{
     width: 40%;
     margin-top: 10px;
-    margin-left: 37px;
+    margin-left: 20px;
     padding: 0px;
 }
 
 #cpu_details{
     width: 40%;
     margin-top: 10px;
-    margin-left: 37px;
+    margin-left: 20px;
+    padding: 0px;
+}
+#comtag{
+    width: 40%;
+    margin-top: 10px;
+    margin-left: 20px;
+    padding: 0px;
+}
+
+#nettag{
+    width: 40%;
+    margin-top: 10px;
+    margin-left: 20px;
+    padding: 0px;
+}
+
+#MS_combo_box{
+    width: 40%;
+    margin-top: 10px;
+    margin-left: 20px;
     padding: 0px;
 }
 
 #computer_name{
     width: 40%;
     margin-top: 10px;
-    margin-left: 37px;
+    margin-left: 20px;
     padding: 0px;
 }
 
 #ip{
     width: 40%;
     margin-top: 10px;
-    margin-left: 37px;
+    margin-left: 20px;
     padding: 0px;
 }
 
 #asset_tag{
     width: 40%;
     margin-top: 10px;
-    margin-left: 37px;
+    margin-left: 20px;
     padding: 0px;
 }
 
 #serial_number{
     width: 40%;
     margin-top: 10px;
-    margin-left: 37px;
+    margin-left: 20px;
     padding: 0px;
 }
 
