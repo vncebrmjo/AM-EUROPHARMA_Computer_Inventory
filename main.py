@@ -14,22 +14,12 @@ cursor = connect.cursor()
 
 @app.route('/', methods=['POST', 'GET'])
 def main_page():
-    page = int(request.args.get('page', 1))
-    per_page = 10  # Number of rows per page
-
-    department = request.form.get('department')
-
-    get_page = get_data(page, per_page, department)
-
-    cursor.execute("SELECT COUNT(*) FROM Computers")
-    total_rows = cursor.fetchone()[0]
-
-    # Calculate total number of pages
-    total_pages = ceil(total_rows / per_page)
+    cursor.execute('SELECT * FROM Computers')
+    get_page = cursor.fetchall()
 
 
-    return render_template('main_page.html', get_page=get_page, page=page,
-                           len=len, per_page=per_page, total_pages=total_pages, department=department )
+    return render_template('main_page.html', get_page=get_page)
+
 '''
 def get_data(page, per_page, department=None):
     offset = (page - 1) * per_page
@@ -38,6 +28,14 @@ def get_data(page, per_page, department=None):
     get_page = cursor.fetchall()
     return get_page
 '''
+
+@app.route('/test', methods=['POST', 'GET'])
+def test():
+    cursor.execute('SELECT * FROM Computers')
+    get_page = cursor.fetchall()
+    # cursor.close()
+    return render_template('test.html', get_page=get_page)
+
 
 def get_data(page, per_page, department=None):
     offset = (page - 1) * per_page
@@ -97,6 +95,14 @@ def Add_Inventory():
         processor = request.form.get('processor_1 ' + ' ' + 'processor_2' + ' ' + ' processor_3' )
         mobo = request.form.get('mobo_1' + ' ' + 'mobo_2')
         ps = request.form.get('ps_1' + ' ' + 'ps_2')
+        ram = request.form.get('ram_1' + ' ' + 'ram_2' + ' ' + 'ram_3')
+        storage = request.form.get('storage_1' + ' ' + 'storage_2' + ' ' + 'storage_3')
+        os = request.form.get('os_1')
+        type = request.form.get('type')
+        computer_tag = request.form.get('computer_tag')
+        network_tag = request.form.get('network_tag')
+        eset = request.form.get('ESET')
+        ups = request.form.get('UPS')
     return render_template('Add_Inventory.html')
 
 if __name__ == "__main__":

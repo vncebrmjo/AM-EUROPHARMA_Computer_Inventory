@@ -92,160 +92,162 @@ padding: 25px;
 }
 
 #dept_combo_box{
-    width: 40%;
+    width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
 }
 
+
+
 #process_combo_box{
-    width: 40%;
+   width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
 }
 
 #core_combo_box{
-    width: 40%;
+    width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
 }
 
 #ram_combo_box{
-    width: 40%;
+    width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
 }
 
 #motherboard_details{
-    width: 40%;
+     width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
 }
 
 #brand{
-    width: 40%;
+    width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
 }
 
 #ps_brand{
-    width: 40%;
+     width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
 }
 
 #ram_brand{
-    width: 40%;
+    width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
 }
 
 #storage_brand{
-    width: 40%;
+    width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
 }
 
 #gb_combo_box{
-    width: 40%;
+     width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
 }
 
 #storage_combo_box{
-    width: 40%;
+   width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
 }
 
 #OS_combo_box{
-    width: 40%;
+     width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
 }
 
 #size{
-    width: 40%;
+   width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
 }
 
 #watts{
-    width: 40%;
+    width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
 }
 
 #user_text{
-    width: 40%;
+     width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
 }
 
 #cpu_details{
-    width: 40%;
+    width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
 }
 #comtag{
-    width: 40%;
+    width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
 }
 
 #nettag{
-    width: 40%;
+     width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
 }
 
 #MS_combo_box{
-    width: 40%;
+    width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
 }
 
 #computer_name{
-    width: 40%;
+    width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
 }
 
 #ip{
-    width: 40%;
+    width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
 }
 
 #asset_tag{
-    width: 40%;
+    width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
 }
 
 #serial_number{
-    width: 40%;
+    width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
@@ -254,14 +256,14 @@ padding: 25px;
 
 
 #mobo_combo_box{
-    width: 40%;
+    width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
 }
 
 #ps_combo_box{
-    width: 40%;
+  width: 90%;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0px;
@@ -269,7 +271,7 @@ padding: 25px;
 
 
 #search_bar{
-    height: 40px;
+    width: 90%;
     width: 250px;
     margin-top: 10px;
     margin-left: 40px;
@@ -355,11 +357,24 @@ padding: 25px;
 }
 
 #body_color{
-    background-color: #DBDBE2;
+    background-color: #F8F8FF;
 }
 #navigation{
     padding: 0;
 }
+
+#top_set{
+    margin-top: 37px;
+}
+
+#btn_group{
+    margin-top: 35px;
+}
+
+#bottom_set{
+    margin-top: 25px;
+}
+
 
 #detail_row{
     margin-top: 55;
@@ -383,3 +398,17 @@ padding: 25px;
 #details_color{
     background-color: white;
 }
+
+#tbl_main_page tbody td {
+    text-align: center;
+            }
+
+#tbl_main_page thead th {
+    text-align: center;
+}
+
+
+
+
+
+
