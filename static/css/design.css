@@ -202,6 +202,26 @@ padding: 25px;
     margin-left: 20px;
     padding: 0px;
 }
+#comtag{
+    width: 40%;
+    margin-top: 10px;
+    margin-left: 20px;
+    padding: 0px;
+}
+
+#nettag{
+    width: 40%;
+    margin-top: 10px;
+    margin-left: 20px;
+    padding: 0px;
+}
+
+#MS_combo_box{
+    width: 40%;
+    margin-top: 10px;
+    margin-left: 20px;
+    padding: 0px;
+}
 
 #computer_name{
     width: 40%;
@@ -211,20 +231,6 @@ padding: 25px;
 }
 
 #ip{
-    width: 40%;
-    margin-top: 10px;
-    margin-left: 20px;
-    padding: 0px;
-}
-
-#comtag{
-    width: 40%;
-    margin-top: 10px;
-    margin-left: 20px;
-    padding: 0px;
-}
-
-#nettag{
     width: 40%;
     margin-top: 10px;
     margin-left: 20px;
@@ -255,13 +261,6 @@ padding: 25px;
 }
 
 #ps_combo_box{
-    width: 40%;
-    margin-top: 10px;
-    margin-left: 20px;
-    padding: 0px;
-}
-
-#MS_combo_box{
     width: 40%;
     margin-top: 10px;
     margin-left: 20px;
@@ -384,12 +383,3 @@ padding: 25px;
 #details_color{
     background-color: white;
 }
-
-
-
-
-
-
-
-
-
