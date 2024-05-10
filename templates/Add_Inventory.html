@@ -65,8 +65,8 @@
           </div>
 <br>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Confirm</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary fw-semibold">Confirm</button>
+          <button type="button" class="btn btn btn-outline-danger fw-semibold" data-bs-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>
@@ -106,8 +106,8 @@
           </div>
         <br>
       <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Confirm </button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary fw-semibold">Confirm </button>
+          <button type="button" class="btn btn btn-outline-danger fw-semibold" data-bs-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>
@@ -134,8 +134,8 @@
         <br>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Confirm</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary fw-semibold">Confirm</button>
+          <button type="button" class="btn btn btn-outline-danger fw-semibold" data-bs-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>
@@ -162,8 +162,8 @@
         <br>
       </div>
       <div class="modal-footer">
-       <button type="button" class="btn btn-primary">Confirm</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+       <button type="button" class="btn btn-primary fw-semibold" >Confirm</button>
+          <button type="button" class="btn btn btn-outline-danger fw-semibold" data-bs-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>
@@ -216,8 +216,8 @@
           </div>
 <br>
       <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Confirm</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary fw-semibold">Confirm</button>
+        <button type="button" class="btn btn btn-outline-danger fw-semibold" data-bs-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>
@@ -253,8 +253,8 @@
           </div>
 <br>
       <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Confirm</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary fw-semibold">Confirm</button>
+        <button type="button" class="btn btn btn-outline-danger fw-semibold" data-bs-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>
@@ -272,17 +272,18 @@
           <label class="fw-semibold">TYPE</label>
                 <select class="form-select mb-3" name="os_1" id="select_OS">
                     <option value=" "> </option>
-                    <option value="macOS">macOS</option>
+
                     <option value="Windows 7 Pro">Windows 7 Pro</option>
                     <option value="Windows 8 Pro">Windows 8 Pro</option>
                     <option value="Windows 10 Pro">Windows 10 Pro</option>
                     <option value="Windows 11 Pro">Windows 11 Pro</option>
+                    <option value="macOS">macOS</option>
                 </select>
             </div>
       </div>
       <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Confirm</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary fw-semibold">Confirm</button>
+        <button type="button" class="btn btn-outline-danger fw-semibold" data-bs-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>
@@ -298,7 +299,7 @@
       <div class="modal-body">
           <div class="col-md-3" id="MS_combo_box">
           <label class="fw-semibold">TYPE</label>
-                <select class="form-select mb-3" name="type" id="select_MS">
+                <select class="form-select mb-3" name="ms_type" id="select_MS">
                     <option value=" "> </option>
                     <option value="Standard">Standard</option>
                     <option value="Professional">Professional</option>
@@ -314,23 +315,102 @@
           <label class="fw-semibold">NETWORK TAG</label>
               <input type="text" class="form-control" name="network_tag">
              </div>
-          <div class="form-check">
-  <input class="form-check-input" type="checkbox"  name="ESET">
-  <label class= "form-check-label" >ESET</label>
-</div>
-          <div class="form-check">
-  <input class="form-check-input" type="checkbox"  name="UPS">
-  <label class= "form-check-label" >UPS</label>
-</div>
-          <div class="form-check">
-  <input class="form-check-input" type="checkbox" id="operational_status">
-  <label class= "form-check-label">Operational Status</label>
-</div>
+
+
+
+
+
+<!--          <div class="col-md-3" id="op_stat">-->
+<!--          <label class="fw-semibold">STATUS</label>-->
+<!--              <div class="btn-group" role="group" aria-label="Basic radio toggle button group">-->
+
+<!--  <input type="radio" class="btn-check" name="btn_opstat" id="btn_opstat_true" autocomplete="off" checked>-->
+<!--  <label class="btn btn btn-outline-success" for="btn_opstat_true" id="btn_eset">Active</label>-->
+
+<!--  <input type="radio" class="btn-check" name="btn_opstat" id="btn_opstat_false" autocomplete="off">-->
+<!--  <label class="btn btn-outline-danger" for="btn_opstat_false" id="btn_eset">Inactive</label>-->
+
+
+
+<!--        </div>-->
+<!--             </div>-->
+
+
+            <div class="col-md-3">
+            <div class="col-md-3" id="eset">
+          <label class="fw-semibold">ESET</label>
+              <div class="btn-group" role="group" aria-label="Basic radio toggle button group" >
+
+  <input value="True" type="radio" class="btn-check" name="btn_eset" id="btn_eset_true" autocomplete="off" checked>
+  <label class="btn btn btn-outline-success" for="btn_eset_true" id="btn_eset"><img src="static/icons/check.png" class="img-fluid" id="check_button"></label>
+
+  <input value="False" type="radio" class="btn-check" name="btn_eset" id="btn_eset_false" autocomplete="off">
+  <label class="btn btn-outline-danger" for="btn_eset_false" id="btn_eset"><img src="static/icons/x.png" class="img-fluid" id="x_button"></label>
+
+
+
+        </div>
+             </div>
+             </div>
+
+
+           <div class="col-md-3" id="ups" >
+          <div class="col-md-3" >
+          <label class="fw-semibold">UPS</label>
+              <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+
+  <input value="True" type="radio" class="btn-check" name="btn_ups" id="btn_ups_true" autocomplete="off" checked>
+  <label class="btn btn btn-outline-success" for="btn_ups_true" id="btn_eset"><img src="static/icons/check.png" class="img-fluid" id="check_button"></label>
+
+  <input value="False" type="radio" class="btn-check" name="btn_ups" id="btn_ups_false" autocomplete="off">
+  <label class="btn btn-outline-danger" for="btn_ups_false" id="btn_eset"><img src="static/icons/x.png" class="img-fluid" id="x_button"></label>
+
+
+
+        </div>
+             </div>
+             </div>
+
+
+
+
+
+
+          <div class="col-md-3" id="opstat">
+          <div class="col-md-6">
+          <label class="fw-semibold">OPERATIONAL STATUS</label>
+              <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+
+  <input value="Active" type="radio" class="btn-check" name="btn_opstat" id="btn_opstat_true" autocomplete="off" checked>
+  <label class="btn btn btn-outline-success" for="btn_opstat_true" id="btn_eset" >Active</label>
+
+  <input value="Inactive" type="radio" class="btn-check" name="btn_opstat" id="btn_opstat_false" autocomplete="off">
+  <label class="btn btn-outline-danger" for="btn_opstat_false" id="btn_eset" >Inactive</label>
+
+
+
+        </div>
+             </div>
+             </div>
+
+
+
+<!--          -->
+<!--          <div class=" col-md-3 form-check">-->
+<!--            <input class="form-check-input" type="checkbox"  name="ESET">-->
+<!--                <label class= "form-check-label" >ESET</label>-->
+<!--          </div>-->
+
+<!--          <div class="col-md-3 form-check">-->
+<!--            <input class="form-check-input" type="checkbox"  name="UPS">-->
+<!--                <label class= "form-check-label" >UPS</label>-->
+<!--        </div>-->
+
       </div>
 
       <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Confirm</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary fw-semibold">Confirm</button>
+        <button type="button" class="btn btn-outline-danger fw-semibold" data-bs-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>

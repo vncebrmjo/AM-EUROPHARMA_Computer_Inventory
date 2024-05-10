@@ -98,7 +98,7 @@ def Add_Inventory():
         ram = request.form.get('ram_1' + ' ' + 'ram_2' + ' ' + 'ram_3')
         storage = request.form.get('storage_1' + ' ' + 'storage_2' + ' ' + 'storage_3')
         os = request.form.get('os_1')
-        type = request.form.get('type')
+        ms_type = request.form.get('ms_type')
         computer_tag = request.form.get('computer_tag')
         network_tag = request.form.get('network_tag')
         eset = request.form.get('ESET')
