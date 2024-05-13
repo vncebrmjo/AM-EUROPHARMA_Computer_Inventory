@@ -101,9 +101,33 @@ def Add_Inventory():
         ms_type = request.form.get('ms_type')
         computer_tag = request.form.get('computer_tag')
         network_tag = request.form.get('network_tag')
-        eset = request.form.get('ESET')
-        ups = request.form.get('UPS')
+        eset = request.form['btn_eset']
+        eset = request.form['btn_ups']
+        eset = request.form['btn_eset']
+        opstat = request.form['btn_opstat']
+
     return render_template('Add_Inventory.html')
+
+@app.route('/add_inventory2')
+def add_inventory2():
+
+    return render_template('add_inventory2.html')
+
+
+
+
+'''
+@app.route('/save_data', methods=['POST', 'GET'])
+def save_data():
+    if request.method == "POST":
+        user = request.form['user']
+        department = request.form.get('department')
+        computer_name = request.form['computer_name']
+        ip = request.form['ip']
+        asset_tag = request.form['asset_tag']
+        serial_number = request.form['serial_number']
+    return redirect(url_for('Add_Inventory'))
+'''
 
 if __name__ == "__main__":
     app.run(debug=True)
