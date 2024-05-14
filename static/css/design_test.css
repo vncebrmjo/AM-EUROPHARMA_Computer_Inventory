@@ -302,14 +302,14 @@ padding: 25px;
 #ups{
      width: 90%;
     margin-top: 10px;
-    margin-left: 25px;
+    margin-left: 20px;
     padding: 0px;
 }
 
 #opstat{
      width: 90%;
     margin-top: 10px;
-    margin-left: 25px;
+    margin-left: 20px;
     padding: 0px;
 }
 
@@ -463,13 +463,10 @@ padding: 25px;
     margin-top: 37px;
 }
 
-#btn_group{
-    margin-top: 35px;
-}
-
 #bottom_set{
     margin-top: 25px;
 }
+
 
 
 #detail_row{
@@ -502,6 +499,34 @@ padding: 25px;
 #tbl_main_page thead th {
     text-align: center;
 }
+
+#btn_group{
+    padding: 10px;
+     margin: auto;
+    width: 60%;
+}
+
+#btn_clear{
+    background-color: white;
+    border: 2px solid red;
+    outline: none;
+    width: 15%;
+    color: red;
+}
+
+ #btn_clear:hover {
+    border-color: red;
+    background-color: red;
+    color: white;
+  }
+
+#btn_confirm{
+    background-color: blue;
+    border: 2px solid transparent;
+    outline: none;
+    width: 15%;
+}
+
 
 
 

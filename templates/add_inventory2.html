@@ -18,7 +18,7 @@
             <div class="mb-3">
                 <div class="modal-like-form">
                     <h4 class="modal-like-header">USER INFORMATION</h4>
-                        <form>
+
                            <div class="col-md-3" id="dept_combo_box">
           <label class="fw-semibold">DEPARTMENT</label>
                 <select class="form-select mb-3" name="department" id="select_department">
@@ -78,7 +78,7 @@
                 </select>
             </div>
 
-                    </form>
+
                 </div>
             </div>
 
@@ -92,7 +92,7 @@
                  <div class="mb-3">
                 <div class="modal-like-form">
                     <h4 class="modal-like-header">PROCESSOR</h4>
-                        <form >
+
                             <div class="col-md-3" id="process_combo_box">
           <label class="fw-semibold">BRAND NAME</label>
                 <select class="form-select mb-3" name="processor_1" id="select_processor">
@@ -132,7 +132,7 @@
 
 
 
-                    </form>
+
                 </div>
             </div>
 
@@ -146,7 +146,7 @@
                  <div class="mb-3">
                 <div class="modal-like-form">
                     <h4 class="modal-like-header">RAM</h4>
-                        <form>
+
                              <div class="col-md-3" id="ram_brand">
           <label class="fw-semibold">BRAND NAME</label>
               <input type="text" class="form-control ram_1">
@@ -192,7 +192,7 @@
 
 
 
-                    </form>
+
                 </div>
             </div>
 
@@ -206,7 +206,7 @@
                  <div class="mb-3">
                 <div class="modal-like-form">
                     <h4 class="modal-like-header">DEVICE STATUS</h4>
-                        <form id="dataForm" method="POST" action="">
+
                            <div class="col-md-3" id="MS_combo_box">
           <label class="fw-semibold">MS OFFICE</label>
                 <select class="form-select mb-3" name="ms_type" id="select_MS">
@@ -316,7 +316,7 @@
              </div>
              </div>
 
-                    </form>
+
 
                 </div>
             </div>
@@ -332,10 +332,12 @@
 
 </div>
 
-<div class="d-grid gap-2 d-md-flex justify-content-md-center" id="btn_group">
-  <button id="save_button" class="btn btn-primary me-md-1 fw-semibold" type="button">Save</button>
-  <button id="clear_button" class="btn btn-outline-danger fw-semibold" type="button">Clear</button>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center" id="btn_group">
+  <button class="btn btn-primary fw-semibold btn-lg" type="button" id="btn_confirm">Confirm</button>
+  <button class="btn btn-primary fw-semibold btn-lg" type="button" id="btn_clear">Clear</button>
 </div>
+
 </form>
 </body>
 {% include 'Footer.html' %}
