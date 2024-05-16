@@ -11,7 +11,7 @@
 </head>
 {% include 'Header.html' %}
 <body>
-<form method="POST" action ="{{ url_for('Add_Inventory') }}">
+<form method="POST" action ="{{ url_for('add_inventory2') }}">
 <div class="row d-flex justify-content-center"  id="column">
     <div class="col-md-3">
         <div class="row">
@@ -88,9 +88,9 @@
 
 
         <div class="col-md-3" >
-            <div class="row">
-                 <div class="mb-3">
-                <div class="modal-like-form">
+            <div class="row" >
+                 <div class="mb-3" >
+                <div class="modal-like-form" >
                     <h4 class="modal-like-header">PROCESSOR</h4>
 
                             <div class="col-md-3" id="process_combo_box">
@@ -205,28 +205,9 @@
             <div class="row">
                  <div class="mb-3">
                 <div class="modal-like-form">
-                    <h4 class="modal-like-header">DEVICE STATUS</h4>
 
-                           <div class="col-md-3" id="MS_combo_box">
-          <label class="fw-semibold">MS OFFICE</label>
-                <select class="form-select mb-3" name="ms_type" id="select_MS">
-                    <option value=" "> </option>
-                    <option value="Standard">Standard</option>
-                    <option value="Professional">Professional</option>
-                </select>
-            </div>
 
-         <div class="col-md-3" id="comtag">
-          <label class="fw-semibold">COMPUTER TAG</label>
-              <input type="text" class="form-control" name="computer_tag">
-             </div>
 
-        <div class="col-md-3" id="nettag">
-          <label class="fw-semibold">NETWORK TAG</label>
-              <input type="text" class="form-control" name="network_tag">
-             </div>
-
-           <hr>
             <h4 class="modal-like-header"> STORAGE</h4>
 
            <div class="col-md-3" id="storage_brand">
@@ -247,6 +228,27 @@
         <div class="col-md-3" id="size">
           <label class="fw-semibold">SIZE</label>
               <input type="text" class="form-control" name="storage_3">
+             </div>
+                <hr>
+                    <h4 class="modal-like-header">DEVICE STATUS</h4>
+
+                           <div class="col-md-3" id="MS_combo_box">
+          <label class="fw-semibold">MS OFFICE</label>
+                <select class="form-select mb-3" name="ms_type" id="select_MS">
+                    <option value=" "> </option>
+                    <option value="Standard">Standard</option>
+                    <option value="Professional">Professional</option>
+                </select>
+            </div>
+
+         <div class="col-md-3" id="comtag">
+          <label class="fw-semibold">COMPUTER TAG</label>
+              <input type="text" class="form-control" name="computer_tag">
+             </div>
+
+        <div class="col-md-3" id="nettag">
+          <label class="fw-semibold">NETWORK TAG</label>
+              <input type="text" class="form-control" name="network_tag">
              </div>
 
 
@@ -334,7 +336,7 @@
 
 
     <div class="d-grid gap-2 d-md-flex justify-content-md-center" id="btn_group">
-  <button class="btn btn-primary fw-semibold btn-lg" type="button" id="btn_confirm">Confirm</button>
+  <button class="btn btn-primary fw-semibold btn-lg" type="submit" id="btn_confirm">Confirm</button>
   <button class="btn btn-primary fw-semibold btn-lg" type="button" id="btn_clear">Clear</button>
 </div>
 

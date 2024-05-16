@@ -6,15 +6,12 @@ app = Flask(__name__)
 
 
 
-connect = odbcconn.connect("Driver={ODBC Driver 13 for SQL Server};"
-                        "Server=ICT_LAPTOP02S;"
-                        "Database=eDevInventoy;"
-                        "Trusted_Connection=yes;")
+
 cursor = connect.cursor()
 
 @app.route('/', methods=['POST', 'GET'])
 def main_page():
-    cursor.execute('SELECT * FROM Computers')
+    cursor.execute('SELECT * FROM INV_computers')
     get_page = cursor.fetchall()
 
 
@@ -31,7 +28,7 @@ def get_data(page, per_page, department=None):
 
 @app.route('/test', methods=['POST', 'GET'])
 def test():
-    cursor.execute('SELECT * FROM Computers')
+    cursor.execute('SELECT * FROM INV_computers')
     get_page = cursor.fetchall()
     # cursor.close()
     return render_template('test.html', get_page=get_page)
@@ -74,7 +71,7 @@ def details():
         serial_number = request.args.get('serial_number')
 
         cursor = connect.cursor()
-        cursor.execute("SELECT * FROM Computers WHERE ID = ?",
+        cursor.execute("SELECT * FROM INV_computers WHERE ID = ?",
                        (id,))
         details = cursor.fetchone()
 
@@ -105,11 +102,52 @@ def Add_Inventory():
         eset = request.form['btn_ups']
         eset = request.form['btn_eset']
         opstat = request.form['btn_opstat']
+        cursor = connect.cursor()
+
 
     return render_template('Add_Inventory.html')
 
-@app.route('/add_inventory2')
+@app.route('/add_inventory2', methods=['GET', 'POST'])
 def add_inventory2():
+    msg: ''
+    # if request.method == "POST" and 'department' in request.form and 'user' in request.form and 'computer_name' in request.form and 'ip' in request.form and 'processor_1 ' + ' ' + 'processor_2' + ' ' + ' processor_3' in request.form and 'mobo_1' + ' ' + 'mobo_2' in request.form\
+    #         and 'ram_1' + ' ' + 'ram_2' + ' ' + 'ram_3' in request.form and 'asset_tag' in request.form and 'serial_number' in request.form and 'storage_1' + ' ' + 'storage_2' + ' ' + 'storage_3' in request.form and 'os_1' in request.form and 'ms_type' in request.form and 'computer_tag' in request.form\
+    #         and 'network_tag' in request.form and 'btn_ups' in request.form and 'btn_opstat' in request.form and 'ps_1' + ' ' + 'ps_2' in request.form:
+    if request.method == "POST":
+        department = request.form.get('department')
+        #user = request.form['user']
+        computer_name = request.form['computer_name']
+        ip = request.form['ip']
+        processor = request.form.get('processor_1 ' + ' ' + 'processor_2' + ' ' + ' processor_3')
+        mobo = request.form.get('mobo_1' + ' ' + 'mobo_2')
+        ps = request.form.get('ps_1' + ' ' + 'ps_2')
+        ram = request.form.get('ram_1' + ' ' + 'ram_2' + ' ' + 'ram_3')
+        asset_tag = request.form['asset_tag']
+        serial_number = request.form['serial_number']
+        storage = request.form.get('storage_1' + ' ' + 'storage_2' + ' ' + 'storage_3')
+        os = request.form.get('os_1')
+        ms_type = request.form.get('ms_type')
+        computer_tag = request.form.get('computer_tag')
+        network_tag = request.form.get('network_tag')
+        #eset = request.form['btn_eset']
+        ups = request.form['btn_ups']
+        opstat = request.form['btn_opstat']
+
+        # cursor.execute("SELECT COUNT(*) FROM Computers WHERE USER = ?  ", (user ))
+        # count = cursor.fetchone()[0]
+        # if count > 0:
+        #     msg = 'The user already exists'
+        # else:
+        # cursor.execute("INSERT INTO Computers WHERE DEPARTMENT = ?  USER = ? COMPUTER_NAME = ? IP = ? PROCESSOR = ? MOTHERBOARD = ? POWER_SUPPLY = ?"
+        #                "RAM = ? STORAGE = ? OS = ? MS_OFFICE = ? ASSET_TAG = ? COMPUTER_TAG = ? NETWORK_TAG = ? UPS = ? SERIAL_NUMBER = ? OPERATIONAL_STATUS = ? ", (department, user, computer_name, ip, processor, mobo, ps,  ram, storage, os, ms_type,
+        #                 asset_tag, computer_tag, network_tag,  ups, serial_number, opstat))
+        cursor.execute(
+            "INSERT INTO INV_computers (DEPARTMENT, COMPUTER_NAME, IP, PROCESSOR, MOTHERBOARD, POWER_SUPPLY, RAM, STORAGE, OS, MS_OFFICE, ASSET_TAG, COMPUTER_TAG, NETWORK_TAG, UPS, SERIAL_NUMBER, OPERATIONAL_STATUS) "
+            "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            (department, computer_name, ip, processor, mobo, ps, ram, storage, os, ms_type, asset_tag,
+             computer_tag, network_tag, ups, serial_number, opstat))
+
+        connect.commit()
 
     return render_template('add_inventory2.html')
 

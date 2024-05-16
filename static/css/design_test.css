@@ -5,6 +5,7 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
   width: 100%;
+  height: 800px;
 
 
   max-width: 600px; /* Adjust as needed */
@@ -14,15 +15,20 @@
   margin-top: 0;
 }
 
+#form_length{
+      height: 500px;
+}
+
+/*
 .form-row {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 -10px; /* Adjust as needed */
+  margin: 0 -10px;
 }
 
 .form-group {
   flex: 1;
-  margin: 0 10px; /* Adjust as needed */
+  margin: 0 10px;
 
 }
 
@@ -38,6 +44,7 @@
   border-radius: 3px;
   box-sizing: border-box;
 }
+*/
 
 .btn-primary {
   margin-top: 10px;
@@ -508,20 +515,20 @@ padding: 25px;
 
 #btn_clear{
     background-color: white;
-    border: 2px solid red;
+    border: 2px solid #DC3545;
     outline: none;
     width: 15%;
-    color: red;
+    color: #DC3545;
 }
 
  #btn_clear:hover {
-    border-color: red;
-    background-color: red;
+    border-color: #DC3545;
+    background-color: #DC3545;
     color: white;
   }
 
 #btn_confirm{
-    background-color: blue;
+    background-color: #0D6EFD;
     border: 2px solid transparent;
     outline: none;
     width: 15%;
