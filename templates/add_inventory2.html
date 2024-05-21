@@ -9,13 +9,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="static/css/design_test.css">
 </head>
-{% include 'Header.html' %}
-<body>
-<form method="POST" action ="{{ url_for('add_inventory2') }}">
-<div class="row d-flex justify-content-center"  id="column">
+
     <div class="col-md-3">
+
         <div class="row">
+
             <div class="mb-3">
+
+
                 <div class="modal-like-form">
                     <h4 class="modal-like-header">USER INFORMATION</h4>
 
@@ -106,9 +107,9 @@
                 <select class="form-select mb-3" name="processor_2" id="core_processor">
                     <option value=" "> </option>
                     <option value="Pentium">Pentium</option>
-                    <option value="3">3</option>
-                    <option value="5">5</option>
-                    <option value="7">7</option>
+                    <option value="Core i3">i3</option>
+                    <option value="Core i5">i5</option>
+                    <option value="Core i7">i7</option>
                 </select>
             </div>
 
@@ -149,16 +150,16 @@
 
                              <div class="col-md-3" id="ram_brand">
           <label class="fw-semibold">BRAND NAME</label>
-              <input type="text" class="form-control ram_1">
+              <input type="text" class="form-control" name="ram_1">
              </div>
         <div class="col-md-3" id="ram_combo_box">
           <label class="fw-semibold">DDR</label>
                 <select class="form-select mb-3" name="ram_2" id="select_ddr">
                     <option value=" "> </option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                    <option value="DDR2">DDR2</option>
+                    <option value="DDR3">DDR3</option>
+                    <option value="DDR4">DDR4</option>
+                    <option value="DDR5">DDR5</option>
                 </select>
             </div>
 
@@ -166,15 +167,15 @@
           <label class="fw-semibold">GIGABYTES</label>
                 <select class="form-select mb-3" name="ram_3" id="select_gb">
                     <option value=" "> </option>
-                    <option value="2">2</option>
-                    <option value="4">4</option>
-                    <option value="6">6</option>
-                    <option value="8">8</option>
-                    <option value="16">16</option>
-                    <option value="32">32</option>
-                    <option value="64">64</option>
-                    <option value="128">128</option>
-                    <option value="256">256</option>
+                    <option value="2GB">2GB</option>
+                    <option value="4GB">4GB</option>
+                    <option value="6GB">6GB</option>
+                    <option value="8GB">8GB</option>
+                    <option value="16GB">16GB</option>
+                    <option value="32GB">32GB</option>
+                    <option value="64GB">64GB</option>
+                    <option value="128GB">128GB</option>
+                    <option value="256GB">256GB</option>
                 </select>
             </div>
             <hr>

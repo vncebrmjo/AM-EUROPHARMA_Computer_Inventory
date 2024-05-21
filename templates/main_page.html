@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
     <title>Device Inventory</title>
+
+
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.6/css/dataTables.bootstrap5.css">
@@ -56,7 +61,8 @@
 </head>
 {% include 'Header.html' %}
 <body id="body_color">
-
+<br>
+<div class="container text-center">
 <table id="tbl_mainpage" class = "table table-hover text-center" >
     <thead>
         <tr>
@@ -122,95 +128,98 @@
     </tbody>
 </table>
 
-<!--</div>-->
+</div>
 
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>-->
 <!--<script src="https://cdn.datatables.net/2.0.6/js/dataTables.js"></script>-->
 <!--<script src="https://cdn.datatables.net/2.0.6/js/dataTables.bootstrap5.js"></script>-->
-
+<!--search: { search: "Bcam" },-->
 
 
  <script>
-  $(document).ready(function() {
-    new DataTable('#tbl_mainpage', {
+$(document).ready(function() {
+    var table = new DataTable('#tbl_mainpage', {
+        "searching": true, // Hide the search bar
+
         columns: [
-        null, // Column 0, will not be affected by colvis
-        { visible: true }, // Column 1
-        { visible: true }, // Column 2
-        { visible: true }, // Column 3
-        { visible: false }, // Column 4
-        { visible: false }, // Column 5
-        { visible: false }, // Column 6
-        { visible: false }, // Column 7
-         { visible: false }, // Column 1
-        { visible: false }, // Column 2
-        { visible: false}, // Column 3
-        { visible: false }, // Column 4
-        { visible: false }, // Column 5
-        { visible: false }, // Column 6
-        { visible: false }, // Column 7
-        { visible: false }, // Column 6
-        { visible: false } // Column 7
-        // Add more entries if you have more columns
-    ],
+            null, // Column 0, will not be affected by colvis
+            { visible: true }, // Column 1
+            { visible: true }, // Column 2
+            { visible: true }, // Column 3
+            { visible: false }, // Column 4
+            { visible: false }, // Column 5
+            { visible: false }, // Column 6
+            { visible: false }, // Column 7
+            { visible: false }, // Column 8
+            { visible: false }, // Column 9
+            { visible: false }, // Column 10
+            { visible: false }, // Column 11
+            { visible: false }, // Column 12
+            { visible: false }, // Column 13
+            { visible: false }, // Column 14
+            { visible: false }, // Column 15
+            { visible: false }  // Column 16
+        ],
         select: true, // Enable row selection
         lengthMenu: [5, 10, 20, 100], // Define page length menu options
         pageLength: 10, // Set the default page length to 10 entries per page
-        layout: {
-            topStart: {
-                buttons: [
-                    {
-                        extend: 'pdfHtml5',
-                        orientation: 'landscape',
-                        pageSize: 'LEGAL',
-                        exportOptions: {
-                            columns: ':visible',
-                            modifier: {
-                                page: 'current'
-                            }
-                        }
-                    },
-                    {
-                        extend: 'print',
-                        orientation: 'landscape',
-                        pageSize: 'LEGAL',
-                        exportOptions: {
-                            columns: ':visible',
-                            modifier: {
-                                page: 'current'
-                            }
-                        }
-                    },
-                    {
-                        extend: 'copyHtml5',
-                        exportOptions: {
-                            columns: ':visible',
-                            modifier: {
-                                page: 'current'
-                            }
-                        }
-                    },
-                    {
-                        extend: 'excelHtml5',
-                        text: 'Excel',
-                        exportOptions: {
-                            columns: ':visible',
-                            modifier: {
-                                page: 'current'
-                            }
-                        }
-                    },
-                    {
-                        extend: 'colvis',
-                        text: 'Show column',
+        dom: 'Bfrtip', // Control the layout of DataTables
+
+        buttons: [
+            {
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                pageSize: 'LEGAL',
+                exportOptions: {
+                    columns: ':visible',
+                    modifier: {
+                        page: 'current'
                     }
-                    ,'pageLength'
-                ]
+                }
             },
-        }
+            {
+                extend: 'print',
+                orientation: 'landscape',
+                pageSize: 'LEGAL',
+                exportOptions: {
+                    columns: ':visible',
+                    modifier: {
+                        page: 'current'
+                    }
+                }
+            },
+            {
+                extend: 'copyHtml5',
+                exportOptions: {
+                    columns: ':visible',
+                    modifier: {
+                        page: 'current'
+                    }
+                }
+            },
+            {
+                extend: 'excelHtml5',
+                text: 'Excel',
+                exportOptions: {
+                    columns: ':visible',
+                    modifier: {
+                        page: 'current'
+                    }
+                }
+            },
+            {
+                extend: 'colvis',
+                text: 'Show column',
+            },
+            'pageLength'
+        ]
     });
+
+    // Apply a search filter programmatically
+<!--        table.column(0).search('ict').draw();-->
 });
+
     </script>
 
 
