@@ -5,8 +5,6 @@ from math import ceil
 app = Flask(__name__)
 
 
-
-
 cursor = connect.cursor()
 
 @app.route('/', methods=['POST', 'GET'])
@@ -151,7 +149,15 @@ def add_inventory2():
 
     return render_template('add_inventory2.html')
 
+@app.route('/Modified_Details', methods=['POST', 'GET'])
+def Modified_Details():
 
+    return render_template('Modified_Details.html')
+@app.route('/Report_Logs', methods=['POST', 'GET'])
+def Report_Logs():
+
+
+    return render_template('Report_Logs.html')
 
 
 '''
