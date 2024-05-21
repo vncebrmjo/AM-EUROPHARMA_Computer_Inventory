@@ -7,6 +7,8 @@ app = Flask(__name__)
 
 
 
+
+
 cursor = connect.cursor()
 
 @app.route('/', methods=['POST', 'GET'])
@@ -174,9 +176,10 @@ def add_inventory2():
             "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             (department, user, computer_name, ip, processor, mobo, ps, ram, storage, os, ms_type, asset_tag,
              computer_tag, network_tag, ups, serial_number, opstat, eset))
-
+        success_message = "User data has been updated successfully!"
         connect.commit()
-        # flash("Data Saved Successfully")
+
+        return render_template('add_inventory2.html', success_message=success_message)
 
     return render_template('add_inventory2.html')
 
