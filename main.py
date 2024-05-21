@@ -5,31 +5,16 @@ from math import ceil
 app = Flask(__name__)
 
 
-
-connect = odbcconn.connect("Driver={ODBC Driver 13 for SQL Server};"
-                        "Server=ICT_LAPTOP02S;"
-                        "Database=eDevInventoy;"
-                        "Trusted_Connection=yes;")
 cursor = connect.cursor()
 
 @app.route('/', methods=['POST', 'GET'])
 def main_page():
-    page = int(request.args.get('page', 1))
-    per_page = 10  # Number of rows per page
-
-    department = request.form.get('department')
-
-    get_page = get_data(page, per_page, department)
-
-    cursor.execute("SELECT COUNT(*) FROM Computers")
-    total_rows = cursor.fetchone()[0]
-
-    # Calculate total number of pages
-    total_pages = ceil(total_rows / per_page)
+    cursor.execute('SELECT * FROM INV_computers')
+    get_page = cursor.fetchall()
 
 
-    return render_template('main_page.html', get_page=get_page, page=page,
-                           len=len, per_page=per_page, total_pages=total_pages, department=department )
+    return render_template('main_page.html', get_page=get_page)
+
 '''
 def get_data(page, per_page, department=None):
     offset = (page - 1) * per_page
@@ -38,6 +23,14 @@ def get_data(page, per_page, department=None):
     get_page = cursor.fetchall()
     return get_page
 '''
+
+@app.route('/test', methods=['POST', 'GET'])
+def test():
+    cursor.execute('SELECT * FROM INV_computers')
+    get_page = cursor.fetchall()
+    # cursor.close()
+    return render_template('test.html', get_page=get_page)
+
 
 def get_data(page, per_page, department=None):
     offset = (page - 1) * per_page
@@ -76,7 +69,7 @@ def details():
         serial_number = request.args.get('serial_number')
 
         cursor = connect.cursor()
-        cursor.execute("SELECT * FROM Computers WHERE ID = ?",
+        cursor.execute("SELECT * FROM INV_computers WHERE ID = ?",
                        (id,))
         details = cursor.fetchone()
 
@@ -97,7 +90,88 @@ def Add_Inventory():
         processor = request.form.get('processor_1 ' + ' ' + 'processor_2' + ' ' + ' processor_3' )
         mobo = request.form.get('mobo_1' + ' ' + 'mobo_2')
         ps = request.form.get('ps_1' + ' ' + 'ps_2')
+        ram = request.form.get('ram_1' + ' ' + 'ram_2' + ' ' + 'ram_3')
+        storage = request.form.get('storage_1' + ' ' + 'storage_2' + ' ' + 'storage_3')
+        os = request.form.get('os_1')
+        ms_type = request.form.get('ms_type')
+        computer_tag = request.form.get('computer_tag')
+        network_tag = request.form.get('network_tag')
+        eset = request.form['btn_eset']
+        eset = request.form['btn_ups']
+        eset = request.form['btn_eset']
+        opstat = request.form['btn_opstat']
+        cursor = connect.cursor()
+
+
     return render_template('Add_Inventory.html')
+
+@app.route('/add_inventory2', methods=['GET', 'POST'])
+def add_inventory2():
+    msg: ''
+    # if request.method == "POST" and 'department' in request.form and 'user' in request.form and 'computer_name' in request.form and 'ip' in request.form and 'processor_1 ' + ' ' + 'processor_2' + ' ' + ' processor_3' in request.form and 'mobo_1' + ' ' + 'mobo_2' in request.form\
+    #         and 'ram_1' + ' ' + 'ram_2' + ' ' + 'ram_3' in request.form and 'asset_tag' in request.form and 'serial_number' in request.form and 'storage_1' + ' ' + 'storage_2' + ' ' + 'storage_3' in request.form and 'os_1' in request.form and 'ms_type' in request.form and 'computer_tag' in request.form\
+    #         and 'network_tag' in request.form and 'btn_ups' in request.form and 'btn_opstat' in request.form and 'ps_1' + ' ' + 'ps_2' in request.form:
+    if request.method == "POST":
+        department = request.form.get('department')
+        #user = request.form['user']
+        computer_name = request.form['computer_name']
+        ip = request.form['ip']
+        processor = request.form.get('processor_1 ' + ' ' + 'processor_2' + ' ' + ' processor_3')
+        mobo = request.form.get('mobo_1' + ' ' + 'mobo_2')
+        ps = request.form.get('ps_1' + ' ' + 'ps_2')
+        ram = request.form.get('ram_1' + ' ' + 'ram_2' + ' ' + 'ram_3')
+        asset_tag = request.form['asset_tag']
+        serial_number = request.form['serial_number']
+        storage = request.form.get('storage_1' + ' ' + 'storage_2' + ' ' + 'storage_3')
+        os = request.form.get('os_1')
+        ms_type = request.form.get('ms_type')
+        computer_tag = request.form.get('computer_tag')
+        network_tag = request.form.get('network_tag')
+        #eset = request.form['btn_eset']
+        ups = request.form['btn_ups']
+        opstat = request.form['btn_opstat']
+
+        # cursor.execute("SELECT COUNT(*) FROM Computers WHERE USER = ?  ", (user ))
+        # count = cursor.fetchone()[0]
+        # if count > 0:
+        #     msg = 'The user already exists'
+        # else:
+        # cursor.execute("INSERT INTO Computers WHERE DEPARTMENT = ?  USER = ? COMPUTER_NAME = ? IP = ? PROCESSOR = ? MOTHERBOARD = ? POWER_SUPPLY = ?"
+        #                "RAM = ? STORAGE = ? OS = ? MS_OFFICE = ? ASSET_TAG = ? COMPUTER_TAG = ? NETWORK_TAG = ? UPS = ? SERIAL_NUMBER = ? OPERATIONAL_STATUS = ? ", (department, user, computer_name, ip, processor, mobo, ps,  ram, storage, os, ms_type,
+        #                 asset_tag, computer_tag, network_tag,  ups, serial_number, opstat))
+        cursor.execute(
+            "INSERT INTO INV_computers (DEPARTMENT, COMPUTER_NAME, IP, PROCESSOR, MOTHERBOARD, POWER_SUPPLY, RAM, STORAGE, OS, MS_OFFICE, ASSET_TAG, COMPUTER_TAG, NETWORK_TAG, UPS, SERIAL_NUMBER, OPERATIONAL_STATUS) "
+            "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            (department, computer_name, ip, processor, mobo, ps, ram, storage, os, ms_type, asset_tag,
+             computer_tag, network_tag, ups, serial_number, opstat))
+
+        connect.commit()
+
+    return render_template('add_inventory2.html')
+
+@app.route('/Modified_Details', methods=['POST', 'GET'])
+def Modified_Details():
+
+    return render_template('Modified_Details.html')
+@app.route('/Report_Logs', methods=['POST', 'GET'])
+def Report_Logs():
+
+
+    return render_template('Report_Logs.html')
+
+
+'''
+@app.route('/save_data', methods=['POST', 'GET'])
+def save_data():
+    if request.method == "POST":
+        user = request.form['user']
+        department = request.form.get('department')
+        computer_name = request.form['computer_name']
+        ip = request.form['ip']
+        asset_tag = request.form['asset_tag']
+        serial_number = request.form['serial_number']
+    return redirect(url_for('Add_Inventory'))
+'''
 
 if __name__ == "__main__":
     app.run(debug=True)
