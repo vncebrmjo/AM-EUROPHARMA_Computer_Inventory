@@ -4,13 +4,6 @@ from math import ceil
 
 app = Flask(__name__)
 
-connect = odbcconn.connect("Driver={ODBC Driver 13 for SQL Server};"
-                        "Server=192.168.1.11;"
-                        "Database=vmdevapps;"
-                        "uid=local1;"
-                        "pwd=$3rver012345")
-
-
 
 
 cursor = connect.cursor()
