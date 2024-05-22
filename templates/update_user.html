@@ -67,23 +67,12 @@
     <thead>
         <tr>
 <!--            <th class="fw-semibold " >EDIT</th>-->
-            <th class="fw-semibold " >DEPARTMENTS</th>
+
             <th class="fw-semibold">USERS</th>
             <th class="fw-semibold">COMPUTER NAME</th>
             <th class="fw-semibold">IP ADDRESS</th>
-            <th class="fw-semibold">PROCESSOR</th>
-             <th class="fw-semibold " >MOTHERBOARD</th>
-            <th class="fw-semibold">POWER SUPPLY</th>
-            <th class="fw-semibold">RAM</th>
-            <th class="fw-semibold">STORAGE</th>
-            <th class="fw-semibold">OPERATING SYSTEM</th>
-             <th class="fw-semibold " >MICROSOFT OFFICE</th>
-            <th class="fw-semibold">ASSET TAG</th>
-            <th class="fw-semibold">COMPUTER TAG</th>
-            <th class="fw-semibold">NETWORK TAG</th>
-            <th class="fw-semibold">UPS</th>
-            <th class="fw-semibold">SERIAL NUMBER</th>
-            <th class="fw-semibold">OPERATIONAL STATUS</th>
+            <th class="fw-semibold">UPDATE</th>
+
 
 
         </tr>
@@ -99,30 +88,17 @@
         <td class="fw-normal"> {{computer.1}}</td>
         <td class="fw-normal"> {{computer.2}}</td>
         <td class="fw-normal"> {{computer.3}}</td>
-        <td class="fw-normal"> {{computer.4}}</td>
-        <td class="fw-normal"> {{computer.5}}</td>
-        <td class="fw-normal"> {{computer.6}}</td>
-        <td class="fw-normal"> {{computer.7}}</td>
-        <td class="fw-normal"> {{computer.8}}</td>
-        <td class="fw-normal"> {{computer.9}}</td>
-        <td class="fw-normal"> {{computer.10}}</td>
-        <td class="fw-normal"> {{computer.11}}</td>
-        <td class="fw-normal"> {{computer.12}}</td>
-        <td class="fw-normal"> {{computer.13}}</td>
-        <td class="fw-normal"> {{computer.14}}</td>
-        <td class="fw-normal"> {{computer.15}}</td>
-        <td class="fw-normal"> {{computer.16}}</td>
-        <td class="fw-normal"> {{computer.17}}</td>
 
-<!--        <td class="fw-normal">-->
-<!--            <a href="/details?id{{ computer.0 }}&processor={{ computer.5 }}&motherboard={{ computer.6 }}-->
-<!--                    &power_supply={{ computer.7 }}&ram={{ computer.8 }}&storage={{ computer.9 }}-->
-<!--                    &os={{ computer.10 }}&eset={{ computer.11 }}&msoffice={{ computer.12 }}-->
-<!--                    &asset_tag={{ computer.13 }}&computer_tag={{ computer.14 }}&network_tag={{ computer.15 }}-->
-<!--                    &ups={{ computer.16 }}&serial_number= {{ computer.17 }}&user={{ computer.2 }}&computer_name={{ computer.3 }}">-->
-<!--                <img src="static/icons/icon_details.png" class="" id="icon_details">-->
-<!--            </a>-->
-<!--        </td>-->
+
+        <td class="fw-normal">
+            <a href="/update_inventory?id{{ computer.0 }}&department={{ computer.1 }}&processor={{ computer.5 }}&motherboard={{ computer.6 }}
+                    &power_supply={{ computer.7 }}&ram={{ computer.8 }}&storage={{ computer.9 }}
+                    &os={{ computer.10 }}&eset={{ computer.11 }}&msoffice={{ computer.12 }}
+                    &asset_tag={{ computer.13 }}&computer_tag={{ computer.14 }}&network_tag={{ computer.15 }}
+                    &ups={{ computer.16 }}&serial_number= {{ computer.17 }}&user={{ computer.2 }}&computer_name={{ computer.3 }}&ip={{ computer.4 }}&op_stat={{ computer.17 }}">
+                <img src="static/icons/edit.png" class="" id="icon_details">
+            </a>
+        </td>
     </tr>
     {% endfor %}
     </tbody>
@@ -146,20 +122,8 @@ $(document).ready(function() {
             null, // Column 0, will not be affected by colvis
             { visible: true }, // Column 1
             { visible: true }, // Column 2
-            { visible: true }, // Column 3
-            { visible: false }, // Column 4
-            { visible: false }, // Column 5
-            { visible: false }, // Column 6
-            { visible: false }, // Column 7
-            { visible: false }, // Column 8
-            { visible: false }, // Column 9
-            { visible: false }, // Column 10
-            { visible: false }, // Column 11
-            { visible: false }, // Column 12
-            { visible: false }, // Column 13
-            { visible: false }, // Column 14
-            { visible: false }, // Column 15
-            { visible: false }  // Column 16
+            { visible: true } // Column 3
+
 
         ],
         select: true, // Enable row selection
