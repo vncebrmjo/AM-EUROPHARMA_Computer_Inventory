@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <link rel="stylesheet" href="static/css/design_test.css">
+    <link rel="stylesheet" href="static/css/design.css">
 </head>
 {% include 'Header.html' %}
 <body>
@@ -362,3 +362,107 @@
         });
         {% endif %}
     </script>
+
+ <script>
+        {% if error %}
+        // Display SweetAlert with success message
+        Swal.fire({
+            icon: 'error',
+            title: 'error',
+            text: '{{ error }}',
+        });
+        {% endif %}
+    </script>
+
+ <script>
+        {% if error2 %}
+        // Display SweetAlert with success message
+        Swal.fire({
+            icon: 'error',
+            title: 'error',
+            text: '{{ error2 }}',
+        });
+        {% endif %}
+    </script>
+
+
+<script>
+        {% if error3 %}
+        // Display SweetAlert with success message
+        Swal.fire({
+            icon: 'error',
+            title: 'error',
+            text: '{{ error3 }}',
+        });
+        {% endif %}
+    </script>
+
+<!-- <script>-->
+<!--        {% if success_message %}-->
+<!--        // Display SweetAlert with success message-->
+<!--        Swal.fire({-->
+<!--            icon: 'success',-->
+<!--            title: 'Success',-->
+<!--            text: '{{ exist_false }}',-->
+<!--        });-->
+<!--        {% endif %}-->
+<!--    </script>-->
+
+<!--<script>-->
+<!--        $(document).ready(function(){-->
+<!--            $('#validationForm').submit(function(event){-->
+<!--                event.preventDefault();-->
+<!--                var formData = $(this).serialize();-->
+<!--                $.ajax({-->
+<!--                    type: 'POST',-->
+<!--                    url: '/check_data',-->
+<!--                    data: formData,-->
+<!--                    success: function(response){-->
+<!--                        if(response.exists){-->
+<!--                            $('#validationResult').html('<p>Data exists!</p>');-->
+<!--                        } else {-->
+<!--                            $('#validationResult').html('<p>Data does not exist!</p>');-->
+<!--                        }-->
+<!--                    }-->
+<!--                });-->
+<!--            });-->
+<!--        });-->
+<!--    </script>-->
+
+<!--<script>-->
+<!--$(document).ready(function(){-->
+<!--    $('#validationForm').submit(function(event){-->
+<!--        event.preventDefault();-->
+<!--        var formData = $(this).serialize();-->
+<!--        $.ajax({-->
+<!--            type: 'POST',-->
+<!--            url: '/check_data',-->
+<!--            data: formData,-->
+<!--            success: function(response){-->
+<!--                if(response.exists){-->
+<!--                    Swal.fire({-->
+<!--                        icon: 'error',-->
+<!--                        title: 'Error',-->
+<!--                        text: 'User already exists!',-->
+<!--                    });-->
+<!--                } else {-->
+<!--                    Swal.fire({-->
+<!--                        icon: 'success',-->
+<!--                        title: 'Success',-->
+<!--                        text: '{{ success_message }}',-->
+<!--                    });-->
+<!--                }-->
+<!--            },-->
+<!--            error: function(xhr, status, error) {-->
+<!--                Swal.fire({-->
+<!--                    icon: 'error',-->
+<!--                    title: 'Error',-->
+<!--                    text: 'An error occurred while processing your request.',-->
+<!--                });-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+<!--});-->
+
+
+<!--</script>-->
