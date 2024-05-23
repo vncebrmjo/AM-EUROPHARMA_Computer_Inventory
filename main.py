@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request, url_for, redirect, flash, jsonify
 import pyodbc as odbcconn
 from math import ceil
@@ -129,7 +130,7 @@ def Add_Inventory():
 def update_inventory():
     id = request.args.get('id')
     department = request.args.get('department')
-    username = request.args.get('username')
+    user = request.args.get('user')
 
     computer_name = request.args.get('computer_name')
 
@@ -141,7 +142,7 @@ def update_inventory():
     storage = request.args.get('storage')
     os = request.args.get('os')
     eset = request.args.get('eset')
-    msoffice = request.args.get('msoffice')
+    ms_office = request.args.get('ms_office')
     asset_tag = request.args.get('asset_tag')
     computer_tag = request.args.get('computer_tag')
     network_tag = request.args.get('network_tag')
@@ -155,34 +156,189 @@ def update_inventory():
     details = cursor.fetchone()
 
     return render_template('update_inventory.html', op_stat=op_stat, department=department,ip=ip, id=id, processor=processor, motherboard=motherboard, power_supply=power_supply,
-                           ram=ram, storage=storage, os=os, eset=eset, msoffice=msoffice, asset_tag=asset_tag, computer_tag=computer_tag,
-                           network_tag=network_tag, ups=ups, serial_number=serial_number, details=details, username=username, computer_name=computer_name)
+                           ram=ram, storage=storage, os=os, eset=eset, ms_office=ms_office, asset_tag=asset_tag, computer_tag=computer_tag,
+                           network_tag=network_tag, ups=ups, serial_number=serial_number, details=details, user=user, computer_name=computer_name)
 
 
 @app.route('/update_department', methods=['GET', 'POST'])
 def update_department():
     if request.method == 'POST':
-        department = request.form['department']
+        id = request.form['id']
+        old_department = request.form['old_department']
+        new_department = request.form['new_department']
+        field = request.form['field']
 
         cursor = connect.cursor()
+
+        cursor.execute(
+            "INSERT INTO INV_logs (id, field_modified, old_data, new_data) "
+            "VALUES ( ?, ?, ?, ?)",
+            (id, field, old_department, new_department))
+
         cursor.execute("UPDATE INV_computers SET department = ? WHERE ID = ?",
-                       (department, id))
+                       (new_department, id))
+
+        msg = "Data updated successfully"
 
         connect.commit()
 
-        # Redirect to a success page or somewhere else after updating
-        return redirect(url_for('update_inventory'))
 
-    elif request.method == 'GET':
-        # Retrieve data from the database to populate the form
-        department = request.args.get('department')
+        return render_template('update_inventory.html', new_department=new_department, details=details,
+                               old_department=old_department, field=field, id=id, msg=msg )
+
+@app.route('/update_username', methods=['GET', 'POST'])
+def update_username():
+    if request.method == 'POST':
+        id = request.form['id']
+        old_username = request.form['old_username']
+        new_username = request.form['new_username']
+        field = request.form['field']
+
         cursor = connect.cursor()
-        cursor.execute("SELECT * FROM INV_computers WHERE ID = ?",
-                       (id,))
-        details = cursor.fetchone()
-        # Assuming you fetch other details as well
 
-        return render_template('update_inventory.html', department=department, details=details)
+        cursor.execute(
+            "INSERT INTO INV_logs (id, field_modified, old_data, new_data) "
+            "VALUES ( ?, ?, ?, ?)",
+            (id, field, old_username, new_username))
+
+        cursor.execute("UPDATE INV_computers SET Username = ? WHERE ID = ?",
+                       (new_username, id))
+        msg = "Data updated successfully"
+
+        connect.commit()
+
+
+        return render_template('update_inventory.html', new_username=new_username, details=details,
+                               old_username=old_username, field=field, id=id, msg=msg)
+
+@app.route('/update_computername', methods=['GET', 'POST'])
+def update_computername():
+    if request.method == 'POST':
+        id = request.form['id']
+        old_computername = request.form['old_computername']
+        new_computername = request.form['new_computername']
+        field = request.form['field']
+
+        cursor = connect.cursor()
+
+        cursor.execute(
+            "INSERT INTO INV_logs (id, field_modified, old_data, new_data) "
+            "VALUES ( ?, ?, ?, ?)",
+            (id, field, old_computername, new_computername))
+
+        cursor.execute("UPDATE INV_computers SET Computer_Name = ? WHERE ID = ?",
+                       (new_computername, id))
+        msg = "Data updated successfully"
+
+        connect.commit()
+
+
+        return render_template('update_inventory.html', new_computername=new_computername, details=details,
+                               old_computername=old_computername, field=field, id=id, msg=msg)
+
+@app.route('/update_ip', methods=['GET', 'POST'])
+def update_ip():
+    if request.method == 'POST':
+        id = request.form['id']
+        old_ip = request.form['old_ip']
+        new_ip = request.form['new_ip']
+        field = request.form['field']
+
+        cursor = connect.cursor()
+
+        cursor.execute(
+            "INSERT INTO INV_logs (id, field_modified, old_data, new_data) "
+            "VALUES ( ?, ?, ?, ?)",
+            (id, field, old_ip, new_ip))
+
+        cursor.execute("UPDATE INV_computers SET IP = ? WHERE ID = ?",
+                       (new_ip, id))
+        msg = "Data updated successfully"
+
+        connect.commit()
+
+
+        return render_template('update_inventory.html', new_ip=new_ip, details=details,
+                               old_ip=old_ip, field=field, id=id, msg=msg)
+
+
+@app.route('/update_asset_tag', methods=['GET', 'POST'])
+def update_asset_tag():
+    if request.method == 'POST':
+        id = request.form['id']
+        old_asset_tag = request.form['old_asset_tag']
+        new_asset_tag = request.form['new_asset_tag']
+        field = request.form['field']
+
+        cursor = connect.cursor()
+
+        cursor.execute(
+            "INSERT INTO INV_logs (id, field_modified, old_data, new_data) "
+            "VALUES ( ?, ?, ?, ?)",
+            (id, field, old_asset_tag, new_asset_tag))
+
+        cursor.execute("UPDATE INV_computers SET Asset_Tag = ? WHERE ID = ?",
+                       (new_asset_tag, id))
+        msg = "Data updated successfully"
+
+        connect.commit()
+
+
+        return render_template('update_inventory.html', new_asset_tag=new_asset_tag, details=details,
+                               old_asset_tag=old_asset_tag, field=field, id=id, msg=msg)
+
+@app.route('/update_serial_number', methods=['GET', 'POST'])
+def update_serial_number():
+    if request.method == 'POST':
+        id = request.form['id']
+        old_serial_number = request.form['old_serial_number']
+        new_serial_number = request.form['new_serial_number']
+        field = request.form['field']
+
+        cursor = connect.cursor()
+
+        cursor.execute(
+            "INSERT INTO INV_logs (id, field_modified, old_data, new_data) "
+            "VALUES ( ?, ?, ?, ?)",
+            (id, field, old_serial_number, new_serial_number))
+
+        cursor.execute("UPDATE INV_computers SET Serial_Number = ? WHERE ID = ?",
+                       (new_serial_number, id))
+        msg = "Data updated successfully"
+
+        connect.commit()
+
+
+        return render_template('update_inventory.html', new_serial_number=new_serial_number, details=details,
+                               old_serial_number=old_serial_number, field=field, id=id, msg=msg)
+
+@app.route('/update_processor', methods=['GET', 'POST'])
+def update_processor():
+    if request.method == 'POST':
+        id = request.form['id']
+        old_processor = request.form['old_processor']
+        new_processor = request.form['new_processor']
+        field = request.form['field']
+
+        cursor = connect.cursor()
+
+        cursor.execute(
+            "INSERT INTO INV_logs (id, field_modified, old_data, new_data) "
+            "VALUES ( ?, ?, ?, ?)",
+            (id, field, old_processor, new_processor))
+
+        cursor.execute("UPDATE INV_computers SET Processor = ? WHERE ID = ?",
+                       (new_processor, id))
+        msg = "Data updated successfully"
+
+        connect.commit()
+
+
+        return render_template('update_inventory.html', new_serial_number=new_serial_number, details=details,
+                               old_serial_number=old_serial_number, field=field, id=id, msg=msg)
+
+
+
 
 
 @app.route('/update_user', methods=['GET', 'POST'])
@@ -273,7 +429,7 @@ def add_inventory2():
             "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             (department, user, computer_name, ip, processor, mobo, ps, ram, storage, os, ms_type, asset_tag,
              computer_tag, network_tag, ups, serial_number, opstat, eset))
-        success_message = "User data has been updated successfully!"
+        success_message = "The information has been added successfully!"
         connect.commit()
 
         return render_template('add_inventory2.html', success_message=success_message)
