@@ -159,6 +159,32 @@ def update_inventory():
                            network_tag=network_tag, ups=ups, serial_number=serial_number, details=details, username=username, computer_name=computer_name)
 
 
+@app.route('/update_department', methods=['GET', 'POST'])
+def update_department():
+    if request.method == 'POST':
+        department = request.form['department']
+
+        cursor = connect.cursor()
+        cursor.execute("UPDATE INV_computers SET department = ? WHERE ID = ?",
+                       (department, id))
+
+        connect.commit()
+
+        # Redirect to a success page or somewhere else after updating
+        return redirect(url_for('update_inventory'))
+
+    elif request.method == 'GET':
+        # Retrieve data from the database to populate the form
+        department = request.args.get('department')
+        cursor = connect.cursor()
+        cursor.execute("SELECT * FROM INV_computers WHERE ID = ?",
+                       (id,))
+        details = cursor.fetchone()
+        # Assuming you fetch other details as well
+
+        return render_template('update_inventory.html', department=department, details=details)
+
+
 @app.route('/update_user', methods=['GET', 'POST'])
 def update_user():
     cursor.execute('SELECT * FROM INV_computers')
