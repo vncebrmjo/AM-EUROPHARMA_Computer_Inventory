@@ -17,7 +17,7 @@
 
 
 
-<form method="POST" action ="{{ url_for('add_inventory2') }}">
+
 <div class="row d-flex justify-content-center"  id="column">
 
 
@@ -26,13 +26,13 @@
         <div class="row">
 
             <div class="mb-3">
-                <div class="modal-like-form">
+                <div class="modal-like-form2">
                     <h4 class="modal-like-header">USER INFORMATION</h4>
-
-                           <div class="col-md-3" id="dept_combo_box">
-          <label class="fw-semibold">DEPARTMENT</label>  <button id="check" class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#modal_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-                               <div class="modal" id="modal_check">
-                                   <div class="modal-dialog">
+    <form method="POST" action ="{{ url_for('update_inventory') }}">
+    <div class="col-md-3" id="dept_combo_box">
+    <label class="fw-semibold">DEPARTMENT</label>  <button id="check" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#modal_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+    <div class="modal" id="modal_check">
+    <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">UPDATE CHANGES</h5>
@@ -48,11 +48,12 @@
     </div>
   </div>
 </div>
-                <input type="text" class="form-control" name="department">
+                <input type="text" class="form-control" name="department" value="{{ department }}">
             </div>
+                    </form>
          <div class="col-md-3" id="user_text">
           <label class="fw-semibold">USER NAME</label>
-             <button id="user_check" class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#modal_user_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+             <button id="user_check" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#modal_user_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
                                <div class="modal" id="modal_user_check">
                                    <div class="modal-dialog">
     <div class="modal-content">
@@ -74,7 +75,7 @@
              </div>
                  <div class="col-md-3" id="computer_name">
           <label class="fw-semibold"> COMPUTER NAME</label>
-                     <button id="computer_name_check" class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#modal_com_name_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+                     <button id="computer_name_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_com_name_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
                                <div class="modal" id="modal_com_name_check">
                                    <div class="modal-dialog">
     <div class="modal-content">
@@ -96,7 +97,7 @@
              </div>
         <div class="col-md-3" id="ip">
           <label class="fw-semibold">IP ADDRESS</label>
-            <button id="IP_check" class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#modal_IP_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+            <button id="IP_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_IP_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
                                <div class="modal" id="modal_IP_check">
                                    <div class="modal-dialog">
     <div class="modal-content">
@@ -118,7 +119,7 @@
              </div>
         <div class="col-md-3" id="asset_tag">
           <label class="fw-semibold">ASSET TAG</label>
-            <button id="asset_check" class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#modal_asset_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+            <button id="asset_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_asset_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
                                <div class="modal" id="modal_asset_check">
                                    <div class="modal-dialog">
     <div class="modal-content">
@@ -140,7 +141,7 @@
              </div>
         <div class="col-md-3" id="serial_number">
           <label class="fw-semibold">SERIAL NUMBER</label>
-            <button id="serial_check" class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#modal_serial_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+            <button id="serial_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_serial_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
                                <div class="modal" id="modal_serial_check">
                                    <div class="modal-dialog">
     <div class="modal-content">
@@ -173,11 +174,11 @@
         <div class="col-md-3" >
             <div class="row" >
                  <div class="mb-3" >
-                <div class="modal-like-form" >
+                <div class="modal-like-form2" >
                     <h4 class="modal-like-header">PROCESSOR</h4>
         <div class="col-md-3" id="cpu_details">
           <label class="fw-semibold">DETAILS</label>
-            <button id="details_check" class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#modal_details_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+            <button id="details_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_details_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
                                <div class="modal" id="modal_details_check">
                                    <div class="modal-dialog">
     <div class="modal-content">
@@ -201,7 +202,7 @@
 <h4 class="modal-like-header">OPERATING SYSTEM</h4>
                             <div class="col-md-3" id="OS_combo_box">
           <label class="fw-semibold">TYPE</label>
-                                <button id="type_check" class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#modal_type_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+                                <button id="type_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_type_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
                                <div class="modal" id="modal_type_check">
                                    <div class="modal-dialog">
     <div class="modal-content">
@@ -226,7 +227,7 @@
 
           <div class="col-md-3" id="motherboard_details">
           <label class="fw-semibold">DETAILS</label>
-              <button id="mb_details_check" class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#modal_mb_details_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+              <button id="mb_details_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_mb_details_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
                                <div class="modal" id="modal_mb_details_check">
                                    <div class="modal-dialog">
     <div class="modal-content">
@@ -256,11 +257,11 @@
     <div class="col-md-3 " >
             <div class="row">
                  <div class="mb-3">
-                <div class="modal-like-form">
+                <div class="modal-like-form2">
                     <h4 class="modal-like-header">RAM</h4>
 
                              <div class="col-md-3" id="ram_brand">
-          <label class="fw-semibold">DETAILS</label> <button id="ram_check" class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#modal_ram_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+          <label class="fw-semibold">DETAILS</label> <button id="ram_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_ram_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
                                <div class="modal" id="modal_ram_check">
                                    <div class="modal-dialog">
     <div class="modal-content">
@@ -284,7 +285,7 @@
 <h4 class="modal-like-header">STORAGE</h4>
                             <div class="col-md-3" id="size">
           <label class="fw-semibold">DETAILS</label>
-                                <button id="storage_check" class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#modal_storage_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+                                <button id="storage_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_storage_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
                                <div class="modal" id="modal_storage_check">
                                    <div class="modal-dialog">
     <div class="modal-content">
@@ -310,7 +311,7 @@
 
              <div class="col-md-3" id="ps_brand">
           <label class="fw-semibold">DETAILS</label>
-                 <button id="ps_check" class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#modal_ps_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+                 <button id="ps_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_ps_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
                                <div class="modal" id="modal_ps_check">
                                    <div class="modal-dialog">
     <div class="modal-content">
@@ -341,12 +342,12 @@
     <div class="col-md-3 " >
             <div class="row">
                  <div class="mb-3">
-                <div class="modal-like-form">
+                <div class="modal-like-form2">
                     <h4 class="modal-like-header">DEVICE STATUS</h4>
 
                            <div class="col-md-3" id="MS_combo_box">
           <label class="fw-semibold">MS OFFICE</label>
-                <button id="ms_check" class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#modal_ms_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+                <button id="ms_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_ms_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
                                <div class="modal" id="modal_ms_check">
                                    <div class="modal-dialog">
     <div class="modal-content">
@@ -369,7 +370,7 @@
 
          <div class="col-md-3" id="comtag">
           <label class="fw-semibold">COMPUTER TAG</label>
-             <button id="comtag_check" class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#modal_comtag_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+             <button id="comtag_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_comtag_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
                                <div class="modal" id="modal_comtag_check">
                                    <div class="modal-dialog">
     <div class="modal-content">
@@ -391,7 +392,7 @@
              </div>
 
         <div class="col-md-3" id="nettag">
-          <label class="fw-semibold">NETWORK TAG</label> <button id="nettag_check" class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#modal_nettag_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+          <label class="fw-semibold">NETWORK TAG</label> <button id="nettag_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_nettag_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
                                <div class="modal" id="modal_nettag_check">
                                    <div class="modal-dialog">
     <div class="modal-content">
@@ -414,7 +415,7 @@
 
 
                     <div class="col-md-3" id="eset">
-          <label class="fw-semibold">ESET</label> <button id="eset_check" class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#modal_eset_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+          <label class="fw-semibold">ESET</label> <button id="eset_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_eset_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
                                <div class="modal" id="modal_eset_check">
                                    <div class="modal-dialog">
     <div class="modal-content">
@@ -437,7 +438,7 @@
 
 
                    <div class="col-md-3" id="ups">
-          <label class="fw-semibold">UPS</label> <button id="ups_check" class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#modal_ups_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+          <label class="fw-semibold">UPS</label> <button id="ups_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_ups_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
                                <div class="modal" id="modal_ups_check">
                                    <div class="modal-dialog">
     <div class="modal-content">
@@ -460,7 +461,7 @@
 
 
           <div class="col-md-3" id="opstat">
-          <label class="fw-semibold">OPERATIONAL STATUS</label> <button id="opstats_check" class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#modal_opstat_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+          <label class="fw-semibold">OPERATIONAL STATUS</label> <button id="opstats_check" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#modal_opstat_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
                                <div class="modal" id="modal_opstat_check">
                                    <div class="modal-dialog">
     <div class="modal-content">

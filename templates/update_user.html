@@ -124,59 +124,7 @@ $(document).ready(function() {
 
 
         ],
-        select: true, // Enable row selection
-        lengthMenu: [5, 10, 20, 100], // Define page length menu options
-        pageLength: 10, // Set the default page length to 10 entries per page
-        dom: 'Bfrtip', // Control the layout of DataTables
 
-        buttons: [
-            {
-                extend: 'pdfHtml5',
-                orientation: 'landscape',
-                pageSize: 'LEGAL',
-                exportOptions: {
-                    columns: ':visible',
-                    modifier: {
-                        page: 'current'
-                    }
-                }
-            },
-            {
-                extend: 'print',
-                orientation: 'landscape',
-                pageSize: 'LEGAL',
-                exportOptions: {
-                    columns: ':visible',
-                    modifier: {
-                        page: 'current'
-                    }
-                }
-            },
-            {
-                extend: 'copyHtml5',
-                exportOptions: {
-                    columns: ':visible',
-                    modifier: {
-                        page: 'current'
-                    }
-                }
-            },
-            {
-                extend: 'excelHtml5',
-                text: 'Excel',
-                exportOptions: {
-                    columns: ':visible',
-                    modifier: {
-                        page: 'current'
-                    }
-                }
-            },
-            {
-                extend: 'colvis',
-                text: 'Show column',
-            },
-            'pageLength'
-        ]
     });
 
     // Apply a search filter programmatically
@@ -189,6 +137,83 @@ $(document).ready(function() {
 
 
 
+
+
 {% include 'Footer.html' %}
 </body>
 </html>
+
+
+<!--<script>-->
+<!--$(document).ready(function() {-->
+<!--    var table = new DataTable('#tbl_mainpage', {-->
+<!--        "searching": true, // Hide the search bar-->
+
+<!--        columns: [-->
+<!--            null, // Column 0, will not be affected by colvis-->
+<!--            { visible: true }, // Column 1-->
+<!--            { visible: true }, // Column 2-->
+<!--            { visible: true } // Column 3-->
+
+
+<!--        ],-->
+<!--        select: true, // Enable row selection-->
+<!--        lengthMenu: [5, 10, 20, 100], // Define page length menu options-->
+<!--        pageLength: 10, // Set the default page length to 10 entries per page-->
+<!--        dom: 'Bfrtip', // Control the layout of DataTables-->
+
+<!--        buttons: [-->
+<!--            {-->
+<!--                extend: 'pdfHtml5',-->
+<!--                orientation: 'landscape',-->
+<!--                pageSize: 'LEGAL',-->
+<!--                exportOptions: {-->
+<!--                    columns: ':visible',-->
+<!--                    modifier: {-->
+<!--                        page: 'current'-->
+<!--                    }-->
+<!--                }-->
+<!--            },-->
+<!--            {-->
+<!--                extend: 'print',-->
+<!--                orientation: 'landscape',-->
+<!--                pageSize: 'LEGAL',-->
+<!--                exportOptions: {-->
+<!--                    columns: ':visible',-->
+<!--                    modifier: {-->
+<!--                        page: 'current'-->
+<!--                    }-->
+<!--                }-->
+<!--            },-->
+<!--            {-->
+<!--                extend: 'copyHtml5',-->
+<!--                exportOptions: {-->
+<!--                    columns: ':visible',-->
+<!--                    modifier: {-->
+<!--                        page: 'current'-->
+<!--                    }-->
+<!--                }-->
+<!--            },-->
+<!--            {-->
+<!--                extend: 'excelHtml5',-->
+<!--                text: 'Excel',-->
+<!--                exportOptions: {-->
+<!--                    columns: ':visible',-->
+<!--                    modifier: {-->
+<!--                        page: 'current'-->
+<!--                    }-->
+<!--                }-->
+<!--            },-->
+<!--            {-->
+<!--                extend: 'colvis',-->
+<!--                text: 'Show column',-->
+<!--            },-->
+<!--            'pageLength'-->
+<!--        ]-->
+<!--    });-->
+
+<!--    // Apply a search filter programmatically-->
+<!--&lt;!&ndash;        table.column(0).search('ict').draw();&ndash;&gt;-->
+<!--});-->
+
+<!--    </script>-->
