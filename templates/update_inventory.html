@@ -210,78 +210,103 @@
             <div class="row" >
                  <div class="mb-3" >
                 <div class="modal-like-form2" >
-                    <h4 class="modal-like-header">PROCESSOR</h4>
+        <h4 class="modal-like-header">PROCESSOR</h4>
+        <form method="POST" action ="{{ url_for('update_processor') }}">
         <div class="col-md-3" id="cpu_details">
           <label class="fw-semibold">DETAILS</label>
             <button id="details_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_details_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-                               <div class="modal" id="modal_details_check">
-                                   <div class="modal-dialog">
+            <div class="modal" id="modal_details_check">
+    <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">UPDATE CHANGES</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Are you sure you want to change this?</p>
+        <p>Are you sure you want to update this field?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Confirm</button>
+            <button type="submit" class="btn btn-primary">Confirm</button>
+            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+
       </div>
     </div>
   </div>
 </div>
-              <textarea type="text" class="form-control" name="processor" >{{ processor }}</textarea>
+              <input type="hidden" name="field" value="Processor" >
+              <input type="hidden" name="id" value="{{ id }}">
+              <input type="hidden" class="form-control" name="old_processor" value="{{ processor }}">
+              <textarea class="form-control" name="new_processor" >{{ processor }}</textarea>
              </div>
+                        </form>
                     <hr>
-<h4 class="modal-like-header">OPERATING SYSTEM</h4>
-                            <div class="col-md-3" id="OS_combo_box">
+            <h4 class="modal-like-header">OPERATING SYSTEM</h4>
+                    <form method="POST" action ="{{ url_for('update_os') }}">
+                    <div class="col-md-3" id="OS_combo_box">
           <label class="fw-semibold">TYPE</label>
-                                <button id="type_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_type_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-                               <div class="modal" id="modal_type_check">
-                                   <div class="modal-dialog">
+      <button id="type_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_type_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+     <div class="modal" id="modal_type_check">
+    <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">UPDATE CHANGES</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Are you sure you want to change this?</p>
+        <p>Are you sure you want to update this field?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Confirm</button>
+            <button type="submit" class="btn btn-primary">Confirm</button>
+            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+
       </div>
     </div>
   </div>
 </div>
-                <textarea class="form-control" name="os"> {{ os }}</textarea>
+                <input type="hidden" name="field" value="Operating System" >
+              <input type="hidden" name="id" value="{{ id }}">
+              <input type="hidden" class="form-control" name="old_os" value="{{ os }}">
+                <select class="form-select mb-3" name="new_os" id="select_OS">
+                    <option > {{ os }} </option>
+
+                    <option value="Windows 7 Pro">Windows 7 Pro</option>
+                    <option value="Windows 8 Pro">Windows 8 Pro</option>
+                    <option value="Windows 10 Pro">Windows 10 Pro</option>
+                    <option value="Windows 11 Pro">Windows 11 Pro</option>
+                    <option value="macOS">macOS</option>
+                </select>
             </div>
+                    </form>
             <hr>
             <h4 class="modal-like-header"> MOTHERBOARD</h4>
-
+            <form method="POST" action ="{{ url_for('update_mobo') }}">
           <div class="col-md-3" id="motherboard_details">
           <label class="fw-semibold">DETAILS</label>
               <button id="mb_details_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_mb_details_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-                               <div class="modal" id="modal_mb_details_check">
-                                   <div class="modal-dialog">
+          <div class="modal" id="modal_mb_details_check">
+    <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">UPDATE CHANGES</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Are you sure you want to change this?</p>
+        <p>Are you sure you want to update this field?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Confirm</button>
+            <button type="submit" class="btn btn-primary">Confirm</button>
+            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+
       </div>
     </div>
   </div>
 </div>
-              <input type="text" class="form-control" name="motherboard" value=" {{ motherboard }}">
+              <input type="hidden" name="field" value="Motherboard" >
+              <input type="hidden" name="id" value="{{ id }}">
+              <input type="hidden" class="form-control" name="old_mobo" value="{{ motherboard }}">
+              <input type="text" class="form-control" name="new_mobo" value=" {{ motherboard }}">
              </div>
+            </form>
                 </div>
             </div>
 
@@ -294,79 +319,94 @@
                  <div class="mb-3">
                 <div class="modal-like-form2">
                     <h4 class="modal-like-header">RAM</h4>
-
-                             <div class="col-md-3" id="ram_brand">
+          <form method="POST" action ="{{ url_for('update_ram') }}">
+          <div class="col-md-3" id="ram_brand">
           <label class="fw-semibold">DETAILS</label> <button id="ram_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_ram_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-                               <div class="modal" id="modal_ram_check">
-                                   <div class="modal-dialog">
+    <div class="modal" id="modal_ram_check">
+    <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">UPDATE CHANGES</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Are you sure you want to change this?</p>
+        <p>Are you sure you want to update this field?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Confirm</button>
+            <button type="submit" class="btn btn-primary">Confirm</button>
+            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+
       </div>
     </div>
   </div>
 </div>
-              <input type="text" class="form-control" name="ram" value="{{ ram }}">
+              <input type="hidden" name="field" value="RAM" >
+              <input type="hidden" name="id" value="{{ id }}">
+              <input type="hidden" class="form-control" name="old_ram" value="{{ ram }}">
+              <input type="text" class="form-control" name="new_ram" value="{{ ram }}">
              </div>
+                    </form>
                     <hr>
-<h4 class="modal-like-header">STORAGE</h4>
-                            <div class="col-md-3" id="size">
+            <h4 class="modal-like-header">STORAGE</h4>
+          <form method="POST" action ="{{ url_for('update_storage') }}">
+          <div class="col-md-3" id="size">
           <label class="fw-semibold">DETAILS</label>
-                                <button id="storage_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_storage_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-                               <div class="modal" id="modal_storage_check">
-                                   <div class="modal-dialog">
+          <button id="storage_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_storage_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+          <div class="modal" id="modal_storage_check">
+    <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">UPDATE CHANGES</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Are you sure you want to change this?</p>
+        <p>Are you sure you want to update this field?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Confirm</button>
+            <button type="submit" class="btn btn-primary">Confirm</button>
+            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+
       </div>
     </div>
   </div>
 </div>
-                <textarea type="text" class="form-control" name="storage"> {{ storage }}</textarea>
+              <input type="hidden" name="field" value="Storage">
+              <input type="hidden" name="id" value="{{ id }}">
+              <input type="hidden" class="form-control" name="old_storage" value="{{ storage }}">
+                <textarea class="form-control" name="new_storage"> {{ storage }}</textarea>
             </div>
+          </form>
             <hr>
 
             <h4 class="modal-like-header"> POWER SUPPLY</h4>
-
+            <form method="POST" action ="{{ url_for('update_ps') }}">
              <div class="col-md-3" id="ps_brand">
           <label class="fw-semibold">DETAILS</label>
                  <button id="ps_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_ps_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-                               <div class="modal" id="modal_ps_check">
-                                   <div class="modal-dialog">
+    <div class="modal" id="modal_ps_check">
+    <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">UPDATE CHANGES</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Are you sure you want to change this?</p>
+        <p>Are you sure you want to update this field?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Confirm</button>
+            <button type="submit" class="btn btn-primary">Confirm</button>
+            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+
       </div>
     </div>
   </div>
 </div>
-              <textarea type="text" class="form-control" name="power_supply"> {{ power_supply }}</textarea>
+              <input type="hidden" name="field" value="Power Supply">
+              <input type="hidden" name="id" value="{{ id }}">
+              <input type="hidden" class="form-control" name="old_ps" value="{{ power_supply }}">
+              <textarea  class="form-control" name="new_ps"> {{ power_supply }}</textarea>
              </div>
-
+            </form>
                 </div>
             </div>
 
@@ -379,148 +419,179 @@
                  <div class="mb-3">
                 <div class="modal-like-form2">
                     <h4 class="modal-like-header">DEVICE STATUS</h4>
-
-                           <div class="col-md-3" id="MS_combo_box">
+        <form method="POST" action ="{{ url_for('update_msoffice') }}">
+          <div class="col-md-3" id="MS_combo_box">
           <label class="fw-semibold">MS OFFICE</label>
                 <button id="ms_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_ms_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-                               <div class="modal" id="modal_ms_check">
-                                   <div class="modal-dialog">
+    <div class="modal" id="modal_ms_check">
+    <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">UPDATE CHANGES</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Are you sure you want to change this?</p>
+        <p>Are you sure you want to update this field?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Confirm</button>
+            <button type="submit" class="btn btn-primary">Confirm</button>
+            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+
       </div>
     </div>
   </div>
 </div>
-                                <input type="text" class="form-control" name="ms_office" value="{{ms_office}}">
+              <input type="hidden" name="field" value="MS Office">
+              <input type="hidden" name="id" value="{{ id }}">
+              <input type="hidden" class="form-control" name="old_msoffice" value="{{ ms_office }}">
+           <input type="text" class="form-control" name="new_msoffice" value="{{ms_office}}">
             </div>
+        </form>
 
+
+        <form method="POST" action ="{{ url_for('update_comtag') }}">
          <div class="col-md-3" id="comtag">
           <label class="fw-semibold">COMPUTER TAG</label>
              <button id="comtag_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_comtag_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-                               <div class="modal" id="modal_comtag_check">
-                                   <div class="modal-dialog">
+    <div class="modal" id="modal_comtag_check">
+    <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">UPDATE CHANGES</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Are you sure you want to change this?</p>
+        <p>Are you sure you want to update this field?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Confirm</button>
+            <button type="submit" class="btn btn-primary">Confirm</button>
+            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+
       </div>
     </div>
   </div>
 </div>
-              <input type="text" class="form-control" name="computer_tag" value="{{computer_tag}}">
+             <input type="hidden" name="field" value="Computer Tag">
+              <input type="hidden" name="id" value="{{ id }}">
+              <input type="hidden" class="form-control" name="old_comtag" value="{{computer_tag}}">
+              <input type="text" class="form-control" name="new_comtag" value="{{computer_tag}}">
              </div>
+        </form>
 
+
+
+       <form method="POST" action ="{{ url_for('update_nettag') }}">
         <div class="col-md-3" id="nettag">
           <label class="fw-semibold">NETWORK TAG</label> <button id="nettag_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_nettag_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-                               <div class="modal" id="modal_nettag_check">
-                                   <div class="modal-dialog">
+    <div class="modal" id="modal_nettag_check">
+    <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">UPDATE CHANGES</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Are you sure you want to change this?</p>
+        <p>Are you sure you want to update this field?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Confirm</button>
+            <button type="submit" class="btn btn-primary">Confirm</button>
+            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+
       </div>
     </div>
   </div>
 </div>
-              <input type="text" class="form-control" name="network_tag" value="{{ network_tag }}">
+             <input type="hidden" name="field" value="Network Tag">
+              <input type="hidden" name="id" value="{{ id }}">
+              <input type="hidden" class="form-control" name="old_nettag" value="{{network_tag}}">
+              <input type="text" class="form-control" name="new_nettag" value="{{ network_tag }}">
              </div>
+       </form>
 
-
+         <form method="POST" action ="{{ url_for('update_eset') }}">
                     <div class="col-md-3" id="eset">
           <label class="fw-semibold">ESET</label> <button id="eset_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_eset_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-                               <div class="modal" id="modal_eset_check">
-                                   <div class="modal-dialog">
+      <div class="modal" id="modal_eset_check">
+    <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">UPDATE CHANGES</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Are you sure you want to change this?</p>
+        <p>Are you sure you want to update this field?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Confirm</button>
+            <button type="submit" class="btn btn-primary">Confirm</button>
+            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+
       </div>
     </div>
   </div>
 </div>
-              <input type="text" class="form-control" name="eset" value="{{eset}}">
+             <input type="hidden" name="field" value="ESET">
+              <input type="hidden" name="id" value="{{ id }}">
+              <input type="hidden" class="form-control" name="old_eset" value="{{eset}}">
+              <input type="text" class="form-control" name="new_eset" value="{{eset}}">
              </div>
-
+         </form>
+                    <form method="POST" action ="{{ url_for('update_ups') }}">
 
                    <div class="col-md-3" id="ups">
           <label class="fw-semibold">UPS</label> <button id="ups_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_ups_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-                               <div class="modal" id="modal_ups_check">
-                                   <div class="modal-dialog">
+    <div class="modal" id="modal_ups_check">
+    <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">UPDATE CHANGES</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Are you sure you want to change this?</p>
+        <p>Are you sure you want to update this field?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Confirm</button>
+            <button type="submit" class="btn btn-primary">Confirm</button>
+            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+
       </div>
     </div>
   </div>
 </div>
-              <input type="text" class="form-control" name="ups" value="{{ ups }}">
+             <input type="hidden" name="field" value="UPS">
+              <input type="hidden" name="id" value="{{ id }}">
+              <input type="hidden" class="form-control" name="old_ups" value="{{ ups }}">
+              <input type="text" class="form-control" name="new_ups" value="{{ ups }}">
              </div>
+                    </form>
 
 
+           <form method="POST" action ="{{ url_for('update_opstat') }}">
           <div class="col-md-3" id="opstat">
           <label class="fw-semibold">OPERATIONAL STATUS</label> <button id="opstats_check" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#modal_opstat_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-                               <div class="modal" id="modal_opstat_check">
-                                   <div class="modal-dialog">
+    <div class="modal" id="modal_opstat_check">
+    <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">UPDATE CHANGES</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Are you sure you want to change this?</p>
+        <p>Are you sure you want to update this field?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Confirm</button>
+            <button type="submit" class="btn btn-primary">Confirm</button>
+            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+
       </div>
     </div>
   </div>
 </div>
-              <input type="text" class="form-control" name="op_stat" value="{{ op_stat }}">
+             <input type="hidden" name="field" value="Operational Status">
+              <input type="hidden" name="id" value="{{ id }}">
+              <input type="hidden" class="form-control" name="old_opstat" value="{{ op_stat }}">
+              <input type="text" class="form-control" name="new_opstat" value="{{ op_stat }}">
              </div>
-
-
-        </div>
-             </div>
-             </div>
+                    </form>
 
 
 
