@@ -5,6 +5,7 @@ from math import ceil
 
 app = Flask(__name__)
 
+
 cursor = connect.cursor()
 
 # @app.route('/', methods=['POST', 'GET'])
@@ -166,6 +167,8 @@ def update_inventory():
                            network_tag=network_tag, ups=ups, serial_number=serial_number, details=details, user=user, computer_name=computer_name)
 
 
+
+
 @app.route('/update_department', methods=['GET', 'POST'])
 def update_department():
     if request.method == 'POST':
@@ -192,6 +195,60 @@ def update_department():
         return render_template('update_inventory.html', new_department=new_department, details=details,
                                old_department=old_department, field=field, id=id, msg=msg )
 
+# @app.route('/update_department', methods=['GET', 'POST'])
+# def update_department():
+#     id = request.form['id']
+#     department = request.args.get('department')
+#
+#     cursor = connect.cursor()
+#     cursor.execute("SELECT * FROM INV_computers WHERE ID = ?", (id,))
+#     details = cursor.fetchone()
+#
+#     if request.method == 'POST':
+#         # Handle form submission
+#         new_department = request.form['new_department']
+#         old_department = request.form['old_department']
+#         field = request.form['field']
+#
+#         new_department2 = cursor.execute("INSERT INTO INV_logs (id, field_modified, old_data, new_data) VALUES (?, ?, ?, ?)",
+#                        (id, field, old_department, new_department))
+#         cursor.execute("UPDATE INV_computers SET department = ? WHERE ID = ?", (new_department, id))
+#
+#         connect.commit()
+#
+#         return render_template('update_inventory.html', department=new_department, id=id, details=details,
+#                                msg="The data has been updated successfully")
+#
+#     # Render the template for GET request
+#     return render_template('update_inventory.html', department=department, id=id, details=details)
+
+# @app.route('/update_username', methods=['GET', 'POST'])
+# def update_username():
+#     id = request.form['id']
+#     user = request.args.get('user')
+#
+#     cursor = connect.cursor()
+#     cursor.execute("SELECT * FROM INV_computers WHERE ID = ?", (id,))
+#     details = cursor.fetchone()
+#
+#     if request.method == 'POST':
+#         # Handle form submission
+#         old_username = request.form['old_username']
+#         new_username = request.form['new_username']
+#         field = request.form['field']
+#
+#         cursor.execute("INSERT INTO INV_logs (id, field_modified, old_data, new_data) VALUES (?, ?, ?, ?)",
+#                        (id, field, old_username, new_username))
+#         cursor.execute("UPDATE INV_computers SET Username = ? WHERE ID = ?", (new_username , id))
+#
+#         connect.commit()
+#
+#         return render_template('update_inventory.html', user=new_username , id=id, details=details,
+#                                msg="The data has been updated successfully")
+#
+#     # Render the template for GET request
+#     return render_template('update_inventory.html', user=user, id=id, details=details)
+
 
 @app.route('/update_username', methods=['GET', 'POST'])
 def update_username():
@@ -213,7 +270,6 @@ def update_username():
         msg = "The data has been updated successfully"
 
         connect.commit()
-
 
         return render_template('update_inventory.html', new_username=new_username, details=details,
                                old_username=old_username, field=field, id=id, msg=msg)
