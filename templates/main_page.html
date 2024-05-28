@@ -72,12 +72,12 @@
             <th class="fw-semibold">COMPUTER NAME</th>
             <th class="fw-semibold">IP ADDRESS</th>
             <th class="fw-semibold">PROCESSOR</th>
-             <th class="fw-semibold " >MOTHERBOARD</th>
+            <th class="fw-semibold ">MOTHERBOARD</th>
             <th class="fw-semibold">POWER SUPPLY</th>
             <th class="fw-semibold">RAM</th>
             <th class="fw-semibold">STORAGE</th>
             <th class="fw-semibold">OPERATING SYSTEM</th>
-             <th class="fw-semibold" >MICROSOFT OFFICE</th>
+            <th class="fw-semibold">MICROSOFT OFFICE</th>
             <th class="fw-semibold" >ESET</th>
             <th class="fw-semibold">ASSET TAG</th>
             <th class="fw-semibold">COMPUTER TAG</th>
@@ -85,6 +85,7 @@
             <th class="fw-semibold">UPS</th>
             <th class="fw-semibold">SERIAL NUMBER</th>
             <th class="fw-semibold">OPERATIONAL STATUS</th>
+
 
 
         </tr>
@@ -161,7 +162,7 @@ $(document).ready(function() {
             { visible: false }, // Column 13
             { visible: false }, // Column 14
             { visible: false }, // Column 15
-            { visible: false },  // Column 16
+            { visible: false }, // Column 16
             { visible: false }  // Column 16
 
 
@@ -213,11 +214,17 @@ $(document).ready(function() {
                     }
                 }
             },
-            {
+             {
                 extend: 'colvis',
-                text: 'Show column',
-            },
+                postfixButtons: [
+                  {
+                    extend: 'columnToggle',
+                    text: 'Select/Deselect All',
+                  }
+               ]
+              },
             'pageLength'
+
         ]
     });
 

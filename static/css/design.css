@@ -550,6 +550,10 @@ padding: 25px;
     width: 15%;
 }
 
+textarea {
+  resize: none;
+  overflow: hidden;
+}
 
 
 
