@@ -10,6 +10,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="static/css/design.css">
 </head>
 {% include 'Header.html' %}
@@ -64,7 +66,7 @@
     <div class="col-md-3" id="dept_combo_box">
         <label class="fw-semibold">DEPARTMENT</label>
         <button id="btn_department" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#modal_check">
-            <img src="static/icons/check.png" id="check_button">
+            <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
         </button>
 
         <input type="hidden" name="field" value="Department">
@@ -98,7 +100,9 @@
         <form id="update_username" method="POST" action ="{{ url_for('update_username') }}">
          <div class="col-md-3" id="user_text">
           <label class="fw-semibold">USER NAME</label>
-             <button id="btn_username" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#modal_user_check"><img src="static/icons/check.png" id="check_button"></button>
+             <button id="btn_username" class="btn" type="button">
+                 <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
+             </button>
 
              <input type="hidden" name="field" value="Username">
              <input type="hidden" name="id" value="{{ id }}">
@@ -111,7 +115,9 @@
         <form id="update_computername" method="POST" action ="{{ url_for('update_computername') }}">
         <div class="col-md-3" id="computer_name">
           <label class="fw-semibold"> COMPUTER NAME</label>
-                     <button id="btn_computername" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_com_name_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+                     <button id="btn_computername" class="btn " type="button">
+                         <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
+                     </button>
 
               <input type="hidden" name="field" value="Computer Name">
               <input type="hidden" name="id" value="{{ id }}">
@@ -124,7 +130,8 @@
          <form id="update_ip" method="POST" action ="{{ url_for('update_ip') }}">
         <div class="col-md-3" id="ip">
           <label class="fw-semibold">IP ADDRESS</label>
-            <button id="btn_ip" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_IP_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+            <button id="btn_ip" class="btn " type="button">
+                <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i></button>
 
                 <input type="hidden" name="field" value="Ip Address ">
               <input type="hidden" name="id" value="{{ id }}">
@@ -137,7 +144,9 @@
          <form id="update_asset" method="POST" action ="{{ url_for('update_asset_tag') }}">
         <div class="col-md-3" id="asset_tag">
           <label class="fw-semibold">ASSET TAG</label>
-            <button id="btn_asset" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_asset_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+            <button id="btn_asset" class="btn " type="button">
+                <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
+            </button>
 
                 <input type="hidden" name="field" value="Asset Tag ">
               <input type="hidden" name="id" value="{{ id }}">
@@ -150,7 +159,9 @@
         <form id="update_serial" method="POST" action ="{{ url_for('update_serial_number') }}">
         <div class="col-md-3" id="serial_number">
           <label class="fw-semibold">SERIAL NUMBER</label>
-            <button id="btn_serial" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_serial_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+            <button id="btn_serial" class="btn " type="button">
+                <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
+            </button>
 
              <input type="hidden" name="field" value="Serial Number" >
               <input type="hidden" name="id" value="{{ id }}">
@@ -177,7 +188,9 @@
         <form id="update_processor" method="POST" action ="{{ url_for('update_processor') }}">
         <div class="col-md-3" id="cpu_details">
           <label class="fw-semibold">DETAILS</label>
-    <button id="btn_processor" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_details_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+    <button id="btn_processor" class="btn " type="button">
+        <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
+    </button>
 
               <input type="hidden" name="field" value="Processor" >
               <input type="hidden" name="id" value="{{ id }}">
@@ -192,7 +205,9 @@
                     <form id="update_os" method="POST" action ="{{ url_for('update_os') }}">
                     <div class="col-md-3" id="OS_combo_box">
           <label class="fw-semibold">TYPE</label>
-      <button id="btn_os" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_type_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+      <button id="btn_os" class="btn " type="button">
+          <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
+      </button>
 
                 <input type="hidden" name="field" value="Operating System" >
               <input type="hidden" name="id" value="{{ id }}">
@@ -215,7 +230,9 @@
             <form id="update_mobo" method="POST" action ="{{ url_for('update_mobo') }}">
           <div class="col-md-3" id="motherboard_details">
           <label class="fw-semibold">DETAILS</label>
-              <button id="btn_mobo" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_mb_details_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+              <button id="btn_mobo" class="btn " type="button">
+                  <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
+              </button>
 
               <input type="hidden" name="field" value="Motherboard" >
               <input type="hidden" name="id" value="{{ id }}">
@@ -230,7 +247,7 @@
 
     </div>
 
-    <div class="col-md-3 " >
+     <div class="col-md-3 " >
             <div class="row">
                  <div class="mb-3">
                 <div class="modal-like-form2">
@@ -239,7 +256,7 @@
     <div class="col-md-3" id="ram_brand">
         <label class="fw-semibold">DETAILS</label>
         <button id="Btn_ram" class="btn" type="button">
-            <a href="#"><img src="static/icons/check.png" id="check_button"></a>
+            <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
         </button>
 
         <input type="hidden" name="field" value="RAM">
@@ -254,7 +271,7 @@
           <div class="col-md-3" id="size">
           <label class="fw-semibold">DETAILS</label>
           <button id="Btn_storage" class="btn " type="button" >
-              <a href="#"><img src="static/icons/check.png" id="check_button"></a>
+              <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
           </button>
 
               <input type="hidden" name="field" value="Storage">
@@ -270,7 +287,7 @@
              <div class="col-md-3" id="ps_brand">
           <label class="fw-semibold">DETAILS</label>
                  <button id="Btn_PS" class="btn " type="button" >
-                     <a href="#"><img src="static/icons/check.png" id="check_button"></a>
+                     <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
                  </button>
 
               <input type="hidden" name="field" value="Power Supply">
@@ -295,7 +312,7 @@
           <div class="col-md-3" id="MS_combo_box">
           <label class="fw-semibold">MS OFFICE</label>
                 <button id="Btn_MS" class="btn " type="button" >
-                    <a href="#"><img src="static/icons/check.png" id="check_button"></a>
+                    <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
                 </button>
 
               <input type="hidden" name="field" value="MS Office">
@@ -310,7 +327,7 @@
          <div class="col-md-3" id="comtag">
           <label class="fw-semibold">COMPUTER TAG</label>
              <button id="Btn_com" class="btn " type="button">
-                 <a href="#"><img src="static/icons/check.png" id="check_button"></a>
+                 <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
              </button>
 
              <input type="hidden" name="field" value="Computer Tag">
@@ -325,8 +342,8 @@
        <form id="update_net" method="POST" action ="{{ url_for('update_nettag') }}">
         <div class="col-md-3" id="nettag">
           <label class="fw-semibold">NETWORK TAG</label>
-            <button id="Btn_net" class="btn " type="button">
-                <a href="#"><img src="static/icons/check.png" id="check_button"></a>
+            <button id="Btn_net" class="btn" type="button">
+                <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
             </button>
 
              <input type="hidden" name="field" value="Network Tag">
@@ -340,14 +357,12 @@
              <div class="col-md-3" id="eset">
           <label class="fw-semibold">ESET</label>
                  <button id="Btn_eset" class="btn " type="button">
-                        <a href="#"><img src="static/icons/check.png" id="check_button"></a>
+                        <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
                     </button>
              <input type="hidden" name="field" value="ESET">
               <input type="hidden" name="id" value="{{ id }}">
               <input type="hidden" class="form-control" name="old_eset" value="{{eset}}">
               <input type="text" class="form-control" name="new_eset" value="{{eset}}">
-
-
              </div>
          </form>
 
@@ -355,7 +370,7 @@
                    <div class="col-md-3" id="ups">
             <label class="fw-semibold">UPS</label>
                        <button id="Btn_ups" class="btn " type="button" >
-                           <a href="#"><img src="static/icons/check.png" id="check_button"></a>
+                           <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
                        </button>
 
              <input type="hidden" name="field" value="UPS">
@@ -370,7 +385,7 @@
           <div class="col-md-3" id="opstat">
           <label class="fw-semibold">OPERATIONAL STATUS</label>
               <button id="Btn_status" class="btn" type="button">
-              <a href="#"><img src="static/icons/check.png" id="check_button"></a>
+             <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
           </button>
 
              <input type="hidden" name="field" value="Operational Status">
@@ -967,5 +982,323 @@
         };
         xhr.send(formData);
     });
+</script>
+
+<script>
+    var observe;
+    if (window.attachEvent) {
+      observe = function (element, event, handler) {
+        element.attachEvent('on'+event, handler);
+      };
+    }
+    else {
+      observe = function (element, event, handler) {
+        element.addEventListener(event, handler, false);
+      };
+    }
+    function init () {
+      function resize (element) {
+        element.style.height = 'auto';
+        element.style.height = element.scrollHeight+'px';
+      }
+      /* 0-timeout to get the already changed text */
+      function delayedResize (element) {
+        window.setTimeout(function() { resize(element) }, 0);
+      }
+      var textareas = document.getElementsByTagName("textarea");
+      for (i = 0; i < textareas.length; i++) {
+        var textarea = textareas[i];
+        observe(textarea, 'change', function() { resize(this) });
+        observe(textarea, 'cut', function() { delayedResize(this) });
+        observe(textarea, 'paste', function() { delayedResize(this) });
+        observe(textarea, 'drop',function() { delayedResize(this) });
+        observe(textarea, 'keydown', function() { delayedResize(this) });
+        textarea.focus();
+        textarea.select();
+        resize(textarea);
+      }
+    }
+    init();
+</script>
+<script>
+      $('#check_department').click(function(){
+var new_department = document.getElementById("new_department").value;
+var id = document.getElementById("id").value;
+        $.ajax({
+          url:"submit_update_department.php",
+          method:"POST",
+          data:{new_department:new_department,id:id},
+          success:function(data){
+            alert("Success");
+          }
+        });
+
+      });
+</script>
+<script>
+    document.getElementById('Btn_ram').addEventListener('click', function () {
+        var form = document.getElementById('update_ram');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+    document.getElementById('Btn_storage').addEventListener('click', function () {
+        var form = document.getElementById('update_storage');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+    document.getElementById('Btn_PS').addEventListener('click', function () {
+        var form = document.getElementById('update_PS');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+    document.getElementById('Btn_MS').addEventListener('click', function () {
+        var form = document.getElementById('update_MS');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+    document.getElementById('Btn_com').addEventListener('click', function () {
+        var form = document.getElementById('update_com');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+    document.getElementById('Btn_net').addEventListener('click', function () {
+        var form = document.getElementById('update_net');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+    document.getElementById('Btn_eset').addEventListener('click', function () {
+        var form = document.getElementById('update_eset');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+    document.getElementById('Btn_ups').addEventListener('click', function () {
+        var form = document.getElementById('update_ups');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+    document.getElementById('Btn_status').addEventListener('click', function () {
+        var form = document.getElementById('update_status');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+function time() {
+  var d = new Date();
+  var s = d.getSeconds();
+  var m = d.getMinutes();
+  var h = d.getHours();
+  var month = d.getMonth() + 1;
+  var date = d.getDate();
+  var year = d.getFullYear();
+  document.getElementById('dept_date').value = ("0" + h).substr(-2) + ("0" + m).substr(-2) + ("0" + s).substr(-2) + " " + ("0" + month).substr(-2) + "/" + ("0" + date).substr(-2) + "/" + year;
+
+}
+setInterval(() => time(new Date().toLocaleTimeString()),1000);
 </script>
 
