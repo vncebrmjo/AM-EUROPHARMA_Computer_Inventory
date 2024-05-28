@@ -1,10 +1,18 @@
 
-from flask import Flask, render_template, request, url_for, redirect, flash, jsonify
+from flask import Flask, render_template, request, url_for, redirect, flash, jsonify, g, session
+import os
 import pyodbc as odbcconn
 from math import ceil
 
 app = Flask(__name__)
 
+app.secret_key = os.urandom(24)
+
+connect = odbcconn.connect("Driver={ODBC Driver 13 for SQL Server};"
+                           "Server= 192.168.1.11;"
+                           "Database=vmdevapps;"
+                           "uid=local1;"
+                           "pwd=$3rver012345")
 
 cursor = connect.cursor()
 
@@ -14,24 +22,29 @@ cursor = connect.cursor()
 #
 #
 #     return render_template('login.html')
+@app.before_request
+def before_request():
+    g.user = None
+    if 'user' in session:
+        g.user = session['user']
 
-
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/main_page', methods=['POST', 'GET'])
 def main_page():
-    cursor.execute('SELECT * FROM INV_computers')
-    get_page = cursor.fetchall()
+    if g.user:
+        cursor.execute('SELECT * FROM INV_computers')
+        get_page = cursor.fetchall()
+        return render_template('main_page.html', get_page=get_page)
+    return redirect(url_for('login'))
 
 
-    return render_template('main_page.html', get_page=get_page)
 
-'''
-def get_data(page, per_page, department=None):
-    offset = (page - 1) * per_page
-    query = "SELECT * FROM Computers ORDER BY ID OFFSET ? ROWS FETCH NEXT ? ROWS ONLY"
-    cursor.execute(query, offset, per_page)
-    get_page = cursor.fetchall()
-    return get_page
-'''
+# def get_data(page, per_page, department=None):
+#     offset = (page - 1) * per_page
+#     query = "SELECT * FROM Computers ORDER BY ID OFFSET ? ROWS FETCH NEXT ? ROWS ONLY"
+#     cursor.execute(query, offset, per_page)
+#     get_page = cursor.fetchall()
+#     return get_page
+
 
 @app.route('/test', methods=['POST', 'GET'])
 def test():
@@ -794,18 +807,17 @@ def Report_Logs():
     return render_template('Report_Logs.html', get_page=get_page)
 
 
-'''
-@app.route('/save_data', methods=['POST', 'GET'])
-def save_data():
-    if request.method == "POST":
-        user = request.form['user']
-        department = request.form.get('department')
-        computer_name = request.form['computer_name']
-        ip = request.form['ip']
-        asset_tag = request.form['asset_tag']
-        serial_number = request.form['serial_number']
-    return redirect(url_for('Add_Inventory'))
-'''
+@app.route('/', methods=['GET', 'POST'])
+def login():
+    cursor.execute('SELECT * FROM INV_login')
+    user_login = cursor.fetchall()
+    if request.method == 'POST':
+        session.pop('user', None)
+
+        if request.form['password'] == 'password':
+            session['user'] = request.form['username']
+            return redirect(url_for('main_page'))
+    return render_template('login.html', user_login=user_login)
 
 if __name__ == "__main__":
     app.run(debug=True)
