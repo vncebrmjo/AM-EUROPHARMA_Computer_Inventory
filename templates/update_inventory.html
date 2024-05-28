@@ -429,7 +429,7 @@
         xhr.onload = function () {
             if (xhr.status === 200) {
                 // Handle success
-                var response = xhr.responseText;
+<!--                var response = xhr.responseText;-->
                 // Update UI as needed
                 Swal.fire({
             icon: 'success',
@@ -474,6 +474,51 @@
         xhr.send(formData);
     });
 </script>
+
+<!--<script>-->
+<!--document.getElementById('btn_username').addEventListener('click', function () {-->
+<!--    var form = document.getElementById('update_username');-->
+<!--    var formData = new FormData(form);-->
+
+<!--    var xhr = new XMLHttpRequest();-->
+<!--    xhr.open('POST', form.action, true);-->
+<!--    xhr.onload = function () {-->
+<!--        if (xhr.status === 200) {-->
+<!--            var response = JSON.parse(xhr.responseText);-->
+<!--            if ('error' in response) {-->
+<!--                // Display error message-->
+<!--                Swal.fire({-->
+<!--                    icon: 'error',-->
+<!--                    title: 'Error',-->
+<!--                    text: response.error-->
+<!--                });-->
+<!--            } else {-->
+<!--                // Display success message-->
+<!--                Swal.fire({-->
+<!--                    icon: 'success',-->
+<!--                    title: 'Success',-->
+<!--                    text: response.success,-->
+<!--                    showConfirmButton: false,-->
+<!--                    timer: 1500-->
+<!--                });-->
+<!--                // Optional: You can reload the page or update UI elements here-->
+<!--            }-->
+<!--        } else {-->
+<!--            // Handle error-->
+<!--        }-->
+<!--    };-->
+<!--    xhr.onerror = function () {-->
+<!--        // Handle error-->
+<!--    };-->
+<!--    xhr.send(formData);-->
+<!--});-->
+
+
+
+<!--</script>-->
+
+
+
 
 <script>
     document.getElementById('btn_computername').addEventListener('click', function () {

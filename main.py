@@ -16,66 +16,32 @@ connect = odbcconn.connect("Driver={ODBC Driver 13 for SQL Server};"
 
 cursor = connect.cursor()
 
-# @app.route('/', methods=['POST', 'GET'])
-# def login():
-#
-#
-#
-#     return render_template('login.html')
+
 @app.before_request
 def before_request():
     g.user = None
-    if 'user' in session:
-        g.user = session['user']
+    if 'Username' in session:
+        g.user = session['Username']
 
-@app.route('/main_page', methods=['POST', 'GET'])
+@app.route('/main_page', methods=['GET'])
 def main_page():
-    # if g.user:
-    cursor.execute('SELECT * FROM INV_computers')
-    get_page = cursor.fetchall()
-    return render_template('main_page.html', get_page=get_page)
-    # return redirect(url_for('login'))
+    if g.user:
+        cursor.execute('SELECT * FROM INV_computers')
+        get_page = cursor.fetchall()
+        return render_template('main_page.html', get_page=get_page, user=session['Username'])
+    return redirect(url_for('login'))
 
 
-
-# def get_data(page, per_page, department=None):
-#     offset = (page - 1) * per_page
-#     query = "SELECT * FROM Computers ORDER BY ID OFFSET ? ROWS FETCH NEXT ? ROWS ONLY"
-#     cursor.execute(query, offset, per_page)
-#     get_page = cursor.fetchall()
-#     return get_page
-
-
-@app.route('/test', methods=['POST', 'GET'])
-def test():
-    cursor.execute('SELECT * FROM INV_computers')
-    get_page = cursor.fetchall()
-    # cursor.close()
-    return render_template('test.html', get_page=get_page)
-
-
-def get_data(page, per_page, department=None):
-    offset = (page - 1) * per_page
-    query = "SELECT * FROM Computers"
-    params = []
-
-    if department:
-        query += " WHERE department = ?"
-        params.append(department)
-
-    query += " ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY"
-    params.extend([offset, per_page])
-
-    cursor.execute(query, params)
-    get_page = cursor.fetchall()
-    return get_page
-
-@app.route('/details', methods=['GET', 'POST'])
-def details():
-    if request.method == 'GET':
+@app.route('/update_inventory', methods=['GET', 'POST'])
+def update_inventory():
+    if g.user:
         id = request.args.get('id')
+        department = request.args.get('department')
         user = request.args.get('user')
+
         computer_name = request.args.get('computer_name')
+
+        ip = request.args.get('ip')
         processor = request.args.get('processor')
         motherboard = request.args.get('motherboard')
         power_supply = request.args.get('power_supply')
@@ -83,102 +49,23 @@ def details():
         storage = request.args.get('storage')
         os = request.args.get('os')
         eset = request.args.get('eset')
-        msoffice = request.args.get('msoffice')
+        ms_office = request.args.get('ms_office')
         asset_tag = request.args.get('asset_tag')
         computer_tag = request.args.get('computer_tag')
         network_tag = request.args.get('network_tag')
         ups = request.args.get('ups')
         serial_number = request.args.get('serial_number')
+        op_stat = request.args.get('op_stat')
 
         cursor = connect.cursor()
         cursor.execute("SELECT * FROM INV_computers WHERE ID = ?",
                        (id,))
         details = cursor.fetchone()
 
-    return render_template('details.html', id=id, processor=processor, motherboard=motherboard, power_supply=power_supply,
-                           ram=ram, storage=storage, os=os, eset=eset, msoffice=msoffice, asset_tag=asset_tag, computer_tag=computer_tag,
-                           network_tag=network_tag, ups=ups, serial_number=serial_number, details=details, user=user, computer_name=computer_name)
-
-@app.route('/Add_Inventory')
-def Add_Inventory():
-    if request.method == "POST":
-        user = request.form['user']
-        department = request.form.get('department')
-        computer_name = request.form['computer_name']
-        ip = request.form['ip']
-        asset_tag = request.form['asset_tag']
-        serial_number = request.form['serial_number']
-
-        processor = request.form.get('processor_1 ' + ' ' + 'processor_2' + ' ' + ' processor_3' )
-        mobo = request.form.get('mobo_1' + ' ' + 'mobo_2')
-        ps = request.form.get('ps_1' + ' ' + 'ps_2')
-        ram = request.form.get('ram_1' + ' ' + 'ram_2' + ' ' + 'ram_3')
-        storage = request.form.get('storage_1' + ' ' + 'storage_2' + ' ' + 'storage_3')
-        os = request.form.get('os_1')
-        ms_type = request.form.get('ms_type')
-        computer_tag = request.form.get('computer_tag')
-        network_tag = request.form.get('network_tag')
-        eset = request.form['btn_eset']
-        eset = request.form['btn_ups']
-        eset = request.form['btn_eset']
-        opstat = request.form['btn_opstat']
-        cursor = connect.cursor()
-
-
-    return render_template('Add_Inventory.html')
-
-# @app.route('/validate', methods=['GET', 'POST'])
-# def validate():
-#     if request.method == "POST":
-#         user = request.form['user']
-#
-#         cursor.execute("SELECT * FROM INV_computers WHERE Username = ?", user)
-#         row = cursor.fetchone()
-#         if row:
-#             error = "The Username Already Exists"
-#
-#             return render_template('add_inventory2.html', error=error)
-#         else:
-#             # If username doesn't exist, redirect to add_inventory2
-#             return redirect(url_for('add_inventory2'))
-#     else:
-#         # Handle GET request to /validate if needed
-#         pass
-
-
-@app.route('/update_inventory', methods=['GET', 'POST'])
-def update_inventory():
-    id = request.args.get('id')
-    department = request.args.get('department')
-    user = request.args.get('user')
-
-    computer_name = request.args.get('computer_name')
-
-    ip = request.args.get('ip')
-    processor = request.args.get('processor')
-    motherboard = request.args.get('motherboard')
-    power_supply = request.args.get('power_supply')
-    ram = request.args.get('ram')
-    storage = request.args.get('storage')
-    os = request.args.get('os')
-    eset = request.args.get('eset')
-    ms_office = request.args.get('ms_office')
-    asset_tag = request.args.get('asset_tag')
-    computer_tag = request.args.get('computer_tag')
-    network_tag = request.args.get('network_tag')
-    ups = request.args.get('ups')
-    serial_number = request.args.get('serial_number')
-    op_stat = request.args.get('op_stat')
-
-    cursor = connect.cursor()
-    cursor.execute("SELECT * FROM INV_computers WHERE ID = ?",
-                   (id,))
-    details = cursor.fetchone()
-
-    return render_template('update_inventory.html', op_stat=op_stat, department=department,ip=ip, id=id, processor=processor, motherboard=motherboard, power_supply=power_supply,
-                           ram=ram, storage=storage, os=os, eset=eset, ms_office=ms_office, asset_tag=asset_tag, computer_tag=computer_tag,
-                           network_tag=network_tag, ups=ups, serial_number=serial_number, details=details, user=user, computer_name=computer_name)
-
+        return render_template('update_inventory.html', op_stat=op_stat, department=department,ip=ip, id=id, processor=processor, motherboard=motherboard, power_supply=power_supply,
+                               ram=ram, storage=storage, os=os, eset=eset, ms_office=ms_office, asset_tag=asset_tag, computer_tag=computer_tag,
+                               network_tag=network_tag, ups=ups, serial_number=serial_number, details=details, user=user, computer_name=computer_name, session=session['Username'])
+    return redirect(url_for('login'))
 
 
 
@@ -205,62 +92,9 @@ def update_department():
         connect.commit()
 
 
-        return render_template('update_inventory.html', new_department=new_department, details=details,
+        return render_template('update_inventory.html', new_department=new_department,
                                old_department=old_department, field=field, id=id, msg=msg )
 
-# @app.route('/update_department', methods=['GET', 'POST'])
-# def update_department():
-#     id = request.form['id']
-#     department = request.args.get('department')
-#
-#     cursor = connect.cursor()
-#     cursor.execute("SELECT * FROM INV_computers WHERE ID = ?", (id,))
-#     details = cursor.fetchone()
-#
-#     if request.method == 'POST':
-#         # Handle form submission
-#         new_department = request.form['new_department']
-#         old_department = request.form['old_department']
-#         field = request.form['field']
-#
-#         new_department2 = cursor.execute("INSERT INTO INV_logs (id, field_modified, old_data, new_data) VALUES (?, ?, ?, ?)",
-#                        (id, field, old_department, new_department))
-#         cursor.execute("UPDATE INV_computers SET department = ? WHERE ID = ?", (new_department, id))
-#
-#         connect.commit()
-#
-#         return render_template('update_inventory.html', department=new_department, id=id, details=details,
-#                                msg="The data has been updated successfully")
-#
-#     # Render the template for GET request
-#     return render_template('update_inventory.html', department=department, id=id, details=details)
-
-# @app.route('/update_username', methods=['GET', 'POST'])
-# def update_username():
-#     id = request.form['id']
-#     user = request.args.get('user')
-#
-#     cursor = connect.cursor()
-#     cursor.execute("SELECT * FROM INV_computers WHERE ID = ?", (id,))
-#     details = cursor.fetchone()
-#
-#     if request.method == 'POST':
-#         # Handle form submission
-#         old_username = request.form['old_username']
-#         new_username = request.form['new_username']
-#         field = request.form['field']
-#
-#         cursor.execute("INSERT INTO INV_logs (id, field_modified, old_data, new_data) VALUES (?, ?, ?, ?)",
-#                        (id, field, old_username, new_username))
-#         cursor.execute("UPDATE INV_computers SET Username = ? WHERE ID = ?", (new_username , id))
-#
-#         connect.commit()
-#
-#         return render_template('update_inventory.html', user=new_username , id=id, details=details,
-#                                msg="The data has been updated successfully")
-#
-#     # Render the template for GET request
-#     return render_template('update_inventory.html', user=user, id=id, details=details)
 
 
 @app.route('/update_username', methods=['GET', 'POST'])
@@ -284,8 +118,39 @@ def update_username():
 
         connect.commit()
 
-        return render_template('update_inventory.html', new_username=new_username, details=details,
+        return render_template('update_inventory.html', new_username=new_username,
                                old_username=old_username, field=field, id=id, msg=msg)
+
+# @app.route('/update_username', methods=['POST'])
+# def update_username():
+#     id = request.form['id']
+#     old_username = request.form['old_username']
+#     new_username = request.form['new_username']
+#     field = request.form['field']
+#     if request.method == 'POST':
+#     # Check if the new username already exists
+#         cursor = connect.cursor()
+#         cursor.execute("SELECT COUNT(*) FROM INV_computers WHERE Username = ?", (new_username,))
+#         row = cursor.fetchone()
+#         count = row[0]
+#
+#         if count > 0:
+#             msg = "Username already exists. Please choose a different username."
+#             return jsonify({'error': msg})
+#
+#         # If the new username doesn't exist, proceed with updating the username
+#         cursor.execute(
+#             "INSERT INTO INV_logs (id, field_modified, old_data, new_data) "
+#             "VALUES (?, ?, ?, ?)",
+#             (id, field, old_username, new_username))
+#
+#         cursor.execute("UPDATE INV_computers SET Username = ? WHERE ID = ?",
+#                        (new_username, id))
+#         connect.commit()
+#
+#         msg = "The data has been updated successfully"
+#         return jsonify({'success': msg})
+#     return render_template('update_inventory.html', new_username=new_username, old_username=old_username, field=field, id=id, msg=msg)
 
 @app.route('/update_computername', methods=['GET', 'POST'])
 def update_computername():
@@ -309,7 +174,7 @@ def update_computername():
         connect.commit()
 
 
-        return render_template('update_inventory.html', new_computername=new_computername, details=details,
+        return render_template('update_inventory.html', new_computername=new_computername,
                                old_computername=old_computername, field=field, id=id, msg=msg)
 
 @app.route('/update_ip', methods=['GET', 'POST'])
@@ -334,7 +199,7 @@ def update_ip():
         connect.commit()
 
 
-        return render_template('update_inventory.html', new_ip=new_ip, details=details,
+        return render_template('update_inventory.html', new_ip=new_ip,
                                old_ip=old_ip, field=field, id=id, msg=msg)
 
 
@@ -360,7 +225,7 @@ def update_asset_tag():
         connect.commit()
 
 
-        return render_template('update_inventory.html', new_asset_tag=new_asset_tag, details=details,
+        return render_template('update_inventory.html', new_asset_tag=new_asset_tag,
                                old_asset_tag=old_asset_tag, field=field, id=id, msg=msg)
 
 @app.route('/update_serial_number', methods=['GET', 'POST'])
@@ -385,7 +250,7 @@ def update_serial_number():
         connect.commit()
 
 
-        return render_template('update_inventory.html', new_serial_number=new_serial_number, details=details,
+        return render_template('update_inventory.html', new_serial_number=new_serial_number,
                                old_serial_number=old_serial_number, field=field, id=id, msg=msg)
 
 @app.route('/update_processor', methods=['GET', 'POST'])
@@ -410,7 +275,7 @@ def update_processor():
         connect.commit()
 
 
-        return render_template('update_inventory.html', new_processor=new_processor, details=details,
+        return render_template('update_inventory.html', new_processor=new_processor,
                                old_processor=old_processor, field=field, id=id, msg=msg)
 
 @app.route('/update_os', methods=['GET', 'POST'])
@@ -435,7 +300,7 @@ def update_os():
         connect.commit()
 
 
-        return render_template('update_inventory.html', new_os=new_os, details=details,
+        return render_template('update_inventory.html', new_os=new_os,
                                old_os=old_os, field=field, id=id, msg=msg)
 
 @app.route('/update_mobo', methods=['GET', 'POST'])
@@ -460,7 +325,7 @@ def update_mobo():
         connect.commit()
 
 
-        return render_template('update_inventory.html', new_mobo=new_mobo, details=details,
+        return render_template('update_inventory.html', new_mobo=new_mobo,
                                old_mobo=old_mobo, field=field, id=id, msg=msg)
 
 @app.route('/update_ram', methods=['GET', 'POST'])
@@ -485,7 +350,7 @@ def update_ram():
         connect.commit()
 
 
-        return render_template('update_inventory.html', new_ram=new_ram, details=details,
+        return render_template('update_inventory.html', new_ram=new_ram ,
                                old_ram=old_ram, field=field, id=id, msg=msg)
 
 @app.route('/update_storage', methods=['GET', 'POST'])
@@ -510,7 +375,7 @@ def update_storage():
         connect.commit()
 
 
-        return render_template('update_inventory.html', new_storage=new_storage, details=details,
+        return render_template('update_inventory.html', new_storage=new_storage,
                                old_storage=old_storage, field=field, id=id, msg=msg)
 
 @app.route('/update_ps', methods=['GET', 'POST'])
@@ -535,7 +400,7 @@ def update_ps():
         connect.commit()
 
 
-        return render_template('update_inventory.html', new_ps=new_ps, details=details,
+        return render_template('update_inventory.html', new_ps=new_ps,
                                old_ps=old_ps, field=field, id=id, msg=msg)
 
 @app.route('/update_msoffice', methods=['GET', 'POST'])
@@ -560,7 +425,7 @@ def update_msoffice():
         connect.commit()
 
 
-        return render_template('update_inventory.html', new_msoffice=new_msoffice, details=details,
+        return render_template('update_inventory.html', new_msoffice=new_msoffice,
                                old_msoffice=old_msoffice, field=field, id=id, msg=msg)
 
 @app.route('/update_comtag', methods=['GET', 'POST'])
@@ -585,7 +450,7 @@ def update_comtag():
         connect.commit()
 
 
-        return render_template('update_inventory.html', new_comtag=new_comtag, details=details,
+        return render_template('update_inventory.html', new_comtag=new_comtag,
                                old_comtag=old_comtag, field=field, id=id, msg=msg)
 
 @app.route('/update_nettag', methods=['GET', 'POST'])
@@ -610,7 +475,7 @@ def update_nettag():
         connect.commit()
 
 
-        return render_template('update_inventory.html', new_nettag=new_nettag, details=details,
+        return render_template('update_inventory.html', new_nettag=new_nettag,
                                old_nettag=old_nettag, field=field, id=id, msg=msg)
 
 
@@ -636,7 +501,7 @@ def update_eset():
         connect.commit()
 
 
-        return render_template('update_inventory.html', new_eset=new_eset, details=details,
+        return render_template('update_inventory.html', new_eset=new_eset,
                                old_eset=old_eset, field=field, id=id, msg=msg)
 
 @app.route('/update_ups', methods=['GET', 'POST'])
@@ -661,7 +526,7 @@ def update_ups():
         connect.commit()
 
 
-        return render_template('update_inventory.html', new_ups=new_ups, details=details,
+        return render_template('update_inventory.html', new_ups=new_ups,
                                old_ups=old_ups, field=field, id=id, msg=msg)
 
 
@@ -688,109 +553,109 @@ def update_opstat():
         connect.commit()
 
 
-        return render_template('update_inventory.html', new_opstat=new_opstat, details=details,
+        return render_template('update_inventory.html', new_opstat=new_opstat,
                                old_opstat=old_opstat, field=field, id=id, msg=msg)
-
-
-
-
-
 
 
 @app.route('/update_user', methods=['GET', 'POST'])
 def update_user():
-    cursor.execute('SELECT * FROM INV_computers')
-    get_page = cursor.fetchall()
-    return render_template('update_user.html',get_page=get_page)
+    if g.user:
+        cursor.execute('SELECT * FROM INV_computers')
+        get_page = cursor.fetchall()
+        return render_template('update_user.html',get_page=get_page, user=session['Username'])
+    return redirect(url_for('login'))
+
 
 @app.route('/add_inventory2', methods=['GET', 'POST'])
 def add_inventory2():
-    if request.method == "POST":
-        user = request.form['user']
+    if g.user:
+        if request.method == "POST":
+            user = request.form['user']
 
-        cursor.execute("SELECT * FROM INV_computers WHERE Username = ?", user)
-        row = cursor.fetchone()
-        if row:
-            error = "The Username already exists"
+            cursor.execute("SELECT * FROM INV_computers WHERE Username = ?", user)
+            row = cursor.fetchone()
+            if row:
+                error = "The Username already exists"
 
-            return render_template('add_inventory2.html', error=error)
+                return render_template('add_inventory2.html', error=error)
 
-    if request.method == "POST":
-        computer_name = request.form['computer_name']
+        if request.method == "POST":
+            computer_name = request.form['computer_name']
 
-        cursor.execute("SELECT * FROM INV_computers WHERE COMPUTER_NAME = ?", computer_name)
-        row = cursor.fetchone()
-        if row:
-            error2 = "The Computer name already exists"
+            cursor.execute("SELECT * FROM INV_computers WHERE COMPUTER_NAME = ?", computer_name)
+            row = cursor.fetchone()
+            if row:
+                error2 = "The Computer name already exists"
 
-            return render_template('add_inventory2.html', error2=error2)
+                return render_template('add_inventory2.html', error2=error2)
 
-    if request.method == "POST":
-        ip = request.form['ip']
+        if request.method == "POST":
+            ip = request.form['ip']
 
-        cursor.execute("SELECT * FROM INV_computers WHERE IP = ?", ip)
-        row = cursor.fetchone()
-        if row:
-            error3 = "The IP Already Exists"
+            cursor.execute("SELECT * FROM INV_computers WHERE IP = ?", ip)
+            row = cursor.fetchone()
+            if row:
+                error3 = "The IP Already Exists"
 
-            return render_template('add_inventory2.html', error3=error3)
-
-
-    if request.method == "POST":
-        department = request.form.get('department')
-        user = request.form['user']
-        computer_name = request.form['computer_name']
-        ip = request.form['ip']
-
-        processor_1 = request.form.get('processor_1')
-        processor_2 = request.form.get('processor_2')
-        processor_3 = request.form.get('processor_3')
-
-        processor = processor_1 + ' ' + processor_2 + ' ' + processor_3
-
-        mobo_1 = request.form['mobo_1']
-        mobo_2 = request.form['mobo_2']
-        mobo = mobo_1 + ' ' +mobo_2
+                return render_template('add_inventory2.html', error3=error3)
 
 
-        ps_1 = request.form['ps_1']
-        ps_2 = request.form['ps_2']
-        ps = ps_1 + ' ' + ps_2
+        if request.method == "POST":
+            department = request.form.get('department')
+            user = request.form['user']
+            computer_name = request.form['computer_name']
+            ip = request.form['ip']
+
+            processor_1 = request.form.get('processor_1')
+            processor_2 = request.form.get('processor_2')
+            processor_3 = request.form.get('processor_3')
+
+            processor = processor_1 + ' ' + processor_2 + ' ' + processor_3
+
+            mobo_1 = request.form['mobo_1']
+            mobo_2 = request.form['mobo_2']
+            mobo = mobo_1 + ' ' +mobo_2
 
 
-        ram_1 = request.form['ram_1']
-        ram_2 = request.form.get('ram_2')
-        ram_3 = request.form.get('ram_3')
-        ram = ram_1 + ' ' + ram_2 + ' ' + ram_3
-
-        asset_tag = request.form['asset_tag']
-        serial_number = request.form['serial_number']
-
-        storage_1 = request.form['storage_1']
-        storage_2 = request.form.get('storage_2')
-        storage_3 = request.form['storage_3']
-        storage = storage_1 + ' ' + storage_2 + ' ' + storage_3
-
-        os = request.form.get('os_1')
-        ms_type = request.form.get('ms_type')
-        computer_tag = request.form.get('computer_tag')
-        network_tag = request.form.get('network_tag')
-        eset = request.form['btn_eset']
-        ups = request.form['btn_ups']
-        opstat = request.form['btn_opstat']
+            ps_1 = request.form['ps_1']
+            ps_2 = request.form['ps_2']
+            ps = ps_1 + ' ' + ps_2
 
 
-        cursor.execute(
-            "INSERT INTO INV_computers (DEPARTMENT, USERNAME, COMPUTER_NAME, IP, PROCESSOR, MOTHERBOARD, POWER_SUPPLY, RAM, STORAGE, OS, MS_OFFICE, ASSET_TAG, COMPUTER_TAG, NETWORK_TAG, UPS, SERIAL_NUMBER, OPERATIONAL_STATUS, ESET) "
-            "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-            (department, user, computer_name, ip, processor, mobo, ps, ram, storage, os, ms_type, asset_tag,
-             computer_tag, network_tag, ups, serial_number, opstat, eset))
-        success_message = "The information has been added successfully!"
-        connect.commit()
+            ram_1 = request.form['ram_1']
+            ram_2 = request.form.get('ram_2')
+            ram_3 = request.form.get('ram_3')
+            ram = ram_1 + ' ' + ram_2 + ' ' + ram_3
 
-        return render_template('add_inventory2.html', success_message=success_message)
+            asset_tag = request.form['asset_tag']
+            serial_number = request.form['serial_number']
 
-    return render_template('add_inventory2.html')
+            storage_1 = request.form['storage_1']
+            storage_2 = request.form.get('storage_2')
+            storage_3 = request.form['storage_3']
+            storage = storage_1 + ' ' + storage_2 + ' ' + storage_3
+
+            os = request.form.get('os_1')
+            ms_type = request.form.get('ms_type')
+            computer_tag = request.form.get('computer_tag')
+            network_tag = request.form.get('network_tag')
+            eset = request.form['btn_eset']
+            ups = request.form['btn_ups']
+            opstat = request.form['btn_opstat']
+
+
+            cursor.execute(
+                "INSERT INTO INV_computers (DEPARTMENT, USERNAME, COMPUTER_NAME, IP, PROCESSOR, MOTHERBOARD, POWER_SUPPLY, RAM, STORAGE, OS, MS_OFFICE, ASSET_TAG, COMPUTER_TAG, NETWORK_TAG, UPS, SERIAL_NUMBER, OPERATIONAL_STATUS, ESET) "
+                "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (department, user, computer_name, ip, processor, mobo, ps, ram, storage, os, ms_type, asset_tag,
+                 computer_tag, network_tag, ups, serial_number, opstat, eset))
+            success_message = "The information has been added successfully!"
+            connect.commit()
+
+            return render_template('add_inventory2.html', success_message=success_message, user=session['Username'])
+
+        return render_template('add_inventory2.html', user=session['Username'])
+    return redirect(url_for('login'))
 
 @app.route('/Modified_Details', methods=['POST', 'GET'])
 def Modified_Details():
@@ -800,24 +665,30 @@ def Modified_Details():
 
 @app.route('/Report_Logs', methods=['POST', 'GET'])
 def Report_Logs():
+    if g.user:
+        cursor.execute('SELECT * FROM INV_logs')
+        get_page = cursor.fetchall()
 
-    cursor.execute('SELECT * FROM INV_logs')
-    get_page = cursor.fetchall()
-
-    return render_template('Report_Logs.html', get_page=get_page)
-
+        return render_template('Report_Logs.html', get_page=get_page, user=session['Username'])
+    return redirect(url_for('login'))
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
-    cursor.execute('SELECT * FROM INV_login')
-    user_login = cursor.fetchall()
     if request.method == 'POST':
-        session.pop('user', None)
+        password = request.form['Password']
+        cursor.execute("SELECT * FROM INV_login WHERE Password = ?", (password,))
+        key = cursor.fetchone()
 
-        if request.form['password'] == 'password':
-            session['user'] = request.form['username']
+        if key:
+            session['Username'] = request.form['Username']
             return redirect(url_for('main_page'))
-    return render_template('login.html', user_login=user_login)
+
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('Username', None)
+    return render_template('login.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
