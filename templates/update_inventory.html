@@ -9,11 +9,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="static/css/design.css">
 </head>
 {% include 'Header.html' %}
 <body>
+
 
 
 
@@ -30,167 +31,127 @@
                 <div class="modal-like-form2">
                     <h4 class="modal-like-header">USER INFORMATION</h4>
 
-    <form method="POST" action ="{{ url_for('update_department') }}">
-    <div class="col-md-3" id="dept_combo_box">
-    <label class="fw-semibold">DEPARTMENT</label>  <button id="check" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#modal_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-    <div class="modal" id="modal_check">
-    <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">UPDATE CHANGES</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to update this field?</p>
-      </div>
-      <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Confirm</button>
-            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+<!--    <form method="POST" action ="{{ url_for('update_department') }}">-->
+<!--    <div class="col-md-3" id="dept_combo_box">-->
+<!--    <label class="fw-semibold">DEPARTMENT</label>  <button id="check" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#modal_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>-->
+<!--    <div class="modal" id="modal_check">-->
+<!--    <div class="modal-dialog">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title">UPDATE CHANGES</h5>-->
+<!--        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--        <p>Are you sure you want to update this field?</p>-->
+<!--      </div>-->
+<!--      <div class="modal-footer">-->
+<!--            <button type="submit" class="btn btn-primary">Confirm</button>-->
+<!--            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>-->
 
-      </div>
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--                <input type="hidden" name="field" value="Department">-->
+<!--                <input type="hidden" name="id" value="{{ id }}">-->
+<!--                 <input type="hidden" class="form-control" name="old_department" value="{{ department }}">-->
+
+<!--                <input type="text" class="form-control" name="new_department" value="{{ department }}">-->
+<!--            </div>-->
+<!--    </form>-->
+
+    <form id="update_department" method="POST" action="{{ url_for('update_department') }}">
+    <div class="col-md-3" id="dept_combo_box">
+        <label class="fw-semibold">DEPARTMENT</label>
+        <button id="btn_department" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#modal_check">
+            <img src="static/icons/check.png" id="check_button">
+        </button>
+
+        <input type="hidden" name="field" value="Department">
+        <input type="hidden" name="id" value="{{ id }}">
+        <input type="hidden" class="form-control" name="old_department" value="{{ department }}">
+<!--        <input type="text" class="form-control" name="new_department" value="{{ department }}">-->
+
+        <select class="form-select mb-3" name="new_department" id="select_department">
+                    <option value="">{{ department }} </option>
+                    <option value="ACCTG">ACCTG</option>
+                    <option value="BCAM">BCAM</option>
+                    <option value="BD">BD</option>
+                    <option value="BMS">BMS</option>
+                    <option value="EMD">EMD</option>
+                    <option value="HRD">HRD</option>
+                    <option value="ICT">ICT</option>
+                    <option value="LOG">LOG</option>
+                    <option value="PID">PID</option>
+                    <option value="PLAN">PLAN</option>
+                    <option value="PROD">PROD</option>
+                    <option value="PUR">PUR</option>
+                    <option value="QA">QA</option>
+                    <option value="QC">QC</option>
+                    <option value="RAD">RAD</option>
+                    <option value="VALIDATION">VALIDATION</option>
+                </select>
     </div>
-  </div>
-</div>
-                <input type="hidden" name="field" value="Department">
-                <input type="hidden" name="id" value="{{ id }}">
-                 <input type="hidden" class="form-control" name="old_department" value="{{ department }}">
-                <input type="text" class="form-control" name="new_department" value="{{ department }}">
-            </div>
-    </form>
-        <form method="POST" action ="{{ url_for('update_username') }}">
+</form>
+
+
+        <form id="update_username" method="POST" action ="{{ url_for('update_username') }}">
          <div class="col-md-3" id="user_text">
           <label class="fw-semibold">USER NAME</label>
-             <button id="user_check" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#modal_user_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-    <div class="modal" id="modal_user_check">
-    <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">UPDATE CHANGES</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to update this field?</p>
-      </div>
-      <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Confirm</button>
-            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+             <button id="btn_username" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#modal_user_check"><img src="static/icons/check.png" id="check_button"></button>
 
-      </div>
-    </div>
-  </div>
-</div>
              <input type="hidden" name="field" value="Username">
              <input type="hidden" name="id" value="{{ id }}">
              <input type="hidden" class="form-control" name="old_username" value="{{ user }}">
               <input type="text" class="form-control" name="new_username" value="{{ user }}">
              </div>
         </form>
-                    <form method="POST" action ="{{ url_for('update_computername') }}">
-                 <div class="col-md-3" id="computer_name">
-          <label class="fw-semibold"> COMPUTER NAME</label>
-                     <button id="computer_name_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_com_name_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-    <div class="modal" id="modal_com_name_check">
-    <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">UPDATE CHANGES</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to update this field?</p>
-      </div>
-      <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Confirm</button>
-            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
 
-      </div>
-    </div>
-  </div>
-</div>
+
+        <form id="update_computername" method="POST" action ="{{ url_for('update_computername') }}">
+        <div class="col-md-3" id="computer_name">
+          <label class="fw-semibold"> COMPUTER NAME</label>
+                     <button id="btn_computername" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_com_name_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
+
               <input type="hidden" name="field" value="Computer Name">
               <input type="hidden" name="id" value="{{ id }}">
               <input type="hidden" class="form-control" name="old_computername" value="{{ computer_name }}">
               <input type="text" class="form-control"  name="new_computername" value="{{ computer_name }}">
              </div>
                     </form>
-         <form method="POST" action ="{{ url_for('update_ip') }}">
+
+
+         <form id="update_ip" method="POST" action ="{{ url_for('update_ip') }}">
         <div class="col-md-3" id="ip">
           <label class="fw-semibold">IP ADDRESS</label>
-            <button id="IP_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_IP_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-    <div class="modal" id="modal_IP_check">
-    <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">UPDATE CHANGES</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to update this field?</p>
-      </div>
-      <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Confirm</button>
-            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+            <button id="btn_ip" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_IP_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
 
-      </div>
-    </div>
-  </div>
-</div>
                 <input type="hidden" name="field" value="Ip Address ">
               <input type="hidden" name="id" value="{{ id }}">
               <input type="hidden" class="form-control" name="old_ip" value="{{ ip }}">
               <input type="text" class="form-control"  name="new_ip" value="{{ ip }}" >
              </div>
              </form>
-         <form method="POST" action ="{{ url_for('update_asset_tag') }}">
+
+
+         <form id="update_asset" method="POST" action ="{{ url_for('update_asset_tag') }}">
         <div class="col-md-3" id="asset_tag">
           <label class="fw-semibold">ASSET TAG</label>
-            <button id="asset_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_asset_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-    <div class="modal" id="modal_asset_check">
-    <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">UPDATE CHANGES</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to update this field?</p>
-      </div>
-      <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Confirm</button>
-            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+            <button id="btn_asset" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_asset_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
 
-      </div>
-    </div>
-  </div>
-</div>
                 <input type="hidden" name="field" value="Asset Tag ">
               <input type="hidden" name="id" value="{{ id }}">
               <input type="hidden" class="form-control" name="old_asset_tag" value="{{ asset_tag }}">
               <input type="text" class="form-control"  name="new_asset_tag" value="{{ asset_tag }}">
              </div>
          </form>
-        <form method="POST" action ="{{ url_for('update_serial_number') }}">
+
+
+        <form id="update_serial" method="POST" action ="{{ url_for('update_serial_number') }}">
         <div class="col-md-3" id="serial_number">
           <label class="fw-semibold">SERIAL NUMBER</label>
-            <button id="serial_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_serial_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-    <div class="modal" id="modal_serial_check">
-    <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">UPDATE CHANGES</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to update this field?</p>
-      </div>
-      <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Confirm</button>
-            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+            <button id="btn_serial" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_serial_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
 
-      </div>
-    </div>
-  </div>
-</div>
              <input type="hidden" name="field" value="Serial Number" >
               <input type="hidden" name="id" value="{{ id }}">
               <input type="hidden" class="form-control" name="old_serial_number" value="{{ serial_number }}">
@@ -211,28 +172,13 @@
                  <div class="mb-3" >
                 <div class="modal-like-form2" >
         <h4 class="modal-like-header">PROCESSOR</h4>
-        <form method="POST" action ="{{ url_for('update_processor') }}">
+
+
+        <form id="update_processor" method="POST" action ="{{ url_for('update_processor') }}">
         <div class="col-md-3" id="cpu_details">
           <label class="fw-semibold">DETAILS</label>
-            <button id="details_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_details_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-            <div class="modal" id="modal_details_check">
-    <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">UPDATE CHANGES</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to update this field?</p>
-      </div>
-      <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Confirm</button>
-            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+    <button id="btn_processor" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_details_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
 
-      </div>
-    </div>
-  </div>
-</div>
               <input type="hidden" name="field" value="Processor" >
               <input type="hidden" name="id" value="{{ id }}">
               <input type="hidden" class="form-control" name="old_processor" value="{{ processor }}">
@@ -241,28 +187,13 @@
                         </form>
                     <hr>
             <h4 class="modal-like-header">OPERATING SYSTEM</h4>
-                    <form method="POST" action ="{{ url_for('update_os') }}">
+
+
+                    <form id="update_os" method="POST" action ="{{ url_for('update_os') }}">
                     <div class="col-md-3" id="OS_combo_box">
           <label class="fw-semibold">TYPE</label>
-      <button id="type_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_type_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-     <div class="modal" id="modal_type_check">
-    <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">UPDATE CHANGES</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to update this field?</p>
-      </div>
-      <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Confirm</button>
-            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+      <button id="btn_os" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_type_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
 
-      </div>
-    </div>
-  </div>
-</div>
                 <input type="hidden" name="field" value="Operating System" >
               <input type="hidden" name="id" value="{{ id }}">
               <input type="hidden" class="form-control" name="old_os" value="{{ os }}">
@@ -279,28 +210,13 @@
                     </form>
             <hr>
             <h4 class="modal-like-header"> MOTHERBOARD</h4>
-            <form method="POST" action ="{{ url_for('update_mobo') }}">
+
+
+            <form id="update_mobo" method="POST" action ="{{ url_for('update_mobo') }}">
           <div class="col-md-3" id="motherboard_details">
           <label class="fw-semibold">DETAILS</label>
-              <button id="mb_details_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_mb_details_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-          <div class="modal" id="modal_mb_details_check">
-    <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">UPDATE CHANGES</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to update this field?</p>
-      </div>
-      <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Confirm</button>
-            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+              <button id="btn_mobo" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_mb_details_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
 
-      </div>
-    </div>
-  </div>
-</div>
               <input type="hidden" name="field" value="Motherboard" >
               <input type="hidden" name="id" value="{{ id }}">
               <input type="hidden" class="form-control" name="old_mobo" value="{{ motherboard }}">
@@ -319,57 +235,28 @@
                  <div class="mb-3">
                 <div class="modal-like-form2">
                     <h4 class="modal-like-header">RAM</h4>
-          <form method="POST" action ="{{ url_for('update_ram') }}">
-          <div class="col-md-3" id="ram_brand">
-          <label class="fw-semibold">DETAILS</label> <button id="ram_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_ram_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-    <div class="modal" id="modal_ram_check">
-    <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">UPDATE CHANGES</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to update this field?</p>
-      </div>
-      <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Confirm</button>
-            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+    <form id="update_ram" method="POST" action="{{ url_for('update_ram') }}">
+    <div class="col-md-3" id="ram_brand">
+        <label class="fw-semibold">DETAILS</label>
+        <button id="Btn_ram" class="btn" type="button">
+            <a href="#"><img src="static/icons/check.png" id="check_button"></a>
+        </button>
 
-      </div>
+        <input type="hidden" name="field" value="RAM">
+        <input type="hidden" name="id" value="{{ id }}">
+        <input type="hidden" class="form-control" name="old_ram" value="{{ ram }}">
+        <input type="text" class="form-control" name="new_ram" value="{{ ram }}">
     </div>
-  </div>
-</div>
-              <input type="hidden" name="field" value="RAM" >
-              <input type="hidden" name="id" value="{{ id }}">
-              <input type="hidden" class="form-control" name="old_ram" value="{{ ram }}">
-              <input type="text" class="form-control" name="new_ram" value="{{ ram }}">
-             </div>
-                    </form>
+</form>
                     <hr>
             <h4 class="modal-like-header">STORAGE</h4>
-          <form method="POST" action ="{{ url_for('update_storage') }}">
+            <form id="update_storage" method="POST" action ="{{ url_for('update_storage') }}">
           <div class="col-md-3" id="size">
           <label class="fw-semibold">DETAILS</label>
-          <button id="storage_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_storage_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-          <div class="modal" id="modal_storage_check">
-    <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">UPDATE CHANGES</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to update this field?</p>
-      </div>
-      <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Confirm</button>
-            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+          <button id="Btn_storage" class="btn " type="button" >
+              <a href="#"><img src="static/icons/check.png" id="check_button"></a>
+          </button>
 
-      </div>
-    </div>
-  </div>
-</div>
               <input type="hidden" name="field" value="Storage">
               <input type="hidden" name="id" value="{{ id }}">
               <input type="hidden" class="form-control" name="old_storage" value="{{ storage }}">
@@ -379,28 +266,13 @@
             <hr>
 
             <h4 class="modal-like-header"> POWER SUPPLY</h4>
-            <form method="POST" action ="{{ url_for('update_ps') }}">
+            <form id="update_PS" method="POST" action ="{{ url_for('update_ps') }}">
              <div class="col-md-3" id="ps_brand">
           <label class="fw-semibold">DETAILS</label>
-                 <button id="ps_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_ps_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-    <div class="modal" id="modal_ps_check">
-    <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">UPDATE CHANGES</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to update this field?</p>
-      </div>
-      <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Confirm</button>
-            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+                 <button id="Btn_PS" class="btn " type="button" >
+                     <a href="#"><img src="static/icons/check.png" id="check_button"></a>
+                 </button>
 
-      </div>
-    </div>
-  </div>
-</div>
               <input type="hidden" name="field" value="Power Supply">
               <input type="hidden" name="id" value="{{ id }}">
               <input type="hidden" class="form-control" name="old_ps" value="{{ power_supply }}">
@@ -419,28 +291,13 @@
                  <div class="mb-3">
                 <div class="modal-like-form2">
                     <h4 class="modal-like-header">DEVICE STATUS</h4>
-        <form method="POST" action ="{{ url_for('update_msoffice') }}">
+        <form id="update_MS" method="POST" action ="{{ url_for('update_msoffice') }}">
           <div class="col-md-3" id="MS_combo_box">
           <label class="fw-semibold">MS OFFICE</label>
-                <button id="ms_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_ms_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-    <div class="modal" id="modal_ms_check">
-    <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">UPDATE CHANGES</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to update this field?</p>
-      </div>
-      <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Confirm</button>
-            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+                <button id="Btn_MS" class="btn " type="button" >
+                    <a href="#"><img src="static/icons/check.png" id="check_button"></a>
+                </button>
 
-      </div>
-    </div>
-  </div>
-</div>
               <input type="hidden" name="field" value="MS Office">
               <input type="hidden" name="id" value="{{ id }}">
               <input type="hidden" class="form-control" name="old_msoffice" value="{{ ms_office }}">
@@ -449,28 +306,13 @@
         </form>
 
 
-        <form method="POST" action ="{{ url_for('update_comtag') }}">
+        <form id="update_com" method="POST" action ="{{ url_for('update_comtag') }}">
          <div class="col-md-3" id="comtag">
           <label class="fw-semibold">COMPUTER TAG</label>
-             <button id="comtag_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_comtag_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-    <div class="modal" id="modal_comtag_check">
-    <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">UPDATE CHANGES</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to update this field?</p>
-      </div>
-      <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Confirm</button>
-            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+             <button id="Btn_com" class="btn " type="button">
+                 <a href="#"><img src="static/icons/check.png" id="check_button"></a>
+             </button>
 
-      </div>
-    </div>
-  </div>
-</div>
              <input type="hidden" name="field" value="Computer Tag">
               <input type="hidden" name="id" value="{{ id }}">
               <input type="hidden" class="form-control" name="old_comtag" value="{{computer_tag}}">
@@ -480,27 +322,13 @@
 
 
 
-       <form method="POST" action ="{{ url_for('update_nettag') }}">
+       <form id="update_net" method="POST" action ="{{ url_for('update_nettag') }}">
         <div class="col-md-3" id="nettag">
-          <label class="fw-semibold">NETWORK TAG</label> <button id="nettag_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_nettag_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-    <div class="modal" id="modal_nettag_check">
-    <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">UPDATE CHANGES</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to update this field?</p>
-      </div>
-      <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Confirm</button>
-            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+          <label class="fw-semibold">NETWORK TAG</label>
+            <button id="Btn_net" class="btn " type="button">
+                <a href="#"><img src="static/icons/check.png" id="check_button"></a>
+            </button>
 
-      </div>
-    </div>
-  </div>
-</div>
              <input type="hidden" name="field" value="Network Tag">
               <input type="hidden" name="id" value="{{ id }}">
               <input type="hidden" class="form-control" name="old_nettag" value="{{network_tag}}">
@@ -508,55 +336,28 @@
              </div>
        </form>
 
-         <form method="POST" action ="{{ url_for('update_eset') }}">
-                    <div class="col-md-3" id="eset">
-          <label class="fw-semibold">ESET</label> <button id="eset_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_eset_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-      <div class="modal" id="modal_eset_check">
-    <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">UPDATE CHANGES</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to update this field?</p>
-      </div>
-      <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Confirm</button>
-            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
-
-      </div>
-    </div>
-  </div>
-</div>
+         <form id="update_eset" method="POST" action ="{{ url_for('update_eset') }}">
+             <div class="col-md-3" id="eset">
+          <label class="fw-semibold">ESET</label>
+                 <button id="Btn_eset" class="btn " type="button">
+                        <a href="#"><img src="static/icons/check.png" id="check_button"></a>
+                    </button>
              <input type="hidden" name="field" value="ESET">
               <input type="hidden" name="id" value="{{ id }}">
               <input type="hidden" class="form-control" name="old_eset" value="{{eset}}">
               <input type="text" class="form-control" name="new_eset" value="{{eset}}">
+
+
              </div>
          </form>
-                    <form method="POST" action ="{{ url_for('update_ups') }}">
 
+                    <form id="update_ups" method="POST" action ="{{ url_for('update_ups') }}">
                    <div class="col-md-3" id="ups">
-          <label class="fw-semibold">UPS</label> <button id="ups_check" class="btn " type="button" data-bs-toggle="modal" data-bs-target="#modal_ups_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-    <div class="modal" id="modal_ups_check">
-    <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">UPDATE CHANGES</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to update this field?</p>
-      </div>
-      <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Confirm</button>
-            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+            <label class="fw-semibold">UPS</label>
+                       <button id="Btn_ups" class="btn " type="button" >
+                           <a href="#"><img src="static/icons/check.png" id="check_button"></a>
+                       </button>
 
-      </div>
-    </div>
-  </div>
-</div>
              <input type="hidden" name="field" value="UPS">
               <input type="hidden" name="id" value="{{ id }}">
               <input type="hidden" class="form-control" name="old_ups" value="{{ ups }}">
@@ -565,27 +366,13 @@
                     </form>
 
 
-           <form method="POST" action ="{{ url_for('update_opstat') }}">
+           <form id="update_status" method="POST" action ="{{ url_for('update_opstat') }}">
           <div class="col-md-3" id="opstat">
-          <label class="fw-semibold">OPERATIONAL STATUS</label> <button id="opstats_check" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#modal_opstat_check"><a href="#"><img src="static/icons/check.png" id="check_button"></a></button>
-    <div class="modal" id="modal_opstat_check">
-    <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">UPDATE CHANGES</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to update this field?</p>
-      </div>
-      <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Confirm</button>
-            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+          <label class="fw-semibold">OPERATIONAL STATUS</label>
+              <button id="Btn_status" class="btn" type="button">
+              <a href="#"><img src="static/icons/check.png" id="check_button"></a>
+          </button>
 
-      </div>
-    </div>
-  </div>
-</div>
              <input type="hidden" name="field" value="Operational Status">
               <input type="hidden" name="id" value="{{ id }}">
               <input type="hidden" class="form-control" name="old_opstat" value="{{ op_stat }}">
@@ -615,3 +402,570 @@
         });
         {% endif %}
     </script>
+
+
+<script>
+    document.getElementById('btn_department').addEventListener('click', function () {
+        var form = document.getElementById('update_department');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+    document.getElementById('btn_username').addEventListener('click', function () {
+        var form = document.getElementById('update_username');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+    document.getElementById('btn_computername').addEventListener('click', function () {
+        var form = document.getElementById('update_computername');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+    document.getElementById('btn_ip').addEventListener('click', function () {
+        var form = document.getElementById('update_ip');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+    document.getElementById('btn_asset').addEventListener('click', function () {
+        var form = document.getElementById('update_asset');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+    document.getElementById('btn_serial').addEventListener('click', function () {
+        var form = document.getElementById('update_serial');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+    document.getElementById('btn_processor').addEventListener('click', function () {
+        var form = document.getElementById('update_processor');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+    document.getElementById('btn_os').addEventListener('click', function () {
+        var form = document.getElementById('update_os');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+    document.getElementById('btn_mobo').addEventListener('click', function () {
+        var form = document.getElementById('update_mobo');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+        {% if msg  %}
+        // Display SweetAlert with success message
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: '{{ msg  }}',
+        });
+        {% endif %}
+    </script>
+<script>
+    var observe;
+    if (window.attachEvent) {
+      observe = function (element, event, handler) {
+        element.attachEvent('on'+event, handler);
+      };
+    }
+    else {
+      observe = function (element, event, handler) {
+        element.addEventListener(event, handler, false);
+      };
+    }
+    function init () {
+      function resize (element) {
+        element.style.height = 'auto';
+        element.style.height = element.scrollHeight+'px';
+      }
+      /* 0-timeout to get the already changed text */
+      function delayedResize (element) {
+        window.setTimeout(function() { resize(element) }, 0);
+      }
+      var textareas = document.getElementsByTagName("textarea");
+      for (i = 0; i < textareas.length; i++) {
+        var textarea = textareas[i];
+        observe(textarea, 'change', function() { resize(this) });
+        observe(textarea, 'cut', function() { delayedResize(this) });
+        observe(textarea, 'paste', function() { delayedResize(this) });
+        observe(textarea, 'drop',function() { delayedResize(this) });
+        observe(textarea, 'keydown', function() { delayedResize(this) });
+        textarea.focus();
+        textarea.select();
+        resize(textarea);
+      }
+    }
+    init();
+</script>
+<!--<script>-->
+<!--      $('#check_department').click(function(){-->
+<!--var new_department = document.getElementById("new_department").value;-->
+<!--var id = document.getElementById("id").value;-->
+<!--        $.ajax({-->
+<!--          url:"submit_update_department.php",-->
+<!--          method:"POST",-->
+<!--          data:{new_department:new_department,id:id},-->
+<!--          success:function(data){-->
+<!--            alert("Success");-->
+<!--          }-->
+<!--        });-->
+
+<!--      });-->
+<!--</script>-->
+<script>
+    document.getElementById('Btn_ram').addEventListener('click', function () {
+        var form = document.getElementById('update_ram');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+    document.getElementById('Btn_storage').addEventListener('click', function () {
+        var form = document.getElementById('update_storage');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+    document.getElementById('Btn_PS').addEventListener('click', function () {
+        var form = document.getElementById('update_PS');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+    document.getElementById('Btn_MS').addEventListener('click', function () {
+        var form = document.getElementById('update_MS');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+    document.getElementById('Btn_com').addEventListener('click', function () {
+        var form = document.getElementById('update_com');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+    document.getElementById('Btn_net').addEventListener('click', function () {
+        var form = document.getElementById('update_net');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+    document.getElementById('Btn_eset').addEventListener('click', function () {
+        var form = document.getElementById('update_eset');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+    document.getElementById('Btn_ups').addEventListener('click', function () {
+        var form = document.getElementById('update_ups');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+
+<script>
+    document.getElementById('Btn_status').addEventListener('click', function () {
+        var form = document.getElementById('update_status');
+        var formData = new FormData(form);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.action, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle success
+                var response = xhr.responseText;
+                // Update UI as needed
+                Swal.fire({
+            icon: 'success',
+            title: 'The data has been updated successfully',
+
+        });
+            } else {
+                // Handle error
+            }
+        };
+        xhr.onerror = function () {
+            // Handle error
+        };
+        xhr.send(formData);
+    });
+</script>
+

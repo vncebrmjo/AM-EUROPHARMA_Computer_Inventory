@@ -1,9 +1,18 @@
 
-from flask import Flask, render_template, request, url_for, redirect, flash, jsonify
+from flask import Flask, render_template, request, url_for, redirect, flash, jsonify, g, session
+import os
 import pyodbc as odbcconn
 from math import ceil
 
 app = Flask(__name__)
+
+app.secret_key = os.urandom(24)
+
+connect = odbcconn.connect("Driver={ODBC Driver 13 for SQL Server};"
+                           "Server= 192.168.1.11;"
+                           "Database=vmdevapps;"
+                           "uid=local1;"
+                           "pwd=$3rver012345")
 
 cursor = connect.cursor()
 
@@ -13,24 +22,29 @@ cursor = connect.cursor()
 #
 #
 #     return render_template('login.html')
+@app.before_request
+def before_request():
+    g.user = None
+    if 'user' in session:
+        g.user = session['user']
 
-
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/main_page', methods=['POST', 'GET'])
 def main_page():
-    cursor.execute('SELECT * FROM INV_computers')
-    get_page = cursor.fetchall()
+    if g.user:
+        cursor.execute('SELECT * FROM INV_computers')
+        get_page = cursor.fetchall()
+        return render_template('main_page.html', get_page=get_page)
+    return redirect(url_for('login'))
 
 
-    return render_template('main_page.html', get_page=get_page)
 
-'''
-def get_data(page, per_page, department=None):
-    offset = (page - 1) * per_page
-    query = "SELECT * FROM Computers ORDER BY ID OFFSET ? ROWS FETCH NEXT ? ROWS ONLY"
-    cursor.execute(query, offset, per_page)
-    get_page = cursor.fetchall()
-    return get_page
-'''
+# def get_data(page, per_page, department=None):
+#     offset = (page - 1) * per_page
+#     query = "SELECT * FROM Computers ORDER BY ID OFFSET ? ROWS FETCH NEXT ? ROWS ONLY"
+#     cursor.execute(query, offset, per_page)
+#     get_page = cursor.fetchall()
+#     return get_page
+
 
 @app.route('/test', methods=['POST', 'GET'])
 def test():
@@ -166,6 +180,8 @@ def update_inventory():
                            network_tag=network_tag, ups=ups, serial_number=serial_number, details=details, user=user, computer_name=computer_name)
 
 
+
+
 @app.route('/update_department', methods=['GET', 'POST'])
 def update_department():
     if request.method == 'POST':
@@ -192,6 +208,60 @@ def update_department():
         return render_template('update_inventory.html', new_department=new_department, details=details,
                                old_department=old_department, field=field, id=id, msg=msg )
 
+# @app.route('/update_department', methods=['GET', 'POST'])
+# def update_department():
+#     id = request.form['id']
+#     department = request.args.get('department')
+#
+#     cursor = connect.cursor()
+#     cursor.execute("SELECT * FROM INV_computers WHERE ID = ?", (id,))
+#     details = cursor.fetchone()
+#
+#     if request.method == 'POST':
+#         # Handle form submission
+#         new_department = request.form['new_department']
+#         old_department = request.form['old_department']
+#         field = request.form['field']
+#
+#         new_department2 = cursor.execute("INSERT INTO INV_logs (id, field_modified, old_data, new_data) VALUES (?, ?, ?, ?)",
+#                        (id, field, old_department, new_department))
+#         cursor.execute("UPDATE INV_computers SET department = ? WHERE ID = ?", (new_department, id))
+#
+#         connect.commit()
+#
+#         return render_template('update_inventory.html', department=new_department, id=id, details=details,
+#                                msg="The data has been updated successfully")
+#
+#     # Render the template for GET request
+#     return render_template('update_inventory.html', department=department, id=id, details=details)
+
+# @app.route('/update_username', methods=['GET', 'POST'])
+# def update_username():
+#     id = request.form['id']
+#     user = request.args.get('user')
+#
+#     cursor = connect.cursor()
+#     cursor.execute("SELECT * FROM INV_computers WHERE ID = ?", (id,))
+#     details = cursor.fetchone()
+#
+#     if request.method == 'POST':
+#         # Handle form submission
+#         old_username = request.form['old_username']
+#         new_username = request.form['new_username']
+#         field = request.form['field']
+#
+#         cursor.execute("INSERT INTO INV_logs (id, field_modified, old_data, new_data) VALUES (?, ?, ?, ?)",
+#                        (id, field, old_username, new_username))
+#         cursor.execute("UPDATE INV_computers SET Username = ? WHERE ID = ?", (new_username , id))
+#
+#         connect.commit()
+#
+#         return render_template('update_inventory.html', user=new_username , id=id, details=details,
+#                                msg="The data has been updated successfully")
+#
+#     # Render the template for GET request
+#     return render_template('update_inventory.html', user=user, id=id, details=details)
+
 
 @app.route('/update_username', methods=['GET', 'POST'])
 def update_username():
@@ -213,7 +283,6 @@ def update_username():
         msg = "The data has been updated successfully"
 
         connect.commit()
-
 
         return render_template('update_inventory.html', new_username=new_username, details=details,
                                old_username=old_username, field=field, id=id, msg=msg)
@@ -738,18 +807,17 @@ def Report_Logs():
     return render_template('Report_Logs.html', get_page=get_page)
 
 
-'''
-@app.route('/save_data', methods=['POST', 'GET'])
-def save_data():
-    if request.method == "POST":
-        user = request.form['user']
-        department = request.form.get('department')
-        computer_name = request.form['computer_name']
-        ip = request.form['ip']
-        asset_tag = request.form['asset_tag']
-        serial_number = request.form['serial_number']
-    return redirect(url_for('Add_Inventory'))
-'''
+@app.route('/', methods=['GET', 'POST'])
+def login():
+    cursor.execute('SELECT * FROM INV_login')
+    user_login = cursor.fetchall()
+    if request.method == 'POST':
+        session.pop('user', None)
+
+        if request.form['password'] == 'password':
+            session['user'] = request.form['username']
+            return redirect(url_for('main_page'))
+    return render_template('login.html', user_login=user_login)
 
 if __name__ == "__main__":
     app.run(debug=True)
