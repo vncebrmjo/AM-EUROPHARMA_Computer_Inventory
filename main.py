@@ -30,11 +30,11 @@ def before_request():
 
 @app.route('/main_page', methods=['POST', 'GET'])
 def main_page():
-    if g.user:
-        cursor.execute('SELECT * FROM INV_computers')
-        get_page = cursor.fetchall()
-        return render_template('main_page.html', get_page=get_page)
-    return redirect(url_for('login'))
+    # if g.user:
+    cursor.execute('SELECT * FROM INV_computers')
+    get_page = cursor.fetchall()
+    return render_template('main_page.html', get_page=get_page)
+    # return redirect(url_for('login'))
 
 
 
