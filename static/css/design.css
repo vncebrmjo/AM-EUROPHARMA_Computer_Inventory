@@ -465,6 +465,13 @@ padding: 25px;
   margin: 5px;
 }
 
+#logout{
+    height: 30px;
+    width: 30px;
+  margin: 5px;
+
+}
+
 #update{
     height: 30px;
     width: 30px;

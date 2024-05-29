@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
 <link rel="stylesheet" href="static/css/design.css">
@@ -35,13 +38,13 @@
                       <div class="row gy-3 overflow-hidden">
                         <div class="col-12">
                           <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="username" required>
+                            <input type="text" class="form-control" name="Username" id="Username" required>
                             <label  class="form-label">Username</label>
                           </div>
                         </div>
                         <div class="col-12">
                           <div class="form-floating mb-3">
-                            <input type="password" class="form-control" name="password" id="password" value="" placeholder="Password" required>
+                            <input type="password" class="form-control" name="Password" id="Password"  required>
                             <label for="password" class="form-label">Password</label>
                           </div>
                         </div>
@@ -63,3 +66,15 @@
   </section>
 </body>
 </html>
+
+
+<script>
+        {% if error %}
+        // Display SweetAlert with success message
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: '{{ error }}',
+        });
+        {% endif %}
+    </script>
