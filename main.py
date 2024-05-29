@@ -73,6 +73,7 @@ def update_inventory():
 def update_department():
     if request.method == 'POST':
         id = request.form['id']
+        dept_date = request.form['dept_date']
         old_department = request.form['old_department']
         new_department = request.form['new_department']
         field = request.form['field']
@@ -80,9 +81,9 @@ def update_department():
         cursor = connect.cursor()
 
         cursor.execute(
-            "INSERT INTO INV_logs (id, field_modified, old_data, new_data) "
-            "VALUES ( ?, ?, ?, ?)",
-            (id, field, old_department, new_department))
+            "INSERT INTO INV_logs (id,  date_modified, field_modified, old_data, new_data) "
+            "VALUES ( ?, ?, ?, ?, ?)",
+            (id, dept_date, field, old_department, new_department))
 
         cursor.execute("UPDATE INV_computers SET department = ? WHERE ID = ?",
                        (new_department, id))
@@ -93,7 +94,7 @@ def update_department():
 
 
         return render_template('update_inventory.html', new_department=new_department,
-                               old_department=old_department, field=field, id=id, msg=msg )
+                               old_department=old_department, field=field, id=id, msg=msg, dept_date=dept_date )
 
 
 
@@ -101,6 +102,7 @@ def update_department():
 def update_username():
     if request.method == 'POST':
         id = request.form['id']
+        user_date = request.form['user_date']
         old_username = request.form['old_username']
         new_username = request.form['new_username']
         field = request.form['field']
@@ -108,9 +110,9 @@ def update_username():
         cursor = connect.cursor()
 
         cursor.execute(
-            "INSERT INTO INV_logs (id, field_modified, old_data, new_data) "
-            "VALUES ( ?, ?, ?, ?)",
-            (id, field, old_username, new_username))
+            "INSERT INTO INV_logs (id,date_modified, field_modified, old_data, new_data) "
+            "VALUES ( ?, ?, ?, ?, ?)",
+            (id, user_date, field, old_username, new_username))
 
         cursor.execute("UPDATE INV_computers SET Username = ? WHERE ID = ?",
                        (new_username, id))
@@ -119,13 +121,14 @@ def update_username():
         connect.commit()
 
         return render_template('update_inventory.html', new_username=new_username,
-                               old_username=old_username, field=field, id=id, msg=msg)
+                               old_username=old_username, field=field, id=id, msg=msg, user_date=user_date)
 
 
 @app.route('/update_computername', methods=['GET', 'POST'])
 def update_computername():
     if request.method == 'POST':
         id = request.form['id']
+        com_date = request.form['com_date']
         old_computername = request.form['old_computername']
         new_computername = request.form['new_computername']
         field = request.form['field']
@@ -133,9 +136,9 @@ def update_computername():
         cursor = connect.cursor()
 
         cursor.execute(
-            "INSERT INTO INV_logs (id, field_modified, old_data, new_data) "
-            "VALUES ( ?, ?, ?, ?)",
-            (id, field, old_computername, new_computername))
+            "INSERT INTO INV_logs (id,date_modified, field_modified, old_data, new_data) "
+            "VALUES ( ?, ?, ?, ?, ?)",
+            (id,com_date, field, old_computername, new_computername))
 
         cursor.execute("UPDATE INV_computers SET Computer_Name = ? WHERE ID = ?",
                        (new_computername, id))
@@ -145,7 +148,7 @@ def update_computername():
 
 
         return render_template('update_inventory.html', new_computername=new_computername,
-                               old_computername=old_computername, field=field, id=id, msg=msg)
+                               old_computername=old_computername, field=field, id=id, msg=msg, com_date=com_date)
 
 @app.route('/update_ip', methods=['GET', 'POST'])
 def update_ip():
@@ -642,20 +645,25 @@ def Report_Logs():
         return render_template('Report_Logs.html', get_page=get_page, user=session['Username'])
     return redirect(url_for('login'))
 
+
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
+        username = request.form['Username']
         password = request.form['Password']
-        cursor.execute("SELECT * FROM INV_login WHERE Password = ?", (password,))
-        key = cursor.fetchone()
 
-        if key:
-            session['Username'] = request.form['Username']
+        cursor.execute("SELECT * FROM INV_login WHERE Username = ? AND Password = ?", (username, password))
+        user = cursor.fetchone()
+
+        if user:
+            session['Username'] = username
             return redirect(url_for('main_page'))
 
-    error = "Incorrect Username or Password"
+        error = "Incorrect Username or Password"
+        return render_template('login.html', error=error)
 
-    return render_template('login.html', error=error)
+    return render_template('login.html', error=None)
+
 
 @app.route('/logout')
 def logout():
