@@ -121,36 +121,6 @@ def update_username():
         return render_template('update_inventory.html', new_username=new_username,
                                old_username=old_username, field=field, id=id, msg=msg)
 
-# @app.route('/update_username', methods=['POST'])
-# def update_username():
-#     id = request.form['id']
-#     old_username = request.form['old_username']
-#     new_username = request.form['new_username']
-#     field = request.form['field']
-#     if request.method == 'POST':
-#     # Check if the new username already exists
-#         cursor = connect.cursor()
-#         cursor.execute("SELECT COUNT(*) FROM INV_computers WHERE Username = ?", (new_username,))
-#         row = cursor.fetchone()
-#         count = row[0]
-#
-#         if count > 0:
-#             msg = "Username already exists. Please choose a different username."
-#             return jsonify({'error': msg})
-#
-#         # If the new username doesn't exist, proceed with updating the username
-#         cursor.execute(
-#             "INSERT INTO INV_logs (id, field_modified, old_data, new_data) "
-#             "VALUES (?, ?, ?, ?)",
-#             (id, field, old_username, new_username))
-#
-#         cursor.execute("UPDATE INV_computers SET Username = ? WHERE ID = ?",
-#                        (new_username, id))
-#         connect.commit()
-#
-#         msg = "The data has been updated successfully"
-#         return jsonify({'success': msg})
-#     return render_template('update_inventory.html', new_username=new_username, old_username=old_username, field=field, id=id, msg=msg)
 
 @app.route('/update_computername', methods=['GET', 'POST'])
 def update_computername():
@@ -683,7 +653,9 @@ def login():
             session['Username'] = request.form['Username']
             return redirect(url_for('main_page'))
 
-    return render_template('login.html')
+    error = "Incorrect Username or Password"
+
+    return render_template('login.html', error=error)
 
 @app.route('/logout')
 def logout():

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,11 +64,12 @@
     <form id="update_department" method="POST" action="{{ url_for('update_department') }}">
     <div class="col-md-3" id="dept_combo_box">
         <label class="fw-semibold">DEPARTMENT</label>
-        <button id="btn_department" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#modal_check">
+        <button id="btn_department" class="btn" type="button">
             <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
         </button>
 
         <input type="hidden" name="field" value="Department">
+        <input type="hidden" name="dept_date" id="dept_date">
         <input type="hidden" name="id" value="{{ id }}">
         <input type="hidden" class="form-control" name="old_department" value="{{ department }}">
 <!--        <input type="text" class="form-control" name="new_department" value="{{ department }}">-->
@@ -105,9 +105,10 @@
              </button>
 
              <input type="hidden" name="field" value="Username">
+             <input type="hidden" name="user_date" id="user_date">
              <input type="hidden" name="id" value="{{ id }}">
              <input type="hidden" class="form-control" name="old_username" value="{{ user }}">
-              <input type="text" class="form-control" name="new_username" value="{{ user }}">
+             <input type="text" class="form-control" name="new_username" value="{{ user }}">
              </div>
         </form>
 
@@ -119,10 +120,11 @@
                          <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
                      </button>
 
-              <input type="hidden" name="field" value="Computer Name">
-              <input type="hidden" name="id" value="{{ id }}">
-              <input type="hidden" class="form-control" name="old_computername" value="{{ computer_name }}">
-              <input type="text" class="form-control"  name="new_computername" value="{{ computer_name }}">
+                <input type="hidden" name="field" value="Computer Name">
+                <input type="hidden" name="com_date" id="com_date">
+                <input type="hidden" name="id" value="{{ id }}">
+                <input type="hidden" class="form-control" name="old_computername" value="{{ computer_name }}">
+                <input type="text" class="form-control"  name="new_computername" value="{{ computer_name }}">
              </div>
                     </form>
 
@@ -133,40 +135,43 @@
             <button id="btn_ip" class="btn " type="button">
                 <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i></button>
 
-                <input type="hidden" name="field" value="Ip Address ">
-              <input type="hidden" name="id" value="{{ id }}">
-              <input type="hidden" class="form-control" name="old_ip" value="{{ ip }}">
-              <input type="text" class="form-control"  name="new_ip" value="{{ ip }}" >
+                <input type="hidden" name="field" value="Ip Address">
+                <input type="hidden" name="ip_date" id="ip_date">
+                <input type="hidden" name="id" value="{{ id }}">
+                <input type="hidden" class="form-control" name="old_ip" value="{{ ip }}">
+                <input type="text" class="form-control"  name="new_ip" value="{{ ip }}" >
              </div>
              </form>
 
 
          <form id="update_asset" method="POST" action ="{{ url_for('update_asset_tag') }}">
-        <div class="col-md-3" id="asset_tag">
-          <label class="fw-semibold">ASSET TAG</label>
+            <div class="col-md-3" id="asset_tag">
+            <label class="fw-semibold">ASSET TAG</label>
             <button id="btn_asset" class="btn " type="button">
                 <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
             </button>
 
-                <input type="hidden" name="field" value="Asset Tag ">
-              <input type="hidden" name="id" value="{{ id }}">
-              <input type="hidden" class="form-control" name="old_asset_tag" value="{{ asset_tag }}">
-              <input type="text" class="form-control"  name="new_asset_tag" value="{{ asset_tag }}">
+                <input type="hidden" name="field" value="Asset Tag">
+                <input type="hidden" name="asset_date" id="asset_date">
+                <input type="hidden" name="id" value="{{ id }}">
+                <input type="hidden" class="form-control" name="old_asset_tag" value="{{ asset_tag }}">
+                <input type="text" class="form-control"  name="new_asset_tag" value="{{ asset_tag }}">
              </div>
          </form>
 
 
         <form id="update_serial" method="POST" action ="{{ url_for('update_serial_number') }}">
         <div class="col-md-3" id="serial_number">
-          <label class="fw-semibold">SERIAL NUMBER</label>
+            <label class="fw-semibold">SERIAL NUMBER</label>
             <button id="btn_serial" class="btn " type="button">
                 <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
             </button>
 
-             <input type="hidden" name="field" value="Serial Number" >
-              <input type="hidden" name="id" value="{{ id }}">
-              <input type="hidden" class="form-control" name="old_serial_number" value="{{ serial_number }}">
-              <input type="text" class="form-control" name="new_serial_number" value="{{ serial_number }}">
+                <input type="hidden" name="field" value="Serial Number">
+                <input type="hidden" name="serial_date" id="serial_date">
+                <input type="hidden" name="id" value="{{ id }}">
+                <input type="hidden" class="form-control" name="old_serial_number" value="{{ serial_number }}">
+                <input type="text" class="form-control" name="new_serial_number" value="{{ serial_number }}">
              </div>
             </form>
 
@@ -179,23 +184,24 @@
 
 
         <div class="col-md-3" >
-            <div class="row" >
+                 <div class="row" >
                  <div class="mb-3" >
-                <div class="modal-like-form2" >
+                 <div class="modal-like-form2" >
         <h4 class="modal-like-header">PROCESSOR</h4>
 
 
         <form id="update_processor" method="POST" action ="{{ url_for('update_processor') }}">
         <div class="col-md-3" id="cpu_details">
           <label class="fw-semibold">DETAILS</label>
-    <button id="btn_processor" class="btn " type="button">
-        <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
-    </button>
+             <button id="btn_processor" class="btn " type="button">
+                 <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
+             </button>
 
-              <input type="hidden" name="field" value="Processor" >
-              <input type="hidden" name="id" value="{{ id }}">
-              <input type="hidden" class="form-control" name="old_processor" value="{{ processor }}">
-              <textarea class="form-control" name="new_processor" >{{ processor }}</textarea>
+                <input type="hidden" name="field" value="Processor">
+                <input type="hidden" name="processor_date" id="processor_date">
+                <input type="hidden" name="id" value="{{ id }}">
+                <input type="hidden" class="form-control" name="old_processor" value="{{ processor }}">
+                <textarea class="form-control" name="new_processor" >{{ processor }}</textarea>
              </div>
                         </form>
                     <hr>
@@ -204,16 +210,17 @@
 
                     <form id="update_os" method="POST" action ="{{ url_for('update_os') }}">
                     <div class="col-md-3" id="OS_combo_box">
-          <label class="fw-semibold">TYPE</label>
-      <button id="btn_os" class="btn " type="button">
-          <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
-      </button>
+                     <label class="fw-semibold">TYPE</label>
+                     <button id="btn_os" class="btn " type="button">
+                            <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
+                     </button>
 
-                <input type="hidden" name="field" value="Operating System" >
-              <input type="hidden" name="id" value="{{ id }}">
-              <input type="hidden" class="form-control" name="old_os" value="{{ os }}">
-                <select class="form-select mb-3" name="new_os" id="select_OS">
-                    <option > {{ os }} </option>
+                        <input type="hidden" name="field" value="Operating System">
+                        <input type="hidden" name="os_date" id="os_date">
+                        <input type="hidden" name="id" value="{{ id }}">
+                        <input type="hidden" class="form-control" name="old_os" value="{{ os }}">
+                        <select class="form-select mb-3" name="new_os" id="select_OS">
+                        <option > {{ os }} </option>
 
                     <option value="Windows 7 Pro">Windows 7 Pro</option>
                     <option value="Windows 8 Pro">Windows 8 Pro</option>
@@ -224,20 +231,21 @@
             </div>
                     </form>
             <hr>
-            <h4 class="modal-like-header"> MOTHERBOARD</h4>
+            <h4 class="modal-like-header">MOTHERBOARD</h4>
 
 
-            <form id="update_mobo" method="POST" action ="{{ url_for('update_mobo') }}">
-          <div class="col-md-3" id="motherboard_details">
-          <label class="fw-semibold">DETAILS</label>
+             <form id="update_mobo" method="POST" action ="{{ url_for('update_mobo') }}">
+             <div class="col-md-3" id="motherboard_details">
+             <label class="fw-semibold">DETAILS</label>
               <button id="btn_mobo" class="btn " type="button">
-                  <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
+                     <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
               </button>
 
-              <input type="hidden" name="field" value="Motherboard" >
-              <input type="hidden" name="id" value="{{ id }}">
-              <input type="hidden" class="form-control" name="old_mobo" value="{{ motherboard }}">
-              <input type="text" class="form-control" name="new_mobo" value=" {{ motherboard }}">
+                    <input type="hidden" name="field" value="Motherboard" >
+                    <input type="hidden" name="mobo_date" id="mobo_date">
+                    <input type="hidden" name="id" value="{{ id }}">
+                    <input type="hidden" class="form-control" name="old_mobo" value="{{ motherboard }}">
+                    <input type="text" class="form-control" name="new_mobo" value=" {{ motherboard }}">
              </div>
             </form>
                 </div>
@@ -248,54 +256,57 @@
     </div>
 
      <div class="col-md-3 " >
-            <div class="row">
+                 <div class="row">
                  <div class="mb-3">
-                <div class="modal-like-form2">
+                 <div class="modal-like-form2">
                     <h4 class="modal-like-header">RAM</h4>
-    <form id="update_ram" method="POST" action="{{ url_for('update_ram') }}">
-    <div class="col-md-3" id="ram_brand">
-        <label class="fw-semibold">DETAILS</label>
-        <button id="Btn_ram" class="btn" type="button">
-            <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
-        </button>
+                   <form id="update_ram" method="POST" action="{{ url_for('update_ram') }}">
+                   <div class="col-md-3" id="ram_brand">
+                      <label class="fw-semibold">DETAILS</label>
+                          <button id="Btn_ram" class="btn" type="button">
+                              <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
+                          </button>
 
-        <input type="hidden" name="field" value="RAM">
-        <input type="hidden" name="id" value="{{ id }}">
-        <input type="hidden" class="form-control" name="old_ram" value="{{ ram }}">
-        <input type="text" class="form-control" name="new_ram" value="{{ ram }}">
-    </div>
-</form>
+                                    <input type="hidden" name="field" value="RAM">
+                                    <input type="hidden" name="ram_date" id="ram_date">
+                                    <input type="hidden" name="id" value="{{ id }}">
+                                    <input type="hidden" class="form-control" name="old_ram" value="{{ ram }}">
+                                    <input type="text" class="form-control" name="new_ram" value="{{ ram }}">
+                                    </div>
+                   </form>
                     <hr>
-            <h4 class="modal-like-header">STORAGE</h4>
-            <form id="update_storage" method="POST" action ="{{ url_for('update_storage') }}">
-          <div class="col-md-3" id="size">
-          <label class="fw-semibold">DETAILS</label>
-          <button id="Btn_storage" class="btn " type="button" >
-              <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
-          </button>
+                <h4 class="modal-like-header">STORAGE</h4>
+                <form id="update_storage" method="POST" action ="{{ url_for('update_storage') }}">
+                <div class="col-md-3" id="size">
+                    <label class="fw-semibold">DETAILS</label>
+                         <button id="Btn_storage" class="btn " type="button" >
+                                 <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
+                         </button>
 
-              <input type="hidden" name="field" value="Storage">
-              <input type="hidden" name="id" value="{{ id }}">
-              <input type="hidden" class="form-control" name="old_storage" value="{{ storage }}">
-                <textarea class="form-control" name="new_storage"> {{ storage }}</textarea>
-            </div>
-          </form>
+                            <input type="hidden" name="field" value="Storage">
+                            <input type="hidden" name="storage_date" id="storage_date">
+                            <input type="hidden" name="id" value="{{ id }}">
+                            <input type="hidden" class="form-control" name="old_storage" value="{{ storage }}">
+                            <textarea class="form-control" name="new_storage"> {{ storage }}</textarea>
+                            </div>
+                    </form>
             <hr>
 
-            <h4 class="modal-like-header"> POWER SUPPLY</h4>
+            <h4 class="modal-like-header">POWER SUPPLY</h4>
             <form id="update_PS" method="POST" action ="{{ url_for('update_ps') }}">
              <div class="col-md-3" id="ps_brand">
-          <label class="fw-semibold">DETAILS</label>
-                 <button id="Btn_PS" class="btn " type="button" >
-                     <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
-                 </button>
+                     <label class="fw-semibold">DETAILS</label>
+                            <button id="Btn_PS" class="btn " type="button" >
+                                    <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
+                            </button>
 
-              <input type="hidden" name="field" value="Power Supply">
-              <input type="hidden" name="id" value="{{ id }}">
-              <input type="hidden" class="form-control" name="old_ps" value="{{ power_supply }}">
-              <textarea  class="form-control" name="new_ps"> {{ power_supply }}</textarea>
-             </div>
-            </form>
+                            <input type="hidden" name="field" value="Power Supply">
+                            <input type="hidden" name="ps_date" id="ps_date">
+                            <input type="hidden" name="id" value="{{ id }}">
+                            <input type="hidden" class="form-control" name="old_ps" value="{{ power_supply }}">
+                            <textarea  class="form-control" name="new_ps"> {{ power_supply }}</textarea>
+                            </div>
+                        </form>
                 </div>
             </div>
 
@@ -303,105 +314,112 @@
 
     </div>
 
-    <div class="col-md-3 " >
-            <div class="row">
-                 <div class="mb-3">
-                <div class="modal-like-form2">
-                    <h4 class="modal-like-header">DEVICE STATUS</h4>
-        <form id="update_MS" method="POST" action ="{{ url_for('update_msoffice') }}">
-          <div class="col-md-3" id="MS_combo_box">
-          <label class="fw-semibold">MS OFFICE</label>
-                <button id="Btn_MS" class="btn " type="button" >
-                    <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
+                    <div class="col-md-3 " >
+                    <div class="row">
+                    <div class="mb-3">
+                        <div class="modal-like-form2">
+                            <h4 class="modal-like-header">DEVICE STATUS</h4>
+                            <form id="update_MS" method="POST" action ="{{ url_for('update_msoffice') }}">
+                         <div class="col-md-3" id="MS_combo_box">
+                         <label class="fw-semibold">MS OFFICE</label>
+                             <button id="Btn_MS" class="btn " type="button" >
+                                     <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
+                             </button>
+
+                                <input type="hidden" name="field" value="MS Office">
+                                <input type="hidden" name="ms_date" id="ms_date">
+                                <input type="hidden" name="id" value="{{ id }}">
+                                <input type="hidden" class="form-control" name="old_msoffice" value="{{ ms_office }}">
+                                <input type="text" class="form-control" name="new_msoffice" value="{{ms_office}}">
+                                </div>
+                        </form>
+
+
+                <form id="update_com" method="POST" action ="{{ url_for('update_comtag') }}">
+                <div class="col-md-3" id="comtag">
+                <label class="fw-semibold">COMPUTER TAG</label>
+                <button id="Btn_com" class="btn " type="button">
+                        <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
                 </button>
 
-              <input type="hidden" name="field" value="MS Office">
-              <input type="hidden" name="id" value="{{ id }}">
-              <input type="hidden" class="form-control" name="old_msoffice" value="{{ ms_office }}">
-           <input type="text" class="form-control" name="new_msoffice" value="{{ms_office}}">
-            </div>
-        </form>
-
-
-        <form id="update_com" method="POST" action ="{{ url_for('update_comtag') }}">
-         <div class="col-md-3" id="comtag">
-          <label class="fw-semibold">COMPUTER TAG</label>
-             <button id="Btn_com" class="btn " type="button">
-                 <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
-             </button>
-
-             <input type="hidden" name="field" value="Computer Tag">
-              <input type="hidden" name="id" value="{{ id }}">
-              <input type="hidden" class="form-control" name="old_comtag" value="{{computer_tag}}">
-              <input type="text" class="form-control" name="new_comtag" value="{{computer_tag}}">
-             </div>
+                    <input type="hidden" name="field" value="Computer Tag">
+                    <input type="hidden" name="comtag_date" id="comtag_date">
+                    <input type="hidden" name="id" value="{{ id }}">
+                    <input type="hidden" class="form-control" name="old_comtag" value="{{computer_tag}}">
+                    <input type="text" class="form-control" name="new_comtag" value="{{computer_tag}}">
+                    </div>
         </form>
 
 
 
-       <form id="update_net" method="POST" action ="{{ url_for('update_nettag') }}">
-        <div class="col-md-3" id="nettag">
-          <label class="fw-semibold">NETWORK TAG</label>
-            <button id="Btn_net" class="btn" type="button">
-                <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
-            </button>
+                <form id="update_net" method="POST" action ="{{ url_for('update_nettag') }}">
+                <div class="col-md-3" id="nettag">
+                        <label class="fw-semibold">NETWORK TAG</label>
+                        <button id="Btn_net" class="btn" type="button">
+                                <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
+                        </button>
 
-             <input type="hidden" name="field" value="Network Tag">
-              <input type="hidden" name="id" value="{{ id }}">
-              <input type="hidden" class="form-control" name="old_nettag" value="{{network_tag}}">
-              <input type="text" class="form-control" name="new_nettag" value="{{ network_tag }}">
-             </div>
+                    <input type="hidden" name="field" value="Network Tag">
+                    <input type="hidden" name="nettag_date" id="nettag_date">
+                    <input type="hidden" name="id" value="{{ id }}">
+                    <input type="hidden" class="form-control" name="old_nettag" value="{{network_tag}}">
+                    <input type="text" class="form-control" name="new_nettag" value="{{ network_tag }}">
+                    </div>
        </form>
 
-         <form id="update_eset" method="POST" action ="{{ url_for('update_eset') }}">
-             <div class="col-md-3" id="eset">
-          <label class="fw-semibold">ESET</label>
-                 <button id="Btn_eset" class="btn " type="button">
-                        <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
-                    </button>
-             <input type="hidden" name="field" value="ESET">
-              <input type="hidden" name="id" value="{{ id }}">
-              <input type="hidden" class="form-control" name="old_eset" value="{{eset}}">
-              <input type="text" class="form-control" name="new_eset" value="{{eset}}">
-             </div>
-         </form>
+                <form id="update_eset" method="POST" action ="{{ url_for('update_eset') }}">
+                        <div class="col-md-3" id="eset">
+                        <label class="fw-semibold">ESET</label>
+                                <button id="Btn_eset" class="btn " type="button">
+                                    <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
+                                </button>
 
-                    <form id="update_ups" method="POST" action ="{{ url_for('update_ups') }}">
-                   <div class="col-md-3" id="ups">
-            <label class="fw-semibold">UPS</label>
-                       <button id="Btn_ups" class="btn " type="button" >
-                           <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
-                       </button>
+                            <input type="hidden" name="field" value="ESET">
+                            <input type="hidden" name="eset_date" id="eset_date">
+                            <input type="hidden" name="id" value="{{ id }}">
+                            <input type="hidden" class="form-control" name="old_eset" value="{{eset}}">
+                            <input type="text" class="form-control" name="new_eset" value="{{eset}}">
+                            </div>
+                </form>
 
-             <input type="hidden" name="field" value="UPS">
-              <input type="hidden" name="id" value="{{ id }}">
-              <input type="hidden" class="form-control" name="old_ups" value="{{ ups }}">
-              <input type="text" class="form-control" name="new_ups" value="{{ ups }}">
-             </div>
+                        <form id="update_ups" method="POST" action ="{{ url_for('update_ups') }}">
+                        <div class="col-md-3" id="ups">
+                        <label class="fw-semibold">UPS</label>
+                                <button id="Btn_ups" class="btn " type="button" >
+                                        <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
+                                </button>
+
+                            <input type="hidden" name="field" value="UPS">
+                            <input type="hidden" name="ups_date" id="ups_date">
+                            <input type="hidden" name="id" value="{{ id }}">
+                            <input type="hidden" class="form-control" name="old_ups" value="{{ ups }}">
+                            <input type="text" class="form-control" name="new_ups" value="{{ ups }}">
+                            </div>
+
                     </form>
 
 
-           <form id="update_status" method="POST" action ="{{ url_for('update_opstat') }}">
-          <div class="col-md-3" id="opstat">
-          <label class="fw-semibold">OPERATIONAL STATUS</label>
-              <button id="Btn_status" class="btn" type="button">
-             <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
-          </button>
+                    <form id="update_status" method="POST" action ="{{ url_for('update_opstat') }}">
+                    <div class="col-md-3" id="opstat">
+                            <label class="fw-semibold">OPERATIONAL STATUS</label>
+                                <button id="Btn_status" class="btn" type="button">
+                                    <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
+                                </button>
 
-             <input type="hidden" name="field" value="Operational Status">
-              <input type="hidden" name="id" value="{{ id }}">
-              <input type="hidden" class="form-control" name="old_opstat" value="{{ op_stat }}">
-              <input type="text" class="form-control" name="new_opstat" value="{{ op_stat }}">
-             </div>
+                        <input type="hidden" name="field" value="Operational Status">
+                        <input type="hidden" name="status_date" id="status_date">
+                        <input type="hidden" name="id" value="{{ id }}">
+                        <input type="hidden" class="form-control" name="old_opstat" value="{{ op_stat }}">
+                        <input type="text" class="form-control" name="new_opstat" value="{{ op_stat }}">
+                        </div>
+
                     </form>
-
-
 
                 </div>
             </div>
-
-
-
+            </div>
+    </div>
+</div>
 
 </body>
 {% include 'Footer.html' %}
@@ -429,7 +447,7 @@
         xhr.onload = function () {
             if (xhr.status === 200) {
                 // Handle success
-<!--                var response = xhr.responseText;-->
+                var response = xhr.responseText;
                 // Update UI as needed
                 Swal.fire({
             icon: 'success',
@@ -474,51 +492,6 @@
         xhr.send(formData);
     });
 </script>
-
-<!--<script>-->
-<!--document.getElementById('btn_username').addEventListener('click', function () {-->
-<!--    var form = document.getElementById('update_username');-->
-<!--    var formData = new FormData(form);-->
-
-<!--    var xhr = new XMLHttpRequest();-->
-<!--    xhr.open('POST', form.action, true);-->
-<!--    xhr.onload = function () {-->
-<!--        if (xhr.status === 200) {-->
-<!--            var response = JSON.parse(xhr.responseText);-->
-<!--            if ('error' in response) {-->
-<!--                // Display error message-->
-<!--                Swal.fire({-->
-<!--                    icon: 'error',-->
-<!--                    title: 'Error',-->
-<!--                    text: response.error-->
-<!--                });-->
-<!--            } else {-->
-<!--                // Display success message-->
-<!--                Swal.fire({-->
-<!--                    icon: 'success',-->
-<!--                    title: 'Success',-->
-<!--                    text: response.success,-->
-<!--                    showConfirmButton: false,-->
-<!--                    timer: 1500-->
-<!--                });-->
-<!--                // Optional: You can reload the page or update UI elements here-->
-<!--            }-->
-<!--        } else {-->
-<!--            // Handle error-->
-<!--        }-->
-<!--    };-->
-<!--    xhr.onerror = function () {-->
-<!--        // Handle error-->
-<!--    };-->
-<!--    xhr.send(formData);-->
-<!--});-->
-
-
-
-<!--</script>-->
-
-
-
 
 <script>
     document.getElementById('btn_computername').addEventListener('click', function () {
@@ -1080,257 +1053,7 @@ var id = document.getElementById("id").value;
 
       });
 </script>
-<script>
-    document.getElementById('Btn_ram').addEventListener('click', function () {
-        var form = document.getElementById('update_ram');
-        var formData = new FormData(form);
 
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', form.action, true);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                // Handle success
-                var response = xhr.responseText;
-                // Update UI as needed
-                Swal.fire({
-            icon: 'success',
-            title: 'The data has been updated successfully',
-
-        });
-            } else {
-                // Handle error
-            }
-        };
-        xhr.onerror = function () {
-            // Handle error
-        };
-        xhr.send(formData);
-    });
-</script>
-
-<script>
-    document.getElementById('Btn_storage').addEventListener('click', function () {
-        var form = document.getElementById('update_storage');
-        var formData = new FormData(form);
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', form.action, true);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                // Handle success
-                var response = xhr.responseText;
-                // Update UI as needed
-                Swal.fire({
-            icon: 'success',
-            title: 'The data has been updated successfully',
-
-        });
-            } else {
-                // Handle error
-            }
-        };
-        xhr.onerror = function () {
-            // Handle error
-        };
-        xhr.send(formData);
-    });
-</script>
-
-<script>
-    document.getElementById('Btn_PS').addEventListener('click', function () {
-        var form = document.getElementById('update_PS');
-        var formData = new FormData(form);
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', form.action, true);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                // Handle success
-                var response = xhr.responseText;
-                // Update UI as needed
-                Swal.fire({
-            icon: 'success',
-            title: 'The data has been updated successfully',
-
-        });
-            } else {
-                // Handle error
-            }
-        };
-        xhr.onerror = function () {
-            // Handle error
-        };
-        xhr.send(formData);
-    });
-</script>
-
-<script>
-    document.getElementById('Btn_MS').addEventListener('click', function () {
-        var form = document.getElementById('update_MS');
-        var formData = new FormData(form);
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', form.action, true);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                // Handle success
-                var response = xhr.responseText;
-                // Update UI as needed
-                Swal.fire({
-            icon: 'success',
-            title: 'The data has been updated successfully',
-
-        });
-            } else {
-                // Handle error
-            }
-        };
-        xhr.onerror = function () {
-            // Handle error
-        };
-        xhr.send(formData);
-    });
-</script>
-
-<script>
-    document.getElementById('Btn_com').addEventListener('click', function () {
-        var form = document.getElementById('update_com');
-        var formData = new FormData(form);
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', form.action, true);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                // Handle success
-                var response = xhr.responseText;
-                // Update UI as needed
-                Swal.fire({
-            icon: 'success',
-            title: 'The data has been updated successfully',
-
-        });
-            } else {
-                // Handle error
-            }
-        };
-        xhr.onerror = function () {
-            // Handle error
-        };
-        xhr.send(formData);
-    });
-</script>
-
-<script>
-    document.getElementById('Btn_net').addEventListener('click', function () {
-        var form = document.getElementById('update_net');
-        var formData = new FormData(form);
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', form.action, true);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                // Handle success
-                var response = xhr.responseText;
-                // Update UI as needed
-                Swal.fire({
-            icon: 'success',
-            title: 'The data has been updated successfully',
-
-        });
-            } else {
-                // Handle error
-            }
-        };
-        xhr.onerror = function () {
-            // Handle error
-        };
-        xhr.send(formData);
-    });
-</script>
-
-<script>
-    document.getElementById('Btn_eset').addEventListener('click', function () {
-        var form = document.getElementById('update_eset');
-        var formData = new FormData(form);
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', form.action, true);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                // Handle success
-                var response = xhr.responseText;
-                // Update UI as needed
-                Swal.fire({
-            icon: 'success',
-            title: 'The data has been updated successfully',
-
-        });
-            } else {
-                // Handle error
-            }
-        };
-        xhr.onerror = function () {
-            // Handle error
-        };
-        xhr.send(formData);
-    });
-</script>
-
-<script>
-    document.getElementById('Btn_ups').addEventListener('click', function () {
-        var form = document.getElementById('update_ups');
-        var formData = new FormData(form);
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', form.action, true);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                // Handle success
-                var response = xhr.responseText;
-                // Update UI as needed
-                Swal.fire({
-            icon: 'success',
-            title: 'The data has been updated successfully',
-
-        });
-            } else {
-                // Handle error
-            }
-        };
-        xhr.onerror = function () {
-            // Handle error
-        };
-        xhr.send(formData);
-    });
-</script>
-
-<script>
-    document.getElementById('Btn_status').addEventListener('click', function () {
-        var form = document.getElementById('update_status');
-        var formData = new FormData(form);
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', form.action, true);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                // Handle success
-                var response = xhr.responseText;
-                // Update UI as needed
-                Swal.fire({
-            icon: 'success',
-            title: 'The data has been updated successfully',
-
-        });
-            } else {
-                // Handle error
-            }
-        };
-        xhr.onerror = function () {
-            // Handle error
-        };
-        xhr.send(formData);
-    });
-</script>
 
 <script>
 function time() {
@@ -1342,6 +1065,24 @@ function time() {
   var date = d.getDate();
   var year = d.getFullYear();
   document.getElementById('dept_date').value = ("0" + h).substr(-2) + ("0" + m).substr(-2) + ("0" + s).substr(-2) + " " + ("0" + month).substr(-2) + "/" + ("0" + date).substr(-2) + "/" + year;
+  document.getElementById('user_date').value = ("0" + h).substr(-2) + ("0" + m).substr(-2) + ("0" + s).substr(-2) + " " + ("0" + month).substr(-2) + "/" + ("0" + date).substr(-2) + "/" + year;
+  document.getElementById('com_date').value = ("0" + h).substr(-2) + ("0" + m).substr(-2) + ("0" + s).substr(-2) + " " + ("0" + month).substr(-2) + "/" + ("0" + date).substr(-2) + "/" + year;
+  document.getElementById('ip_date').value = ("0" + h).substr(-2) + ("0" + m).substr(-2) + ("0" + s).substr(-2) + " " + ("0" + month).substr(-2) + "/" + ("0" + date).substr(-2) + "/" + year;
+  document.getElementById('asset_date').value = ("0" + h).substr(-2) + ("0" + m).substr(-2) + ("0" + s).substr(-2) + " " + ("0" + month).substr(-2) + "/" + ("0" + date).substr(-2) + "/" + year;
+  document.getElementById('serial_date').value = ("0" + h).substr(-2) + ("0" + m).substr(-2) + ("0" + s).substr(-2) + " " + ("0" + month).substr(-2) + "/" + ("0" + date).substr(-2) + "/" + year;
+  document.getElementById('processor_date').value = ("0" + h).substr(-2) + ("0" + m).substr(-2) + ("0" + s).substr(-2) + " " + ("0" + month).substr(-2) + "/" + ("0" + date).substr(-2) + "/" + year;
+  document.getElementById('os_date').value = ("0" + h).substr(-2) + ("0" + m).substr(-2) + ("0" + s).substr(-2) + " " + ("0" + month).substr(-2) + "/" + ("0" + date).substr(-2) + "/" + year;
+  document.getElementById('mobo_date').value = ("0" + h).substr(-2) + ("0" + m).substr(-2) + ("0" + s).substr(-2) + " " + ("0" + month).substr(-2) + "/" + ("0" + date).substr(-2) + "/" + year;
+  document.getElementById('ram_date').value = ("0" + h).substr(-2) + ("0" + m).substr(-2) + ("0" + s).substr(-2) + " " + ("0" + month).substr(-2) + "/" + ("0" + date).substr(-2) + "/" + year;
+  document.getElementById('storage_date').value = ("0" + h).substr(-2) + ("0" + m).substr(-2) + ("0" + s).substr(-2) + " " + ("0" + month).substr(-2) + "/" + ("0" + date).substr(-2) + "/" + year;
+  document.getElementById('ps_date').value = ("0" + h).substr(-2) + ("0" + m).substr(-2) + ("0" + s).substr(-2) + " " + ("0" + month).substr(-2) + "/" + ("0" + date).substr(-2) + "/" + year;
+  document.getElementById('ms_date').value = ("0" + h).substr(-2) + ("0" + m).substr(-2) + ("0" + s).substr(-2) + " " + ("0" + month).substr(-2) + "/" + ("0" + date).substr(-2) + "/" + year;
+  document.getElementById('comtag_date').value = ("0" + h).substr(-2) + ("0" + m).substr(-2) + ("0" + s).substr(-2) + " " + ("0" + month).substr(-2) + "/" + ("0" + date).substr(-2) + "/" + year;
+  document.getElementById('nettag_date').value = ("0" + h).substr(-2) + ("0" + m).substr(-2) + ("0" + s).substr(-2) + " " + ("0" + month).substr(-2) + "/" + ("0" + date).substr(-2) + "/" + year;
+  document.getElementById('eset_date').value = ("0" + h).substr(-2) + ("0" + m).substr(-2) + ("0" + s).substr(-2) + " " + ("0" + month).substr(-2) + "/" + ("0" + date).substr(-2) + "/" + year;
+  document.getElementById('ups_date').value = ("0" + h).substr(-2) + ("0" + m).substr(-2) + ("0" + s).substr(-2) + " " + ("0" + month).substr(-2) + "/" + ("0" + date).substr(-2) + "/" + year;
+  document.getElementById('status_date').value = ("0" + h).substr(-2) + ("0" + m).substr(-2) + ("0" + s).substr(-2) + " " + ("0" + month).substr(-2) + "/" + ("0" + date).substr(-2) + "/" + year;
+
 
 }
 setInterval(() => time(new Date().toLocaleTimeString()),1000);

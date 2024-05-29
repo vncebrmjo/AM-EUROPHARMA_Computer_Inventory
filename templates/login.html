@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
 <link rel="stylesheet" href="static/css/design.css">
@@ -63,3 +66,15 @@
   </section>
 </body>
 </html>
+
+
+<script>
+        {% if error %}
+        // Display SweetAlert with success message
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: '{{ error }}',
+        });
+        {% endif %}
+    </script>
