@@ -107,7 +107,7 @@
              <input type="hidden" name="field" value="Username">
              <input type="hidden" name="user_date" id="user_date">
              <input type="hidden" name="id" value="{{ id }}">
-             <input type="hidden" class="form-control" name="old_username" value="{{ user }}">
+             <input type="hidden" class="form-control" name="old_username" value="{{ user }}" readonly>
              <input type="text" class="form-control" name="new_username" value="{{ user }}">
              </div>
         </form>
@@ -401,7 +401,7 @@
 
                     <form id="update_status" method="POST" action ="{{ url_for('update_opstat') }}">
                     <div class="col-md-3" id="opstat">
-                            <label class="fw-semibold">OPERATIONAL STATUS</label>
+                            <label class="fw-semibold">ACTIVE STATUS</label>
                                 <button id="Btn_status" class="btn" type="button">
                                     <i class="fa-solid fa-circle-check" style="color: #11ee1f;"></i>
                                 </button>
@@ -464,34 +464,76 @@
         xhr.send(formData);
     });
 </script>
-
 <script>
     document.getElementById('btn_username').addEventListener('click', function () {
-        var form = document.getElementById('update_username');
-        var formData = new FormData(form);
+    var form = document.getElementById('update_username');
+    var formData = new FormData(form);
 
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', form.action, true);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                // Handle success
-                var response = xhr.responseText;
-                // Update UI as needed
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/update_username', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            if (response.exists) {
                 Swal.fire({
-            icon: 'success',
-            title: 'The data has been updated successfully',
-
-        });
+                    icon: 'error',
+                    title: 'The Username already exists'
+                });
             } else {
-                // Handle error
+                // If username doesn't exist, submit the form
+                var xhrSubmit = new XMLHttpRequest();
+                xhrSubmit.open('POST', form.action, true);
+                xhrSubmit.onload = function () {
+                    if (xhrSubmit.status === 200) {
+                        // Handle success
+                        var responseSubmit = xhrSubmit.responseText;
+                        // Update UI as needed
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'The data has been updated successfully',
+                        });
+                    }
+                };
+                xhrSubmit.send(formData);
             }
-        };
-        xhr.onerror = function () {
-            // Handle error
-        };
-        xhr.send(formData);
-    });
+        }
+    };
+    xhr.send('new_username=' + encodeURIComponent(formData.get('new_username')));
+});
+
+
 </script>
+<!--<script>-->
+<!--    document.getElementById('btn_username').addEventListener('click', function () {-->
+<!--        var form = document.getElementById('update_username');-->
+<!--        var formData = new FormData(form);-->
+
+<!--        var xhr = new XMLHttpRequest();-->
+<!--        xhr.open('POST', form.action, true);-->
+<!--        xhr.onload = function () {-->
+<!--            if (xhr.status === 200) {-->
+<!--                // Handle success-->
+<!--                var response = xhr.responseText;-->
+<!--                // Update UI as needed-->
+<!--                Swal.fire({-->
+<!--            icon: 'success',-->
+<!--            title: 'The data has been updated successfully',-->
+
+<!--        });-->
+<!--            } else {-->
+<!--                {{ row90 }}-->
+<!--            }-->
+<!--        };-->
+<!--        xhr.onerror = function () {-->
+<!--            {{ row90 }}-->
+<!--        };-->
+<!--        xhr.send(formData);-->
+<!--    });-->
+<!--</script>-->
+
+
+
 
 <script>
     document.getElementById('btn_computername').addEventListener('click', function () {
@@ -1116,4 +1158,15 @@ function time() {
 }
 setInterval(() => time(new Date().toLocaleTimeString()),1000);
 </script>
+
+ <script>
+        {% if error %}
+        // Display SweetAlert with success message
+        Swal.fire({
+            icon: 'error',
+            title: 'error',
+            text: '{{ error }}',
+        });
+        {% endif %}
+    </script>
 

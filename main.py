@@ -2,7 +2,7 @@
 from flask import Flask, render_template, request, url_for, redirect, flash, jsonify, g, session
 import os
 import pyodbc as odbcconn
-from math import ceil
+
 
 app = Flask(__name__)
 
@@ -98,8 +98,32 @@ def update_department():
 
 
 
+
+
+
+
+
+
+
+
+
+
 @app.route('/update_username', methods=['GET', 'POST'])
 def update_username():
+    if request.method == "POST":
+
+        new_username = request.form['new_username']
+
+
+
+        cursor.execute("SELECT * FROM INV_computers WHERE Username = ?", new_username)
+        row90 = cursor.fetchone()
+        if row90:
+            return jsonify({'exists': True})
+        else:
+            return jsonify({'exists': False})
+
+
     if request.method == 'POST':
         id = request.form['id']
         user_date = request.form['user_date']
@@ -107,7 +131,7 @@ def update_username():
         new_username = request.form['new_username']
         field = request.form['field']
 
-        cursor = connect.cursor()
+
 
         cursor.execute(
             "INSERT INTO INV_logs (id,date_modified, field_modified, old_data, new_data) "
@@ -539,22 +563,112 @@ def update_user():
     return redirect(url_for('login'))
 
 
+# @app.route('/add_inventory2', methods=['GET', 'POST'])
+# def add_inventory2():
+#     if g.user:
+#         error, error2, error3 = None, None, None  # Initialize errors
+#         if request.method == "POST":
+#             user = request.form['user']
+#             cursor.execute("SELECT * FROM INV_computers WHERE Username = ?", user)
+#             row = cursor.fetchone()
+#             if row:
+#                 error = "The Username already exists"
+#
+#         if request.method == "POST":
+#             computer_name = request.form['computer_name']
+#             cursor.execute("SELECT * FROM INV_computers WHERE COMPUTER_NAME = ?", computer_name)
+#             row = cursor.fetchone()
+#             if row:
+#                 error2 = "The Computer name already exists"
+#
+#         if request.method == "POST":
+#             ip = request.form['ip']
+#             cursor.execute("SELECT * FROM INV_computers WHERE IP = ?", ip)
+#             row = cursor.fetchone()
+#             if row:
+#                 error3 = "The IP Already Exists"
+#
+#         if request.method == "POST":
+#             department = request.form.get('department')
+#             # user = request.form['user']
+#             computer_name = request.form['computer_name']
+#             ip = request.form['ip']
+#
+#             processor_1 = request.form.get('processor_1')
+#             processor_2 = request.form.get('processor_2')
+#             processor_3 = request.form.get('processor_3')
+#
+#             processor = processor_1 + ' ' + processor_2 + ' ' + processor_3
+#
+#             mobo_1 = request.form['mobo_1']
+#             mobo_2 = request.form['mobo_2']
+#             mobo = mobo_1 + ' ' +mobo_2
+#
+#
+#             ps_1 = request.form['ps_1']
+#             ps_2 = request.form['ps_2']
+#             ps = ps_1 + ' ' + ps_2
+#
+#
+#             ram_1 = request.form['ram_1']
+#             ram_2 = request.form.get('ram_2')
+#             ram_3 = request.form.get('ram_3')
+#             ram = ram_1 + ' ' + ram_2 + ' ' + ram_3
+#
+#             asset_tag = request.form['asset_tag']
+#             serial_number = request.form['serial_number']
+#
+#             storage_1 = request.form['storage_1']
+#             storage_2 = request.form.get('storage_2')
+#             storage_3 = request.form['storage_3']
+#             storage = storage_1 + ' ' + storage_2 + ' ' + storage_3
+#
+#             os = request.form.get('os_1')
+#             ms_type = request.form.get('ms_type')
+#             computer_tag = request.form.get('computer_tag')
+#             network_tag = request.form.get('network_tag')
+#             eset = request.form['btn_eset']
+#             ups = request.form['btn_ups']
+#             opstat = request.form['btn_opstat']
+#
+#
+#             cursor.execute(
+#             "INSERT INTO INV_computers (DEPARTMENT, USERNAME, COMPUTER_NAME, IP, PROCESSOR, MOTHERBOARD, POWER_SUPPLY, RAM, STORAGE, OS, MS_OFFICE, ASSET_TAG, COMPUTER_TAG, NETWORK_TAG, UPS, SERIAL_NUMBER, OPERATIONAL_STATUS, ESET) "
+#             "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+#             (department, user, computer_name, ip, processor, mobo, ps, ram, storage, os, ms_type, asset_tag,
+#                 computer_tag, network_tag, ups, serial_number, opstat, eset))
+#             success_message = "The information has been added successfully!"
+#             connect.commit()
+#
+#             return render_template('add_inventory2.html', success_message=success_message,
+#                                    user=session['Username'], error=error, error2=error2, error3=error3,
+#                                    **request.form)  # Pass form data to template
+#
+#         return render_template('add_inventory2.html', user=session['Username'], error=error, error2=error2, error3=error3,
+#                                **request.form)  # Pass form data to template
+#
+#     return redirect(url_for('login'))
+
+
 @app.route('/add_inventory2', methods=['GET', 'POST'])
 def add_inventory2():
     if g.user:
+
         if request.method == "POST":
             user = request.form['user']
-
+            session['qwerty'] = user
             cursor.execute("SELECT * FROM INV_computers WHERE Username = ?", user)
             row = cursor.fetchone()
             if row:
                 error = "The Username already exists"
-
                 return render_template('add_inventory2.html', error=error)
+                #return redirect(url_for('add_inventory2', error=error))
+
+
 
         if request.method == "POST":
             computer_name = request.form['computer_name']
-
+            session['computer_name'] = computer_name
             cursor.execute("SELECT * FROM INV_computers WHERE COMPUTER_NAME = ?", computer_name)
             row = cursor.fetchone()
             if row:
@@ -660,7 +774,7 @@ def login():
             return redirect(url_for('main_page'))
 
         error = "Incorrect Username or Password"
-        return render_template('login.html', error=error)
+        return render_template('login.html', error=error, username=username)
 
     return render_template('login.html', error=None)
 
@@ -673,17 +787,4 @@ def logout():
 if __name__ == "__main__":
     app.run(debug=True)
 
-    # department = request.form.get('department')
-    # mobo = request.form.get('mobo')
-    # ram = request.form.get('ram', ' ')
 
-    # if request.method == 'POST':
-    #    cursor.execute("SELECT * FROM Computers WHERE Department = ? " ,
-    #                   (department))
-    # cursor.execute("SELECT * FROM Computers WHERE MotherBoard LIKE  ? ",
-    #              ())
-
-    # else:
-    #    cursor.execute("SELECT * FROM Computers")
-
-    # data = cursor.fetchall()
