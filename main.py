@@ -96,56 +96,73 @@ def update_department():
         return render_template('update_inventory.html', new_department=new_department,
                                old_department=old_department, field=field, id=id, msg=msg, dept_date=dept_date )
 
-
-
-
-
-
-
-
-
-
-
-
-
 @app.route('/update_username', methods=['GET', 'POST'])
 def update_username():
-    if request.method == "POST":
-
-        new_username = request.form['new_username']
-
-
-
-        cursor.execute("SELECT * FROM INV_computers WHERE Username = ?", new_username)
-        row90 = cursor.fetchone()
-        if row90:
-            return jsonify({'exists': True})
-        else:
-            return jsonify({'exists': False})
-
-
     if request.method == 'POST':
         id = request.form['id']
-        user_date = request.form['user_date']
+        dept_date = request.form['dept_date']
         old_username = request.form['old_username']
-        new_username = request.form['new_username']
+        new_username= request.form['new_username']
         field = request.form['field']
 
-
+        cursor = connect.cursor()
 
         cursor.execute(
-            "INSERT INTO INV_logs (id,date_modified, field_modified, old_data, new_data) "
+            "INSERT INTO INV_logs (id,  date_modified, field_modified, old_data, new_data) "
             "VALUES ( ?, ?, ?, ?, ?)",
-            (id, user_date, field, old_username, new_username))
+            (id, dept_date, field, old_username, new_username))
 
         cursor.execute("UPDATE INV_computers SET Username = ? WHERE ID = ?",
                        (new_username, id))
+
         msg = "The data has been updated successfully"
 
         connect.commit()
 
-        return render_template('update_inventory.html', new_username=new_username,
-                               old_username=old_username, field=field, id=id, msg=msg, user_date=user_date)
+        return redirect(url_for('update_user', new_username=new_username,
+                               old_username=old_username, field=field, id=id, msg=msg, dept_date=dept_date ))
+        # return render_template('update_user.html')
+
+
+
+# @app.route('/update_username', methods=['GET', 'POST'])
+# def update_username():
+#     if request.method == "POST":
+#
+#         new_username = request.form['new_username']
+#
+#
+#
+#         cursor.execute("SELECT * FROM INV_computers WHERE Username = ?", new_username)
+#         row90 = cursor.fetchone()
+#         if row90:
+#             return jsonify({'exists': True})
+#         else:
+#             return jsonify({'exists': False})
+#
+#
+#     if request.method == 'POST':
+#         id = request.form['id']
+#         user_date = request.form['user_date']
+#         old_username = request.form['old_username']
+#         new_username = request.form['new_username']
+#         field = request.form['field']
+#
+#
+#
+#         cursor.execute(
+#             "INSERT INTO INV_logs (id,date_modified, field_modified, old_data, new_data) "
+#             "VALUES ( ?, ?, ?, ?, ?)",
+#             (id, user_date, field, old_username, new_username))
+#
+#         cursor.execute("UPDATE INV_computers SET Username = ? WHERE ID = ?",
+#                        (new_username, id))
+#         msg = "The data has been updated successfully"
+#
+#         connect.commit()
+#
+#         return render_template('update_user.html', new_username=new_username,
+#                                old_username=old_username, field=field, id=id, msg=msg, user_date=user_date)
 
 
 @app.route('/update_computername', methods=['GET', 'POST'])
@@ -560,8 +577,31 @@ def update_user():
         cursor.execute('SELECT * FROM INV_computers')
         get_page = cursor.fetchall()
         return render_template('update_user.html',get_page=get_page, user=session['Username'])
+
     return redirect(url_for('login'))
 
+@app.route('/update',methods=['POST','GET'])
+def update():
+
+    if request.method == 'POST':
+        id = request.form['id']
+        dept_date = request.form['dept_date']
+        old_username = request.form['old_username']
+        new_username = request.form['new_username']
+        field = request.form['field']
+
+        cursor = connect.cursor()
+
+        cursor.execute(
+            "INSERT INTO INV_logs (id,  date_modified, field_modified, old_data, new_data) "
+            "VALUES ( ?, ?, ?, ?, ?)",
+            (id, dept_date, field, old_username, new_username))
+
+        cursor.execute("UPDATE INV_computers SET Username = ? WHERE ID = ?",
+                       (new_username, id))
+
+        connect.commit()
+    return redirect(url_for('update_user'))
 
 # @app.route('/add_inventory2', methods=['GET', 'POST'])
 # def add_inventory2():
