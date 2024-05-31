@@ -162,12 +162,12 @@ $(document).ready(function() {
             { visible: false }, // Column 14
             { visible: false }, // Column 15
             { visible: false },  // Column 16
-            { visible: false }  // Column 16
+            { visible: false }  // Column 17
 
 
         ],
         select: true, // Enable row selection
-        lengthMenu: [5, 10, 20, 100], // Define page length menu options
+        lengthMenu: [[-1, 10, 25, 100, ], ['All', 10, 25, 100,]],  // Define page length menu options
         pageLength: 10, // Set the default page length to 10 entries per page
         dom: 'Bfrtip', // Control the layout of DataTables
 

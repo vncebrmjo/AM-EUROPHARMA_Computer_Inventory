@@ -123,7 +123,6 @@ def update_username():
         return render_template('update_inventory.html', new_username=new_username,
                                old_username=old_username, field=field, id=id, msg=msg, user_date=user_date)
 
-
 @app.route('/update_computername', methods=['GET', 'POST'])
 def update_computername():
     if request.method == 'POST':
@@ -337,7 +336,6 @@ def update_ram():
 def update_storage():
     if request.method == 'POST':
         id = request.form['id']
-        storage_date = request.form['storage_date']
         storage_date = request.form['storage_date']
         old_storage = request.form['old_storage']
         new_storage = request.form['new_storage']
@@ -560,6 +558,7 @@ def add_inventory2():
     if g.user:
         if request.method == "POST":
             user = request.form['user']
+            session['user'] = user
 
             cursor.execute("SELECT * FROM INV_computers WHERE Username = ?", user)
             row = cursor.fetchone()
@@ -570,6 +569,7 @@ def add_inventory2():
 
         if request.method == "POST":
             computer_name = request.form['computer_name']
+            session['computer_name'] = computer_name
 
             cursor.execute("SELECT * FROM INV_computers WHERE COMPUTER_NAME = ?", computer_name)
             row = cursor.fetchone()
@@ -580,6 +580,7 @@ def add_inventory2():
 
         if request.method == "POST":
             ip = request.form['ip']
+            session['ip'] = ip
 
             cursor.execute("SELECT * FROM INV_computers WHERE IP = ?", ip)
             row = cursor.fetchone()
@@ -588,46 +589,95 @@ def add_inventory2():
 
                 return render_template('add_inventory2.html', error3=error3)
 
+        if request.method == "POST":
+            asset_tag = request.form['asset_tag']
+            session['asset_tag'] = asset_tag
+
+            cursor.execute("SELECT * FROM INV_computers WHERE Asset_Tag = ?", asset_tag)
+            row = cursor.fetchone()
+            if row:
+                error4 = "The Asset Tag Already Exists"
+
+                return render_template('add_inventory2.html', error4=error4)
+
+        if request.method == "POST":
+            serial_number = request.form['serial_number']
+            session['serial_number'] = serial_number
+
+            cursor.execute("SELECT * FROM INV_computers WHERE Serial_Number = ?", serial_number)
+            row = cursor.fetchone()
+            if row:
+                error5 = "The Serial Number Already Exists"
+
+                return render_template('add_inventory2.html', error5=error5)
+
+        if request.method == "POST":
+            processor_3 = request.form['processor_3']
+            session['processor_3'] = processor_3
+
+        if request.method == "POST":
+            ram_1 = request.form['ram_1']
+            session['ram_1'] = ram_1
+            ram_2 = request.form['ram_2']
+            session['ram_2'] = ram_2
+            ram_3 = request.form['ram_3']
+            session['ram_3'] = ram_3
+            ram = ram_1 + ' ' + ram_2 + ' ' + ram_3
+
+        if request.method == "POST":
+            storage_1 = request.form['storage_1']
+            session['storage_1'] = storage_1
+
+        if request.method == "POST":
+            mobo_2 = request.form['mobo_2']
+            session['mobo_2'] = mobo_2
+            mobo_1 = request.form['mobo_1']
+            session['mobo_1'] = mobo_1
+            mobo = mobo_1 + ' ' + mobo_2
+
+        if request.method == "POST":
+            ps_1 = request.form['ps_1']
+            session['ps_1'] = ps_1
+            ps_2 = request.form['ps_2']
+            session['ps_2'] = ps_2
+            ps = ps_1 + ' ' + ps_2
+
+        if request.method == "POST":
+            storage_1 = request.form['storage_1']
+            session['storage_1'] = storage_1
+            storage_2 = request.form['storage_2']
+            session['storage_2'] = storage_2
+            storage_3 = request.form['storage_3']
+            session['storage_3'] = storage_3
+            storage = storage_1 + ' ' + storage_2 + ' ' + storage_3
+
+
+        if request.method == "POST":
+            computer_tag = request.form['computer_tag']
+            session['computer_tag'] = computer_tag
+
+        if request.method == "POST":
+            network_tag = request.form['network_tag']
+            session['network_tag'] = network_tag
+
+
+
+
+
+
+
 
         if request.method == "POST":
             department = request.form.get('department')
-            user = request.form['user']
-            computer_name = request.form['computer_name']
-            ip = request.form['ip']
+
 
             processor_1 = request.form.get('processor_1')
             processor_2 = request.form.get('processor_2')
-            processor_3 = request.form.get('processor_3')
 
             processor = processor_1 + ' ' + processor_2 + ' ' + processor_3
 
-            mobo_1 = request.form['mobo_1']
-            mobo_2 = request.form['mobo_2']
-            mobo = mobo_1 + ' ' +mobo_2
-
-
-            ps_1 = request.form['ps_1']
-            ps_2 = request.form['ps_2']
-            ps = ps_1 + ' ' + ps_2
-
-
-            ram_1 = request.form['ram_1']
-            ram_2 = request.form.get('ram_2')
-            ram_3 = request.form.get('ram_3')
-            ram = ram_1 + ' ' + ram_2 + ' ' + ram_3
-
-            asset_tag = request.form['asset_tag']
-            serial_number = request.form['serial_number']
-
-            storage_1 = request.form['storage_1']
-            storage_2 = request.form.get('storage_2')
-            storage_3 = request.form['storage_3']
-            storage = storage_1 + ' ' + storage_2 + ' ' + storage_3
-
             os = request.form.get('os_1')
             ms_type = request.form.get('ms_type')
-            computer_tag = request.form.get('computer_tag')
-            network_tag = request.form.get('network_tag')
             eset = request.form['btn_eset']
             ups = request.form['btn_ups']
             opstat = request.form['btn_opstat']
