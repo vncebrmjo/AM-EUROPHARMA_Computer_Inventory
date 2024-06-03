@@ -30,7 +30,6 @@
 
                 <div class="modal-like-form">
                     <h4 class="modal-like-header">USER INFORMATION</h4>
-
                            <div class="col-md-3" id="dept_combo_box">
           <label class="fw-semibold">DEPARTMENT</label>
                 <select class="form-select mb-3" name="department" id="select_department">
@@ -55,23 +54,23 @@
             </div>
          <div class="col-md-3" id="user_text">
           <label class="fw-semibold">USER NAME</label>
-              <input type="text" class="form-control" name="user" required>
+              <input type="text" class="form-control" name="user" value="{{ session['user'] if 'user' in session else '' }}" required>
              </div>
                  <div class="col-md-3" id="computer_name">
           <label class="fw-semibold"> COMPUTER NAME</label>
-              <input type="text" class="form-control"  name="computer_name" required>
+              <input type="text" class="form-control"  name="computer_name" value="{{ session['computer_name'] if 'computer_name' in session else '' }}" required>
              </div>
         <div class="col-md-3" id="ip">
           <label class="fw-semibold">IP ADDRESS</label>
-              <input type="text" class="form-control"  name="ip" required>
+              <input type="text" class="form-control"  name="ip" value="{{ session['ip'] if 'ip' in session else '' }}" required>
              </div>
         <div class="col-md-3" id="asset_tag">
           <label class="fw-semibold">ASSET TAG</label>
-              <input type="text" class="form-control"  name="asset_tag" required>
+              <input type="text" class="form-control"  name="asset_tag" value="{{ session['asset_tag'] if 'asset_tag' in session else '' }}" required>
              </div>
         <div class="col-md-3" id="serial_number">
           <label class="fw-semibold">SERIAL NUMBER</label>
-              <input type="text" class="form-control" name="serial_number" required>
+              <input type="text" class="form-control" name="serial_number" value="{{ session['serial_number'] if 'serial_number' in session else '' }}" required>
              </div>
 
           <hr>
@@ -118,28 +117,31 @@
                 <select class="form-select mb-3" name="processor_2" id="core_processor">
                     <option value=" "> </option>
                     <option value="Pentium">Pentium</option>
-                    <option value="Core i3">i3</option>
-                    <option value="Core i5">i5</option>
-                    <option value="Core i7">i7</option>
+                    <option value="Core i3">Core i3</option>
+                    <option value="Core i5">Core i5</option>
+                    <option value="Core i7">Core i7</option>
+                    <option value="Ryzen 3">Ryzen 3</option>
+                    <option value="Ryzen 5">Ryzen 5</option>
+                    <option value="Ryzen 7">Ryzen 7</option>
                 </select>
             </div>
 
         <div class="col-md-3" id="cpu_details">
           <label class="fw-semibold">DETAILS</label>
-              <input type="text" class="form-control" name="processor_3" required>
+              <input type="text" class="form-control" name="processor_3" value="{{ session['processor_3'] if 'processor_3' in session else '' }}" required>
              </div>
 
             <hr>
-            <h4 class="modal-like-header"> MOTHERBOARD</h4>
+            <h4 class="modal-like-header">MOTHERBOARD</h4>
 
                              <div class="col-md-3" id="brand">
           <label class="fw-semibold">BRAND NAME</label>
-              <input type="text" class="form-control" name="mobo_1" required>
+              <input type="text" class="form-control" name="mobo_1" value="{{ session['mobo_1'] if 'mobo_1' in session else '' }}" required>
              </div>
 
           <div class="col-md-3" id="motherboard_details">
           <label class="fw-semibold">DETAILS</label>
-              <input type="text" class="form-control" name="mobo_2" required>
+              <input type="text" class="form-control" name="mobo_2" value="{{ session['mobo_2'] if 'mobo_2' in session else '' }}" required>
              </div>
 
 
@@ -161,12 +163,12 @@
 
                              <div class="col-md-3" id="ram_brand">
           <label class="fw-semibold">BRAND NAME</label>
-              <input type="text" class="form-control" name="ram_1" required>
+              <input type="text" class="form-control" name="ram_1" value="{{ session['ram_1'] if 'ram_1' in session else '' }}" required>
              </div>
         <div class="col-md-3" id="ram_combo_box">
           <label class="fw-semibold">DDR</label>
                 <select class="form-select mb-3" name="ram_2" id="select_ddr">
-                    <option value=" "> </option>
+                    <option value="{{ session['ram_2'] if 'ram_2' in session else '' }}"> </option>
                     <option value="DDR2">DDR2</option>
                     <option value="DDR3">DDR3</option>
                     <option value="DDR4">DDR4</option>
@@ -177,7 +179,7 @@
         <div class="col-md-3" id="gb_combo_box">
           <label class="fw-semibold">GIGABYTES</label>
                 <select class="form-select mb-3" name="ram_3" id="select_gb">
-                    <option value=" "> </option>
+                    <option value="{{ session['ram_3'] if 'ram_3' in session else '' }}"> </option>
                     <option value="2GB">2GB</option>
                     <option value="4GB">4GB</option>
                     <option value="6GB">6GB</option>
@@ -194,12 +196,12 @@
 
              <div class="col-md-3" id="ps_brand">
           <label class="fw-semibold">BRAND NAME</label>
-              <input type="text" class="form-control" name="ps_1" required>
+              <input type="text" class="form-control" name="ps_1" value="{{ session['ps_1'] if 'ps_1' in session else '' }}" required>
              </div>
 
           <div class="col-md-3" id="watts">
           <label class="fw-semibold">WATTS</label>
-              <input type="text" class="form-control" name="ps_2" required>
+              <input type="text" class="form-control" name="ps_2" value="{{ session['ps_2'] if 'ps_2' in session else '' }}" required>
              </div>
 
 
@@ -224,7 +226,7 @@
 
            <div class="col-md-3" id="storage_brand">
           <label class="fw-semibold">BRAND NAME</label>
-              <input type="text" class="form-control" name="storage_1" required>
+              <input type="text" class="form-control" name="storage_1" value="{{ session['storage_1'] if 'storage_1' in session else '' }}" required>
              </div>
 
            <div class="col-md-3" id="storage_combo_box">
@@ -239,7 +241,7 @@
 
         <div class="col-md-3" id="size">
           <label class="fw-semibold">SIZE</label>
-              <input type="text" class="form-control" name="storage_3">
+              <input type="text" class="form-control" name="storage_3" value="{{ session['storage_3'] if 'storage_3' in session else '' }}" required>
              </div>
                 <hr>
                     <h4 class="modal-like-header">DEVICE STATUS</h4>
@@ -255,15 +257,13 @@
 
          <div class="col-md-3" id="comtag">
           <label class="fw-semibold">COMPUTER TAG</label>
-              <input type="text" class="form-control" name="computer_tag">
+              <input type="text" class="form-control" name="computer_tag" value="{{ session['computer_tag'] if 'computer_tag' in session else '' }}">
              </div>
 
         <div class="col-md-3" id="nettag">
           <label class="fw-semibold">NETWORK TAG</label>
-              <input type="text" class="form-control" name="network_tag">
+              <input type="text" class="form-control" name="network_tag" value="{{ session['network_tag'] if 'network_tag' in session else '' }}">
              </div>
-
-
 
             <div class="col-md-3">
             <div class="col-md-3" id="eset">
@@ -351,7 +351,6 @@
 </body>
 {% include 'Footer.html' %}
 </html>
-
  <script>
         {% if success_message %}
         // Display SweetAlert with success message
@@ -373,6 +372,7 @@
         });
         {% endif %}
     </script>
+
 
  <script>
         {% if error2 %}
@@ -397,6 +397,27 @@
         {% endif %}
     </script>
 
+<script>
+        {% if error4 %}
+        // Display SweetAlert with success message
+        Swal.fire({
+            icon: 'error',
+            title: 'error',
+            text: '{{ error4 }}',
+        });
+        {% endif %}
+    </script>
+
+<script>
+        {% if error5 %}
+        // Display SweetAlert with success message
+        Swal.fire({
+            icon: 'error',
+            title: 'error',
+            text: '{{ error5 }}',
+        });
+        {% endif %}
+    </script>
 <!-- <script>-->
 <!--        {% if success_message %}-->
 <!--        // Display SweetAlert with success message-->

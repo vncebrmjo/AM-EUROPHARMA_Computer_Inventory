@@ -73,7 +73,6 @@
             <th class="fw-semibold">OLD DATA</th>
             <th class="fw-semibold">NEW DATA</th>
             <th class="fw-semibold">USER MODIFIED</th>
-             <th class="fw-semibold " >TYPE</th>
         </tr>
     </thead>
     <tbody>
@@ -90,7 +89,6 @@
         <td class="fw-normal"> {{computer.3}}</td>
         <td class="fw-normal"> {{computer.4}}</td>
         <td class="fw-normal"> {{computer.5}}</td>
-        <td class="fw-normal"> {{computer.6}}</td>
 
 
 <!--        <td class="fw-normal">-->
@@ -129,13 +127,13 @@ $(document).ready(function() {
             { visible: true }, // Column 2
             { visible: true }, // Column 3
             { visible: true }, // Column 4
-            { visible: true }, // Column 5
+
 
 
 
         ],
         select: true, // Enable row selection
-        lengthMenu: [5, 10, 20, 100], // Define page length menu options
+        lengthMenu: [[-1, 10, 25, 100, ], ['All', 10, 25, 100,]], // Define page length menu options
         pageLength: 10, // Set the default page length to 10 entries per page
         dom: 'Bfrtip', // Control the layout of DataTables
 
